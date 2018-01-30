@@ -21,6 +21,12 @@ class Station : NSObject, MKAnnotation {
         self.longitude = lon
     }
     
+    convenience init(latitude lat: Double, longitude lon: Double, title: String, subtitle: String) {
+        self.init(latitude: lat, longitude: lon)
+        self.title = title
+        self.subtitle = subtitle
+    }
+    
     var coordinate: CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }

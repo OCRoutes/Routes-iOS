@@ -12,6 +12,7 @@ import MapKit
 class ViewController: UIViewController {
 
     var mapView : MKMapView!
+    let initialLocation = CLLocation(latitude: 45.42037, longitude: -75.678609)
     let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
@@ -20,9 +21,7 @@ class ViewController: UIViewController {
         
         mapView = MKMapView(frame: CGRect.zero)
         
-        let initialLocation = CLLocation(latitude: 45.42037, longitude: -75.678609)
-
-        self.locationManager.requestWhenInUseAuthorization()
+        checkLocationAuthorizationStatus()
         
         if CLLocationManager.locationServicesEnabled() {
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -34,10 +33,9 @@ class ViewController: UIViewController {
             centerMapOnLocation(location: initialLocation)
         }
         
+        PlaceMapMarker()
         
-        checkLocationAuthorizationStatus()
         view.addSubview(mapView)
-        
         SetupContraint()
     }
 
@@ -46,6 +44,10 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func PlaceMapMarker() {
+        let busStop = Station(latitude: 45.423743, longitude: -75.687995, title: "Big Bus", subtitle: "Hi")
+        mapView.addAnnotation(busStop)
+    }
     
     func checkLocationAuthorizationStatus() {
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
