@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Setting up tab bar icons/titles
         let tabBarItems = rootTabController.tabBar.items! as [UITabBarItem]
+        rootTabController.tabBar.tintColor = UIColor(red:0.91, green:0.25, blue:0.26, alpha:1.00)
         tabBarItems[0].title = "Favorites"
         tabBarItems[1].title = "Map"
         
