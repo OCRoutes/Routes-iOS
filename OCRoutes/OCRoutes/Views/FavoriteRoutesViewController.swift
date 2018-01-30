@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class FavoriteRoutesView : UIViewController {
+class FavoriteRoutesViewController : UIViewController {
     
     let titleString: String = "Favorite Routes"
     var titleLabel: UILabel!
@@ -22,7 +22,8 @@ class FavoriteRoutesView : UIViewController {
         //Insert label
         titleLabel = UILabel(frame: CGRect.zero)
         titleLabel.attributedText = NSAttributedString(string: titleString, attributes: [
-            NSAttributedStringKey.font: UIFont(name: "Avenir Next", size: 40)!
+            NSAttributedStringKey.font: UIFont(name: "Avenir Next", size: 40)!,
+            NSAttributedStringKey.foregroundColor: Style.mainColor
         ])
         titleLabel.textAlignment = .center
         view.addSubview(titleLabel)

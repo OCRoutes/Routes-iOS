@@ -22,18 +22,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let rootTabController = UITabBarController()
         
         let favoriteNavController = UINavigationController()
-        favoriteNavController.viewControllers = [FavoriteRoutesView()]
+        favoriteNavController.viewControllers = [FavoriteRoutesViewController()]
+        
+        let routesNavController = UINavigationController()
+        routesNavController.viewControllers = [RoutesViewController()]
         
         let mapNavController = UINavigationController()
         mapNavController.viewControllers = [MapViewController()]
         
-        rootTabController.viewControllers = [favoriteNavController, mapNavController]
+        rootTabController.viewControllers = [favoriteNavController, routesNavController, mapNavController]
         
         //Setting up tab bar icons/titles
         let tabBarItems = rootTabController.tabBar.items! as [UITabBarItem]
-        rootTabController.tabBar.tintColor = UIColor(red:0.91, green:0.25, blue:0.26, alpha:1.00)
+        rootTabController.tabBar.tintColor = Style.mainColor
         tabBarItems[0].title = "Favorites"
-        tabBarItems[1].title = "Map"
+        tabBarItems[1].title = "Routes"
+        tabBarItems[2].title = "Map"
         
         window?.rootViewController = rootTabController
         window?.makeKeyAndVisible()
