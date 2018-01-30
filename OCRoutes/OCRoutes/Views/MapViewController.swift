@@ -19,6 +19,17 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
+        SetupMapView()
+        PlaceMapMarkers()
+        SetupContraint()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func SetupMapView() {
         mapView = MKMapView(frame: CGRect.zero)
         
         checkLocationAuthorizationStatus()
@@ -33,20 +44,18 @@ class MapViewController: UIViewController {
             centerMapOnLocation(location: initialLocation)
         }
         
-        PlaceMapMarker()
+        mapView.showsCompass = true
+        mapView.showsScale = true
         
         view.addSubview(mapView)
-        SetupContraint()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    func PlaceMapMarker() {
-        let busStop = StationAnnotation(latitude: 45.423743, longitude: -75.687995, title: "Big Bus", subtitle: "Hi")
-        mapView.addAnnotation(busStop)
+    func PlaceMapMarkers() {
+        let bus1 = StationAnnotation(latitude: 45.423743, longitude: -75.687995)
+        let bus2 = StationAnnotation(latitude: 45.413069, longitude: -75.712180)
+        let bus3 = StationAnnotation(latitude: 45.403488, longitude: -75.736366)
+        
+        mapView.addAnnotations([bus1, bus2, bus3])
     }
     
     func checkLocationAuthorizationStatus() {
@@ -64,12 +73,13 @@ class MapViewController: UIViewController {
     }
 
     private func SetupContraint() {
+        let safeLayout = view.safeAreaLayoutGuide
         mapView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            mapView.topAnchor.constraint(equalTo: view.topAnchor),
-            mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            mapView.topAnchor.constraint(equalTo: safeLayout.topAnchor),
+            mapView.trailingAnchor.constraint(equalTo: safeLayout.trailingAnchor),
+            mapView.leadingAnchor.constraint(equalTo: safeLayout.leadingAnchor),
+            mapView.bottomAnchor.constraint(equalTo: safeLayout.bottomAnchor)
         ])
     }
 
