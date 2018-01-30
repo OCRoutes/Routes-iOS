@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSAttributedStringKey.foregroundColor: UIColor.white,
             NSAttributedStringKey.font: UIFont(name: "Avenir Next", size: 28)!
         ]
+        UIApplication.shared.statusBarStyle = .lightContent
         
         // root tab controller init
         let rootTabController = UITabBarController()
