@@ -18,7 +18,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = ViewController()
+        
+        let rootTabController = UITabBarController()
+        
+        let favoriteNavController = UINavigationController()
+        favoriteNavController.viewControllers = [FavoriteRoutesView()]
+        
+        let mapNavController = UINavigationController()
+        mapNavController.viewControllers = [MapViewController()]
+        
+        rootTabController.viewControllers = [favoriteNavController, mapNavController]
+        
+        //Setting up tab bar icons/titles
+        let tabBarItems = rootTabController.tabBar.items! as [UITabBarItem]
+        tabBarItems[0].title = "Favorites"
+        tabBarItems[1].title = "Map"
+        
+        window?.rootViewController = rootTabController
         window?.makeKeyAndVisible()
         
         return true

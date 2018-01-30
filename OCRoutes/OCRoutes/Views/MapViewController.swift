@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MapViewController.swift
 //  OCRoutes
 //
 //  Created by Brandon Danis on 2018-01-30.
@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class ViewController: UIViewController {
+class MapViewController: UIViewController {
 
     var mapView : MKMapView!
     let initialLocation = CLLocation(latitude: 45.42037, longitude: -75.678609)
