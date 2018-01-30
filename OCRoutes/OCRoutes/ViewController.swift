@@ -45,7 +45,7 @@ class ViewController: UIViewController {
     }
     
     func PlaceMapMarker() {
-        let busStop = Station(latitude: 45.423743, longitude: -75.687995, title: "Big Bus", subtitle: "Hi")
+        let busStop = StationAnnotation(latitude: 45.423743, longitude: -75.687995, title: "Big Bus", subtitle: "Hi")
         mapView.addAnnotation(busStop)
     }
     
@@ -74,4 +74,3 @@ class ViewController: UIViewController {
     }
 
 }
-

@@ -7,28 +7,21 @@
 //
 
 import Foundation
-import MapKit
 
-class Station : NSObject, MKAnnotation {
+struct Station {
     
-    var title : String?
-    var subtitle : String?
-    var latitude : Double
-    var longitude : Double
+    var stopId : String
+    var stopCode : Int
+    var stopName : String
+    var stopLat : Double
+    var stopLong : Double
     
-    init(latitude lat: Double, longitude lon: Double) {
-        self.latitude = lat
-        self.longitude = lon
-    }
-    
-    convenience init(latitude lat: Double, longitude lon: Double, title: String, subtitle: String) {
-        self.init(latitude: lat, longitude: lon)
-        self.title = title
-        self.subtitle = subtitle
-    }
-    
-    var coordinate: CLLocationCoordinate2D {
-        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    init(stopId: String, stopCode: Int, stopName: String, stopLatitude: Double, stopLongitude: Double) {
+        self.stopId = stopId
+        self.stopCode = stopCode
+        self.stopName = stopName
+        self.stopLat = stopLatitude
+        self.stopLong = stopLongitude
     }
     
 }
