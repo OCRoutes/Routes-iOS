@@ -19,6 +19,9 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
+        // Setting nav controller title
+        self.navigationController?.navigationBar.topItem?.title = "Map"
+        
         SetupMapView()
         PlaceMapMarkers()
         SetupContraint()

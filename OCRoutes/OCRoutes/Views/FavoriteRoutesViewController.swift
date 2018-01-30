@@ -19,6 +19,9 @@ class FavoriteRoutesViewController : UIViewController {
         
         view.backgroundColor = .white
         
+        // Setting nav controller title
+        self.navigationController?.navigationBar.topItem?.title = "Favorites"
+        
         //Insert label
         titleLabel = UILabel(frame: CGRect.zero)
         titleLabel.attributedText = NSAttributedString(string: titleString, attributes: [

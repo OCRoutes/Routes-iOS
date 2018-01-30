@@ -17,6 +17,9 @@ class RoutesViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Setting nav controller title
+        self.navigationController?.navigationBar.topItem?.title = "Routes"
+        
         view.backgroundColor = .white
         
         //Insert label

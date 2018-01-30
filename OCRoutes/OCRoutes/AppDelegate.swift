@@ -19,20 +19,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         
+        // Setting global attributes //
+        UINavigationBar.appearance().barTintColor = Style.mainColor
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().titleTextAttributes = [
+            NSAttributedStringKey.foregroundColor: UIColor.white,
+            NSAttributedStringKey.font: UIFont(name: "Avenir Next", size: 28)!
+        ]
+        
+        // root tab controller init
         let rootTabController = UITabBarController()
         
+        // favorite view init
         let favoriteNavController = UINavigationController()
         favoriteNavController.viewControllers = [FavoriteRoutesViewController()]
         
+        // all routes view init
         let routesNavController = UINavigationController()
         routesNavController.viewControllers = [RoutesViewController()]
         
+        // map view init
         let mapNavController = UINavigationController()
         mapNavController.viewControllers = [MapViewController()]
         
+        // Inserting root view controllers into tab controller
         rootTabController.viewControllers = [favoriteNavController, routesNavController, mapNavController]
         
-        //Setting up tab bar icons/titles
+        // Setting up tab bar icons/titles
         let tabBarItems = rootTabController.tabBar.items! as [UITabBarItem]
         rootTabController.tabBar.tintColor = Style.mainColor
         tabBarItems[0].title = "Favorites"
