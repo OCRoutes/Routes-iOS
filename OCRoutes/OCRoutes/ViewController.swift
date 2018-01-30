@@ -12,6 +12,7 @@ import MapKit
 class ViewController: UIViewController {
 
     var mapView : MKMapView!
+    let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +20,22 @@ class ViewController: UIViewController {
         
         mapView = MKMapView(frame: CGRect.zero)
         
+        let initialLocation = CLLocation(latitude: 45.42037, longitude: -75.678609)
+
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        }
+        
+        if let myLocation = self.locationManager.location {
+            centerMapOnLocation(location: myLocation)
+        } else {
+            centerMapOnLocation(location: initialLocation)
+        }
+        
+        
+        checkLocationAuthorizationStatus()
         view.addSubview(mapView)
         
         SetupContraint()
@@ -27,6 +44,21 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    func checkLocationAuthorizationStatus() {
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            mapView.showsUserLocation = true
+        } else {
+            locationManager.requestWhenInUseAuthorization()
+        }
+    }
+    
+    let regionRadius : CLLocationDistance = 1000
+    func centerMapOnLocation(location: CLLocation) {
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius, regionRadius)
+        mapView.setRegion(coordinateRegion, animated: true)
     }
 
     private func SetupContraint() {
