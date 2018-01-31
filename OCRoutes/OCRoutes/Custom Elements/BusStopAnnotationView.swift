@@ -12,7 +12,7 @@ import MapKit
 
 class BusStopAnnotationView : MKAnnotationView {
     
-    private let animationDuration : Double = 0.5
+    private let animationDuration : Double = 0.3
     private let annotationSize : CGRect = CGRect(x: 0, y: 0, width: 140, height: 50)
     
     weak var customCalloutView: BusStopDetailView?
