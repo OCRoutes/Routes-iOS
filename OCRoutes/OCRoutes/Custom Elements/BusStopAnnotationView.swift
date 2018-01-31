@@ -14,8 +14,7 @@ class BusStopAnnotationView : MKAnnotationView {
     
     private let animationDuration : Double = 0.5
     
-//    weak var customCalloutView: BusStopDetailView?
-    weak var customCalloutView: UIView?
+    weak var customCalloutView: BusStopDetailView?
     
     override var annotation: MKAnnotation? {
         willSet { customCalloutView?.removeFromSuperview() }
@@ -36,7 +35,7 @@ class BusStopAnnotationView : MKAnnotationView {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
-        if selected { // 2
+        if selected {
             self.customCalloutView?.removeFromSuperview() // remove old custom callout (if any)
             
             if let newCustomCalloutView = loadBusStopDetailView() {
@@ -58,7 +57,7 @@ class BusStopAnnotationView : MKAnnotationView {
                     })
                 }
             }
-        } else { // 3
+        } else {
             if customCalloutView != nil {
                 if animated { // fade out animation, then remove it.
                     UIView.animate(withDuration: animationDuration, animations: {
@@ -66,16 +65,22 @@ class BusStopAnnotationView : MKAnnotationView {
                     }, completion: { (success) in
                         self.customCalloutView!.removeFromSuperview()
                     })
-                } else { self.customCalloutView!.removeFromSuperview() } // just remove it.
+                } else {
+                    self.customCalloutView!.removeFromSuperview()
+                }
             }
         }
         
     }
     
-    func loadBusStopDetailView() -> UIView? { // 4
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 240, height: 280))
-        view.backgroundColor = .black
-        return view
+    func loadBusStopDetailView() -> BusStopDetailView? { // 4
+        if let stationAnnotation = annotation as? StationAnnotation {
+            let view = BusStopDetailView(frame: CGRect(x: 0, y: 0, width: 140, height: 60))
+            view.SetupWithBusStop(station: stationAnnotation.station!)
+            return view
+            
+        }
+        return nil
     }
     
     override func prepareForReuse() {

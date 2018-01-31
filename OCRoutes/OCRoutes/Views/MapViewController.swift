@@ -55,12 +55,9 @@ class MapViewController: UIViewController {
     }
     
     func PlaceMapMarkers() {
-//        let bus1 = StationAnnotation(latitude: 45.423743, longitude: -75.687995)
-        let bus1 = StationAnnotation(latitude: 45.423743, longitude: -75.687995, title: "Hello World!", subtitle: "HI")
-        let bus2 = StationAnnotation(latitude: 45.413069, longitude: -75.712180)
-        let bus3 = StationAnnotation(latitude: 45.403488, longitude: -75.736366)
-        
-        mapView.addAnnotations([bus1, bus2, bus3])
+        let station = Station(stopId: "1234", stopCode: 7356, stopName: "King Edward", stopLatitude: 45.423743, stopLongitude: -75.687995)
+        let bus1 = StationAnnotation(station: station)
+        mapView.addAnnotations([bus1])
     }
     
     func checkLocationAuthorizationStatus() {

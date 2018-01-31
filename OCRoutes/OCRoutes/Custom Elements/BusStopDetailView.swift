@@ -11,6 +11,13 @@ import UIKit
 
 class BusStopDetailView : UIView {
     
+    var mainView : UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 5.0
+        return view
+    }()
+    
     var mainStack : UIStackView = {
         let view = UIStackView()
         view.axis = .vertical
@@ -35,23 +42,42 @@ class BusStopDetailView : UIView {
         return label
     }()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
         mainStack.addArrangedSubview(busStopNumberLabel)
         mainStack.addArrangedSubview(busStopNameLabel)
         
-        addSubview(mainStack)
+        mainView.addSubview(mainStack)
+        addSubview(mainView)
+        
+        ApplyConstraint()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func SetupWithBusStop(station: Station) {
+        busStopNumberLabel.text = String(station.stopCode)
+        busStopNameLabel.text = station.stopName
     }
     
     private func ApplyConstraint() {
-        mainStack.translatesAutoresizingMaskIntoConstraints = false
-        
+        mainView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            mainStack.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            mainStack.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-            mainStack.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            mainStack.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor)
+            mainView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.90),
+            mainView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.90),
+            mainView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            mainView.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
+        
+        mainStack.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            mainStack.topAnchor.constraint(equalTo: mainView.topAnchor),
+            mainStack.bottomAnchor.constraint(equalTo: mainView.bottomAnchor),
+            mainStack.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 10),
+            mainStack.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: 10)
         ])
     }
     
