@@ -13,6 +13,7 @@ import MapKit
 class BusStopAnnotationView : MKAnnotationView {
     
     private let animationDuration : Double = 0.5
+    private let annotationSize : CGRect = CGRect(x: 0, y: 0, width: 140, height: 50)
     
     weak var customCalloutView: BusStopDetailView?
     
@@ -41,7 +42,7 @@ class BusStopAnnotationView : MKAnnotationView {
             if let newCustomCalloutView = loadBusStopDetailView() {
                 // fix location from top-left to its right place.
                 newCustomCalloutView.frame.origin.x -= newCustomCalloutView.frame.width / 2.0 - (self.frame.width / 2.0)
-                newCustomCalloutView.frame.origin.y -= newCustomCalloutView.frame.height
+                newCustomCalloutView.frame.origin.y -= newCustomCalloutView.frame.height + 10.0
                 
                 // set custom callout view
                 self.addSubview(newCustomCalloutView)
@@ -75,10 +76,9 @@ class BusStopAnnotationView : MKAnnotationView {
     
     func loadBusStopDetailView() -> BusStopDetailView? { // 4
         if let stationAnnotation = annotation as? StationAnnotation {
-            let view = BusStopDetailView(frame: CGRect(x: 0, y: 0, width: 140, height: 60))
+            let view = BusStopDetailView(frame: annotationSize)
             view.SetupWithBusStop(station: stationAnnotation.station!)
             return view
-            
         }
         return nil
     }

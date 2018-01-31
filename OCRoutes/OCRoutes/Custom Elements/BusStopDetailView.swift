@@ -11,6 +11,9 @@ import UIKit
 
 class BusStopDetailView : UIView {
     
+    private let mainStackHorizontalPadding : CGFloat = 15.0
+    private let mainStackVerticalPadding : CGFloat = 4.0
+    
     var mainView : UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -21,14 +24,15 @@ class BusStopDetailView : UIView {
     var mainStack : UIStackView = {
         let view = UIStackView()
         view.axis = .vertical
-        view.spacing = 5.0
+        view.spacing = 0.0
+        view.distribution = .fillEqually
         return view
     }()
     
     var busStopNumberLabel : UILabel = {
         let label = UILabel()
         label.text = "7285"
-        label.font = UIFont(name: "Avenir Next", size: 20)
+        label.font = UIFont(name: "AvenirNext-Bold", size: 20)
         label.textColor = Style.mainColor
         return label
     }()
@@ -74,10 +78,10 @@ class BusStopDetailView : UIView {
         
         mainStack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            mainStack.topAnchor.constraint(equalTo: mainView.topAnchor),
-            mainStack.bottomAnchor.constraint(equalTo: mainView.bottomAnchor),
-            mainStack.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 10),
-            mainStack.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: 10)
+            mainStack.topAnchor.constraint(equalTo: mainView.safeAreaLayoutGuide.topAnchor, constant: mainStackVerticalPadding),
+            mainStack.bottomAnchor.constraint(equalTo: mainView.safeAreaLayoutGuide.bottomAnchor, constant: -mainStackVerticalPadding),
+            mainStack.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: mainStackHorizontalPadding),
+            mainStack.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: mainStackHorizontalPadding)
         ])
     }
     
