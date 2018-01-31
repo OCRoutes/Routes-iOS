@@ -34,6 +34,7 @@ class MapViewController: UIViewController {
     
     func SetupMapView() {
         mapView = MKMapView(frame: CGRect.zero)
+        mapView.delegate = self
         
         checkLocationAuthorizationStatus()
         
@@ -54,7 +55,8 @@ class MapViewController: UIViewController {
     }
     
     func PlaceMapMarkers() {
-        let bus1 = StationAnnotation(latitude: 45.423743, longitude: -75.687995)
+//        let bus1 = StationAnnotation(latitude: 45.423743, longitude: -75.687995)
+        let bus1 = StationAnnotation(latitude: 45.423743, longitude: -75.687995, title: "Hello World!", subtitle: "HI")
         let bus2 = StationAnnotation(latitude: 45.413069, longitude: -75.712180)
         let bus3 = StationAnnotation(latitude: 45.403488, longitude: -75.736366)
         
@@ -86,4 +88,21 @@ class MapViewController: UIViewController {
         ])
     }
 
+}
+
+extension MapViewController : MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        print(annotation.title)
+        if annotation is MKUserLocation { return nil }
+        
+        print("hi2")
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "StationAnnotation")
+        
+        if annotationView == nil {
+            annotationView = BusStopAnnotationView(annotation: annotation, reuseIdentifier: "StationAnnotation")
+        } else {
+            annotationView!.annotation = annotation
+        }
+        return annotationView
+    }
 }
