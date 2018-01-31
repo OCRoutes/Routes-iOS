@@ -52,8 +52,6 @@ class MapViewController: UIViewController {
         mapView.showsScale = true
         
         view.addSubview(mapView)
-        
-        test()
     }
     
     func PlaceMapMarkers() {
@@ -86,12 +84,6 @@ class MapViewController: UIViewController {
             mapView.bottomAnchor.constraint(equalTo: safeLayout.bottomAnchor)
         ])
     }
-
-    private func test(){
-        let busStop = BusStopDetailView(frame: CGRect(x: 100, y: 300, width: 140, height: 50))
-        view.addSubview(busStop)
-    }
-    
 }
 
 extension MapViewController : MKMapViewDelegate {
