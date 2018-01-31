@@ -14,11 +14,15 @@ class BusStopDetailView : UIView {
     private let mainStackHorizontalPadding : CGFloat = 15.0
     private let mainStackVerticalPadding : CGFloat = 4.0
     
+//    private let annotationColor : UIColor = Style.mainColor
+//    private let stopNumberColor : UIColor = .white
+//    private let stopNameColor : UIColor = UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.00)
+    
     private var triangleView : TriangleView!
     
     var mainView : UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = Style.mainColor
         view.layer.cornerRadius = 5.0
         return view
     }()
@@ -35,7 +39,7 @@ class BusStopDetailView : UIView {
         let label = UILabel()
         label.text = "7285"
         label.font = UIFont(name: "AvenirNext-Bold", size: 20)
-        label.textColor = Style.mainColor
+        label.textColor = .white
         return label
     }()
     
@@ -43,7 +47,7 @@ class BusStopDetailView : UIView {
         let label = UILabel()
         label.text = "King Edward"
         label.font = UIFont(name: "Avenir Next", size: 16)
-        label.textColor = .black
+        label.textColor = UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.00)
         label.numberOfLines = 0
         return label
     }()
@@ -57,7 +61,7 @@ class BusStopDetailView : UIView {
         mainView.addSubview(mainStack)
         addSubview(mainView)
         
-        triangleView = TriangleView(frame: CGRect(x: 0, y: 0, width: 25 , height: 30), color: .white)
+        triangleView = TriangleView(frame: CGRect(x: 0, y: 0, width: 25 , height: 30), color: Style.mainColor)
         mainView.addSubview(triangleView)
         
         ApplyConstraint()
