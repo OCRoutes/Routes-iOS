@@ -12,6 +12,8 @@ import MapKit
 
 class BusStopAnnotationView : MKAnnotationView {
     
+    private let animationDuration : Double = 0.5
+    
 //    weak var customCalloutView: BusStopDetailView?
     weak var customCalloutView: UIView?
     
@@ -49,15 +51,17 @@ class BusStopAnnotationView : MKAnnotationView {
                 // animate presentation
                 if animated {
                     self.customCalloutView!.alpha = 0.0
-                    UIView.animate(withDuration: 1.0, animations: {
+                    self.customCalloutView?.transform = CGAffineTransform(scaleX: 1.0, y: 0.0)
+                    UIView.animate(withDuration: animationDuration, animations: {
                         self.customCalloutView!.alpha = 1.0
+                        self.customCalloutView?.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
                     })
                 }
             }
         } else { // 3
             if customCalloutView != nil {
                 if animated { // fade out animation, then remove it.
-                    UIView.animate(withDuration: 1.0, animations: {
+                    UIView.animate(withDuration: animationDuration, animations: {
                         self.customCalloutView!.alpha = 0.0
                     }, completion: { (success) in
                         self.customCalloutView!.removeFromSuperview()
