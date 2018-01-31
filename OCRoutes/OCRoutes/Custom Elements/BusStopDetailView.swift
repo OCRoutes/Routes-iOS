@@ -14,6 +14,8 @@ class BusStopDetailView : UIView {
     private let mainStackHorizontalPadding : CGFloat = 15.0
     private let mainStackVerticalPadding : CGFloat = 4.0
     
+    private var triangleView : TriangleView!
+    
     var mainView : UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -55,6 +57,9 @@ class BusStopDetailView : UIView {
         mainView.addSubview(mainStack)
         addSubview(mainView)
         
+        triangleView = TriangleView(frame: CGRect(x: 0, y: 0, width: 25 , height: 30), color: .white)
+        mainView.addSubview(triangleView)
+        
         ApplyConstraint()
     }
     
@@ -82,6 +87,15 @@ class BusStopDetailView : UIView {
             mainStack.bottomAnchor.constraint(equalTo: mainView.safeAreaLayoutGuide.bottomAnchor, constant: -mainStackVerticalPadding),
             mainStack.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: mainStackHorizontalPadding),
             mainStack.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: mainStackHorizontalPadding)
+        ])
+        
+        triangleView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            triangleView.centerXAnchor.constraint(equalTo: mainView.centerXAnchor),
+            triangleView.topAnchor.constraint(equalTo: mainView.bottomAnchor),
+            triangleView.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.15),
+            triangleView.heightAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.10)
+            
         ])
     }
     
