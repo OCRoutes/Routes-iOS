@@ -89,10 +89,8 @@ class MapViewController: UIViewController {
 
 extension MapViewController : MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        print(annotation.title)
         if annotation is MKUserLocation { return nil }
         
-        print("hi2")
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "StationAnnotation")
         
         if annotationView == nil {
