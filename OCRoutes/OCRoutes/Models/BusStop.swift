@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Station {
+struct BusStop {
     
     var stopId : String
     var stopCode : Int
