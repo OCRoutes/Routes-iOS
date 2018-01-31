@@ -71,7 +71,7 @@ class BusStopDetailView : UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func SetupWithBusStop(station: Station) {
+    func SetupWithBusStop(station: BusStop) {
         busStopNumberLabel.text = String(station.stopCode)
         busStopNameLabel.text = station.stopName
     }

@@ -9,9 +9,9 @@
 import Foundation
 import MapKit
 
-class StationAnnotation : NSObject, MKAnnotation {
+class BusStopAnnotation : NSObject, MKAnnotation {
     
-    var station: Station?
+    var station: BusStop?
     var title: String?
     var subtitle: String?
     var latitude: Double
@@ -28,7 +28,7 @@ class StationAnnotation : NSObject, MKAnnotation {
         self.subtitle = subtitle
     }
     
-    convenience init(station: Station) {
+    convenience init(station: BusStop) {
         self.init(latitude: station.stopLat, longitude: station.stopLong, title: station.stopName, subtitle: station.stopId)
         self.station = station
     }
