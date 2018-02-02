@@ -19,6 +19,7 @@
 		CAD5582F20226DA900C3558F /* TriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD5582C20226DA900C3558F /* TriangleView.swift */; };
 		CAD5583020226DA900C3558F /* BusStopDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD5582D20226DA900C3558F /* BusStopDetailView.swift */; };
 		CAD5583120226DA900C3558F /* BusStopAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD5582E20226DA900C3558F /* BusStopAnnotationView.swift */; };
+		CAD558342025022E00C3558F /* StopsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD558332025022E00C3558F /* StopsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		CAD5582C20226DA900C3558F /* TriangleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriangleView.swift; sourceTree = "<group>"; };
 		CAD5582D20226DA900C3558F /* BusStopDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStopDetailView.swift; sourceTree = "<group>"; };
 		CAD5582E20226DA900C3558F /* BusStopAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStopAnnotationView.swift; sourceTree = "<group>"; };
+		CAD558332025022E00C3558F /* StopsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				CA1F9E322020335800392754 /* MapViewController.swift */,
 				CA1F9E492020E0A600392754 /* FavoriteRoutesViewController.swift */,
 				CA1F9E4B2020E5B700392754 /* RoutesViewController.swift */,
+				CAD558332025022E00C3558F /* StopsViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 				CA11EC512020E71600FB3541 /* Style.swift in Sources */,
 				CA1F9E452020DBA300392754 /* BusStop.swift in Sources */,
 				CA1F9E4C2020E5B700392754 /* RoutesViewController.swift in Sources */,
+				CAD558342025022E00C3558F /* StopsViewController.swift in Sources */,
 				CAD5582F20226DA900C3558F /* TriangleView.swift in Sources */,
 				CA1F9E312020335800392754 /* AppDelegate.swift in Sources */,
 			);

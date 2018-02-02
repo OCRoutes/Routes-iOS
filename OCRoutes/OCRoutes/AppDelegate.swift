@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // root tab controller init
         let rootTabController = UITabBarController()
         
-        // favorite view init
+        // home view init
         let favoriteNavController = UINavigationController()
         favoriteNavController.viewControllers = [FavoriteRoutesViewController()]
         
@@ -39,19 +39,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let routesNavController = UINavigationController()
         routesNavController.viewControllers = [RoutesViewController()]
         
+        // all stops view init
+        let stopsNavController = UINavigationController()
+        stopsNavController.viewControllers = [StopsViewController()]
+        
         // map view init
         let mapNavController = UINavigationController()
         mapNavController.viewControllers = [MapViewController()]
         
         // Inserting root view controllers into tab controller
-        rootTabController.viewControllers = [favoriteNavController, routesNavController, mapNavController]
+        rootTabController.viewControllers = [favoriteNavController, routesNavController, stopsNavController, mapNavController]
         
         // Setting up tab bar icons/titles
         let tabBarItems = rootTabController.tabBar.items! as [UITabBarItem]
         rootTabController.tabBar.tintColor = Style.mainColor
-        tabBarItems[0].title = "Favorites"
+        tabBarItems[0].title = "Home"
         tabBarItems[1].title = "Routes"
-        tabBarItems[2].title = "Map"
+        tabBarItems[2].title = "Stops"
+        tabBarItems[3].title = "Map"
         
         window?.rootViewController = rootTabController
         window?.makeKeyAndVisible()
