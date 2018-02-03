@@ -37,13 +37,13 @@ class FavoriteRoutesViewController : UIViewController {
         titleLabel.textAlignment = .center
         view.addSubview(titleLabel)
         
-        
-        
         ApplyConstraint()
     }
     
     private func SetupFavsTableView() {
         favsTableView = UITableView(frame: CGRect.zero)
+        favsTableView.delegate = self
+        favsTableView.dataSource = self
         view.addSubview(favsTableView)
     }
     
@@ -75,12 +75,17 @@ class FavoriteRoutesViewController : UIViewController {
 }
 
 // UITableViewDataSource delegation
-extension FavoriteRoutesViewController : UITableViewDataSource {
+extension FavoriteRoutesViewController : UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = FavoriteStopTableViewCell(style: .default, reuseIdentifier: "cell")
+        return cell
     }
 }
