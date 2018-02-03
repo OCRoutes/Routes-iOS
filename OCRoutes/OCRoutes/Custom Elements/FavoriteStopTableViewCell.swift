@@ -33,6 +33,14 @@ class FavoriteStopTableViewCell : UITableViewCell {
         return label
     }()
     
+    let routeInfoStack : UIStackView = {
+        let stack = UIStackView()
+        stack.alignment = .fill
+        stack.axis = .vertical
+        stack.spacing = 5.0
+        return stack
+    }()
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -40,6 +48,10 @@ class FavoriteStopTableViewCell : UITableViewCell {
         contentView.addSubview(redLineView)
         contentView.addSubview(busStopNumberLabel)
         contentView.addSubview(busStopNameLabel)
+        contentView.addSubview(routeInfoStack)
+        
+        routeInfoStack.addArrangedSubview(FavouriteStopRouteInfoView(frame: CGRect.zero))
+        routeInfoStack.addArrangedSubview(FavouriteStopRouteInfoView(frame: CGRect.zero))
         
         ApplyConstraints()
     }
@@ -69,6 +81,14 @@ class FavoriteStopTableViewCell : UITableViewCell {
             busStopNameLabel.leftAnchor.constraint(equalTo: busStopNumberLabel.rightAnchor, constant: 10),
             busStopNameLabel.bottomAnchor.constraint(equalTo: busStopNumberLabel.bottomAnchor),
             busStopNameLabel.heightAnchor.constraint(equalTo: busStopNumberLabel.heightAnchor)
+        ])
+        
+        routeInfoStack.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            routeInfoStack.topAnchor.constraint(equalTo: busStopNumberLabel.bottomAnchor, constant: 10),
+            routeInfoStack.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            routeInfoStack.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.95),
+            routeInfoStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         ])
         
     }
