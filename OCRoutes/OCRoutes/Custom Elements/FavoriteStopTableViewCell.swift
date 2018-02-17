@@ -52,6 +52,8 @@ class FavoriteStopTableViewCell : UITableViewCell {
         
         routeInfoStack.addArrangedSubview(FavouriteStopRouteInfoView(frame: CGRect.zero))
         routeInfoStack.addArrangedSubview(FavouriteStopRouteInfoView(frame: CGRect.zero))
+        routeInfoStack.addArrangedSubview(FavouriteStopRouteInfoView(frame: CGRect.zero))
+        routeInfoStack.addArrangedSubview(FavouriteStopRouteInfoView(frame: CGRect.zero))
         
         ApplyConstraints()
     }

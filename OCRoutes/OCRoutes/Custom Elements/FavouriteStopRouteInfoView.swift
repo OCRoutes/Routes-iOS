@@ -33,12 +33,14 @@ class FavouriteStopRouteInfoView : UIView {
             NSAttributedStringKey.font: UIFont(name: "Avenir Next", size: 18)!,
             NSAttributedStringKey.foregroundColor: Style.darkGrey
         ])
+        label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         return label
     }()
     
     let nextBusTimeStack : UIStackView = {
         let stack = UIStackView()
         stack.distribution = .fillEqually
+        stack.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         return stack
     }()
     
@@ -49,7 +51,17 @@ class FavouriteStopRouteInfoView : UIView {
             NSAttributedStringKey.foregroundColor: Style.darkGrey
         ])
         label.textAlignment = .right
-        label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        
+        return label
+    }()
+    
+    let secondNextBusLabel : UILabel = {
+        let label = UILabel()
+        label.attributedText = NSAttributedString(string: "1h25", attributes: [
+            NSAttributedStringKey.font: UIFont(name: "Avenir Next", size: 18)!,
+            NSAttributedStringKey.foregroundColor: Style.darkGrey
+            ])
+        label.textAlignment = .right
         return label
     }()
     
@@ -61,7 +73,9 @@ class FavouriteStopRouteInfoView : UIView {
         mainStack.addArrangedSubview(routeNumberLabel)
         mainStack.addArrangedSubview(routeNameLabel)
         mainStack.addArrangedSubview(nextBusTimeStack)
+        
         nextBusTimeStack.addArrangedSubview(firstNextBusLabel)
+        nextBusTimeStack.addArrangedSubview(secondNextBusLabel)
         
         ApplyConstraints()
     }
