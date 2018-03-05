@@ -99,9 +99,9 @@ class FavoriteStopTableViewCell : UITableViewCell {
         routeInfoStack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             routeInfoStack.topAnchor.constraint(equalTo: busStopNumberLabel.bottomAnchor, constant: 10),
-            routeInfoStack.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            routeInfoStack.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.95),
-            routeInfoStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
+            routeInfoStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            routeInfoStack.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15),
+            routeInfoStack.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -15)
         ])
     }
     
