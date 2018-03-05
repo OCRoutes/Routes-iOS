@@ -44,6 +44,8 @@ class FavoriteRoutesViewController : UIViewController {
         favsTableView = UITableView(frame: CGRect.zero)
         favsTableView.delegate = self
         favsTableView.dataSource = self
+        favsTableView.rowHeight = UITableViewAutomaticDimension
+        favsTableView.estimatedRowHeight = 140
         view.addSubview(favsTableView)
     }
     
@@ -71,21 +73,20 @@ class FavoriteRoutesViewController : UIViewController {
             favsTableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
         ])
     }
-    
 }
 
 // UITableViewDataSource delegation
 extension FavoriteRoutesViewController : UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = FavoriteStopTableViewCell(style: .default, reuseIdentifier: "cell")
+//        let cell = FavoriteStopTableViewCell(style: .default, reuseIdentifier: "cell")
+        
+        let busStop = BusStop(stopId: "AB1234", stopCode: "7876", stopName: "King Edward / Tempelton", stopLatitude: 45.423743, stopLongitude: -75.687995)
+        let route1 = BusRoute(routeNumber: 89, routeName: "Blair", firstBusTime: "2min", secondBusTime: "1h21")
+        let cell = FavoriteStopTableViewCell(stop: busStop, routes: [route1])
         return cell
     }
 }

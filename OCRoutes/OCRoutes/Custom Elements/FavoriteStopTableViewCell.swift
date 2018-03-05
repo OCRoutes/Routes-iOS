@@ -11,8 +11,17 @@ import UIKit
 
 class FavoriteStopTableViewCell : UITableViewCell {
     
-    private var stop : BusStop?
-    private var routes : [BusRoute]?
+    private var stop : BusStop? {
+        didSet {
+            SetupStopInfo()
+        }
+    }
+    
+    private var routes : [BusRoute]? {
+        didSet {
+            SetupBusRoutes()
+        }
+    }
     
     let redLineView : UIView = {
         let view = UIView()
@@ -46,10 +55,8 @@ class FavoriteStopTableViewCell : UITableViewCell {
     
     convenience init(stop : BusStop, routes : [BusRoute]) {
         self.init(frame: CGRect.zero)
-        self.stop = stop
-        self.routes = routes
-        SetupStopInfo()
-        SetupBusRoutes()
+        defer { self.stop = stop }
+        defer { self.routes = routes }
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -69,16 +76,14 @@ class FavoriteStopTableViewCell : UITableViewCell {
     
     private func SetupStopInfo() {
         guard let stopInfo = stop else { return }
-        busStopNumberLabel.text = String(stopInfo.stopCode)
+        busStopNumberLabel.text = stopInfo.stopCode
         busStopNameLabel.text = stopInfo.stopName
     }
     
     private func SetupBusRoutes() {
         if routes != nil {
             for route in routes! {
-                let routeInfoCell = FavouriteStopRouteInfoView(frame: CGRect.zero)
-                
-                routeInfoStack.addArrangedSubview(routeInfoCell)
+                routeInfoStack.addArrangedSubview(FavouriteStopRouteInfoView(frame: CGRect.zero, route: route))
             }
         }
     }

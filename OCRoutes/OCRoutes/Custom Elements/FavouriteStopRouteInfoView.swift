@@ -83,8 +83,14 @@ class FavouriteStopRouteInfoView : UIView {
     
     private func SetupRouteInfo() {
         if let myRoute = route {
-            routeNumberLabel.text = String(myRoute.routeNumber)
-            routeNameLabel.text = myRoute.routeName
+            routeNumberLabel.attributedText = NSAttributedString(string: String(myRoute.routeNumber), attributes: [
+                NSAttributedStringKey.font: UIFont(name: "AvenirNext-Bold", size: 18)!,
+                NSAttributedStringKey.foregroundColor: Style.mainColor
+            ])
+            routeNameLabel.attributedText = NSAttributedString(string: myRoute.routeName, attributes: [
+                NSAttributedStringKey.font: UIFont(name: "Avenir Next", size: 18)!,
+                NSAttributedStringKey.foregroundColor: Style.darkGrey
+            ])
             
             // Adding UI element to stack
             mainStack.addArrangedSubview(routeNumberLabel)
