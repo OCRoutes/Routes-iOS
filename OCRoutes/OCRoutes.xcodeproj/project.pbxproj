@@ -20,6 +20,9 @@
 		CAD5583020226DA900C3558F /* BusStopDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD5582D20226DA900C3558F /* BusStopDetailView.swift */; };
 		CAD5583120226DA900C3558F /* BusStopAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD5582E20226DA900C3558F /* BusStopAnnotationView.swift */; };
 		CAD558342025022E00C3558F /* StopsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD558332025022E00C3558F /* StopsViewController.swift */; };
+		CAD558362025072000C3558F /* FavoriteStopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD558352025072000C3558F /* FavoriteStopTableViewCell.swift */; };
+		CAD5583C202643B400C3558F /* FavouriteStopRouteInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD5583B202643B400C3558F /* FavouriteStopRouteInfoView.swift */; };
+		CAFC098C2038CBBF00AB4F3D /* BusRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFC098B2038CBBF00AB4F3D /* BusRoute.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +41,9 @@
 		CAD5582D20226DA900C3558F /* BusStopDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStopDetailView.swift; sourceTree = "<group>"; };
 		CAD5582E20226DA900C3558F /* BusStopAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStopAnnotationView.swift; sourceTree = "<group>"; };
 		CAD558332025022E00C3558F /* StopsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopsViewController.swift; sourceTree = "<group>"; };
+		CAD558352025072000C3558F /* FavoriteStopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteStopTableViewCell.swift; sourceTree = "<group>"; };
+		CAD5583B202643B400C3558F /* FavouriteStopRouteInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteStopRouteInfoView.swift; sourceTree = "<group>"; };
+		CAFC098B2038CBBF00AB4F3D /* BusRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusRoute.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +92,7 @@
 			children = (
 				CA1F9E442020DBA300392754 /* BusStop.swift */,
 				CA11EC502020E71600FB3541 /* Style.swift */,
+				CAFC098B2038CBBF00AB4F3D /* BusRoute.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -97,6 +104,8 @@
 				CAD5582D20226DA900C3558F /* BusStopDetailView.swift */,
 				CAD5582C20226DA900C3558F /* TriangleView.swift */,
 				CA1F9E422020CDEA00392754 /* BusStopAnnotation.swift */,
+				CAD558352025072000C3558F /* FavoriteStopTableViewCell.swift */,
+				CAD5583B202643B400C3558F /* FavouriteStopRouteInfoView.swift */,
 			);
 			path = "Custom Elements";
 			sourceTree = "<group>";
@@ -183,6 +192,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAFC098C2038CBBF00AB4F3D /* BusRoute.swift in Sources */,
 				CA1F9E4A2020E0A600392754 /* FavoriteRoutesViewController.swift in Sources */,
 				CA1F9E332020335800392754 /* MapViewController.swift in Sources */,
 				CA1F9E432020CDEA00392754 /* BusStopAnnotation.swift in Sources */,
@@ -190,7 +200,9 @@
 				CAD5583120226DA900C3558F /* BusStopAnnotationView.swift in Sources */,
 				CA11EC512020E71600FB3541 /* Style.swift in Sources */,
 				CA1F9E452020DBA300392754 /* BusStop.swift in Sources */,
+				CAD558362025072000C3558F /* FavoriteStopTableViewCell.swift in Sources */,
 				CA1F9E4C2020E5B700392754 /* RoutesViewController.swift in Sources */,
+				CAD5583C202643B400C3558F /* FavouriteStopRouteInfoView.swift in Sources */,
 				CAD558342025022E00C3558F /* StopsViewController.swift in Sources */,
 				CAD5582F20226DA900C3558F /* TriangleView.swift in Sources */,
 				CA1F9E312020335800392754 /* AppDelegate.swift in Sources */,

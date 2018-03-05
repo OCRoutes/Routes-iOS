@@ -11,12 +11,12 @@ import Foundation
 struct BusStop {
     
     var stopId : String
-    var stopCode : Int
+    var stopCode : String
     var stopName : String
     var stopLat : Double
     var stopLong : Double
     
-    init(stopId: String, stopCode: Int, stopName: String, stopLatitude: Double, stopLongitude: Double) {
+    init(stopId: String, stopCode: String, stopName: String, stopLatitude: Double, stopLongitude: Double) {
         self.stopId = stopId
         self.stopCode = stopCode
         self.stopName = stopName

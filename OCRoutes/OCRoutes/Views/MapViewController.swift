@@ -55,7 +55,7 @@ class MapViewController: UIViewController {
     }
     
     func PlaceMapMarkers() {
-        let station = BusStop(stopId: "1234", stopCode: 7356, stopName: "King Edward", stopLatitude: 45.423743, stopLongitude: -75.687995)
+        let station = BusStop(stopId: "1234", stopCode: "7356", stopName: "King Edward", stopLatitude: 45.423743, stopLongitude: -75.687995)
         let bus1 = BusStopAnnotation(station: station)
         mapView.addAnnotations([bus1])
     }
