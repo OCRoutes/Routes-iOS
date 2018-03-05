@@ -37,15 +37,13 @@ class FavoriteRoutesViewController : UIViewController {
         titleLabel.textAlignment = .center
         view.addSubview(titleLabel)
         
+        
+        
         ApplyConstraint()
     }
     
     private func SetupFavsTableView() {
         favsTableView = UITableView(frame: CGRect.zero)
-        favsTableView.delegate = self
-        favsTableView.dataSource = self
-        favsTableView.rowHeight = UITableViewAutomaticDimension
-        favsTableView.estimatedRowHeight = 140
         view.addSubview(favsTableView)
     }
     
@@ -73,21 +71,16 @@ class FavoriteRoutesViewController : UIViewController {
             favsTableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
         ])
     }
+    
 }
 
 // UITableViewDataSource delegation
-extension FavoriteRoutesViewController : UITableViewDataSource, UITableViewDelegate {
+extension FavoriteRoutesViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let busStop = BusStop(stopId: "AB1234", stopCode: "7876", stopName: "King Edward / Tempelton", stopLatitude: 45.423743, stopLongitude: -75.687995)
-        let route1 = BusRoute(routeNumber: 89, routeName: "Mackenzie King", firstBusTime: "2m", secondBusTime: "1h21m")
-        let route2 = BusRoute(routeNumber: 17, routeName: "Orleans", firstBusTime: "45m", secondBusTime: "1h21m")
-        let route3 = BusRoute(routeNumber: 92, routeName: "Rideau", firstBusTime: "<1m", secondBusTime: "31m")
-        let route4 = BusRoute(routeNumber: 57, routeName: "Kanata", firstBusTime: "9m", secondBusTime: "51m")
-        let cell = FavoriteStopTableViewCell(stop: busStop, routes: [route1, route2, route3, route4])
-        return cell
+        return UITableViewCell()
     }
 }
