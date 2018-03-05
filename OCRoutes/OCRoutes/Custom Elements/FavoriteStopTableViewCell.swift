@@ -23,12 +23,6 @@ class FavoriteStopTableViewCell : UITableViewCell {
         }
     }
     
-    let redLineView : UIView = {
-        let view = UIView()
-        view.backgroundColor = Style.mainColor
-        return view
-    }()
-    
     let busStopNumberLabel : UILabel = {
         let label = UILabel()
         label.text = "6783"
@@ -63,14 +57,10 @@ class FavoriteStopTableViewCell : UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         //Adding elements to contentView
-        contentView.addSubview(redLineView)
         contentView.addSubview(busStopNumberLabel)
         contentView.addSubview(busStopNameLabel)
         contentView.addSubview(routeInfoStack)
-        
-        let route1 = BusRoute(routeNumber: 85, routeName: "Mackenzie King Station", firstBusTime: "25m", secondBusTime: "1h35")
-        routeInfoStack.addArrangedSubview(FavouriteStopRouteInfoView(frame: CGRect.zero, route: route1))
-        
+
         ApplyConstraints()
     }
     
@@ -93,18 +83,10 @@ class FavoriteStopTableViewCell : UITableViewCell {
     }
     
     private func ApplyConstraints() {
-        redLineView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            redLineView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            redLineView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            redLineView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            redLineView.widthAnchor.constraint(equalToConstant: 2)
-        ])
-        
         busStopNumberLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             busStopNumberLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            busStopNumberLabel.leftAnchor.constraint(equalTo: redLineView.rightAnchor, constant: 15)
+            busStopNumberLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15)
         ])
         
         busStopNameLabel.translatesAutoresizingMaskIntoConstraints = false
