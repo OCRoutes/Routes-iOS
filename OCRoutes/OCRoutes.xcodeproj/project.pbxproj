@@ -22,6 +22,7 @@
 		CAD558342025022E00C3558F /* StopsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD558332025022E00C3558F /* StopsViewController.swift */; };
 		CAD558362025072000C3558F /* FavoriteStopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD558352025072000C3558F /* FavoriteStopTableViewCell.swift */; };
 		CAD5583C202643B400C3558F /* FavouriteStopRouteInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD5583B202643B400C3558F /* FavouriteStopRouteInfoView.swift */; };
+		CAFC098C2038CBBF00AB4F3D /* BusRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFC098B2038CBBF00AB4F3D /* BusRoute.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		CAD558332025022E00C3558F /* StopsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopsViewController.swift; sourceTree = "<group>"; };
 		CAD558352025072000C3558F /* FavoriteStopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteStopTableViewCell.swift; sourceTree = "<group>"; };
 		CAD5583B202643B400C3558F /* FavouriteStopRouteInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteStopRouteInfoView.swift; sourceTree = "<group>"; };
+		CAFC098B2038CBBF00AB4F3D /* BusRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusRoute.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 			children = (
 				CA1F9E442020DBA300392754 /* BusStop.swift */,
 				CA11EC502020E71600FB3541 /* Style.swift */,
+				CAFC098B2038CBBF00AB4F3D /* BusRoute.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAFC098C2038CBBF00AB4F3D /* BusRoute.swift in Sources */,
 				CA1F9E4A2020E0A600392754 /* FavoriteRoutesViewController.swift in Sources */,
 				CA1F9E332020335800392754 /* MapViewController.swift in Sources */,
 				CA1F9E432020CDEA00392754 /* BusStopAnnotation.swift in Sources */,

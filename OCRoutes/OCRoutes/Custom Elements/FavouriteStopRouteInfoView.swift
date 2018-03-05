@@ -11,6 +11,12 @@ import UIKit
 
 class FavouriteStopRouteInfoView : UIView {
     
+    private var route : BusRoute? {
+        didSet {
+            SetupRouteInfo()
+        }
+    }
+    
     let mainStack : UIStackView = {
         let stack = UIStackView()
         stack.spacing = 10.0
@@ -51,7 +57,6 @@ class FavouriteStopRouteInfoView : UIView {
             NSAttributedStringKey.foregroundColor: Style.darkGrey
         ])
         label.textAlignment = .right
-        
         return label
     }()
     
@@ -60,24 +65,48 @@ class FavouriteStopRouteInfoView : UIView {
         label.attributedText = NSAttributedString(string: "1h25", attributes: [
             NSAttributedStringKey.font: UIFont(name: "Avenir Next", size: 18)!,
             NSAttributedStringKey.foregroundColor: Style.darkGrey
-            ])
+        ])
         label.textAlignment = .right
         return label
     }()
     
+    convenience init(frame: CGRect, route: BusRoute) {
+        self.init(frame: frame)
+        defer { self.route = route }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-    
         addSubview(mainStack)
-        
-        mainStack.addArrangedSubview(routeNumberLabel)
-        mainStack.addArrangedSubview(routeNameLabel)
-        mainStack.addArrangedSubview(nextBusTimeStack)
-        
-        nextBusTimeStack.addArrangedSubview(firstNextBusLabel)
-        nextBusTimeStack.addArrangedSubview(secondNextBusLabel)
-        
         ApplyConstraints()
+    }
+    
+    private func SetupRouteInfo() {
+        if let myRoute = route {
+            routeNumberLabel.text = String(myRoute.routeNumber)
+            routeNameLabel.text = myRoute.routeName
+            
+            // Adding UI element to stack
+            mainStack.addArrangedSubview(routeNumberLabel)
+            mainStack.addArrangedSubview(routeNameLabel)
+            mainStack.addArrangedSubview(nextBusTimeStack)
+            
+            if let firstTime = myRoute.firstBusTime {
+                firstNextBusLabel.attributedText = NSAttributedString(string: firstTime, attributes: [
+                    NSAttributedStringKey.font: UIFont(name: "Avenir Next", size: 18)!,
+                    NSAttributedStringKey.foregroundColor: Style.darkGrey
+                ])
+                nextBusTimeStack.addArrangedSubview(firstNextBusLabel)
+            }
+            
+            if let secondTime = myRoute.secondBusTime {
+                secondNextBusLabel.attributedText = NSAttributedString(string: secondTime, attributes: [
+                    NSAttributedStringKey.font: UIFont(name: "Avenir Next", size: 18)!,
+                    NSAttributedStringKey.foregroundColor: Style.darkGrey
+                ])
+                nextBusTimeStack.addArrangedSubview(secondNextBusLabel)
+            }
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -92,27 +121,6 @@ class FavouriteStopRouteInfoView : UIView {
             mainStack.topAnchor.constraint(equalTo: topAnchor),
             mainStack.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
-        
-//        routeNumberLabel.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            routeNumberLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 10),
-//            routeNumberLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-//            routeNumberLabel.topAnchor.constraint(greaterThanOrEqualTo: topAnchor),
-//            routeNumberLabel.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor)
-//        ])
-//
-//        routeNameLabel.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            routeNameLabel.centerYAnchor.constraint(equalTo: routeNumberLabel.centerYAnchor),
-//            routeNameLabel.leftAnchor.constraint(equalTo: routeNumberLabel.rightAnchor, constant: 10)
-//        ])
-//
-//        nextBusTimeStack.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            nextBusTimeStack.leftAnchor.constraint(equalTo: routeNameLabel.rightAnchor),
-//            nextBusTimeStack.rightAnchor.constraint(equalTo: rightAnchor),
-//            nextBusTimeStack.centerYAnchor.constraint(equalTo: centerYAnchor)
-//        ])
     }
     
 }

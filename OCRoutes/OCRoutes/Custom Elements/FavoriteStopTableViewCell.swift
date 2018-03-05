@@ -11,6 +11,9 @@ import UIKit
 
 class FavoriteStopTableViewCell : UITableViewCell {
     
+    private var stop : BusStop?
+    private var routes : [BusRoute]?
+    
     let redLineView : UIView = {
         let view = UIView()
         view.backgroundColor = Style.mainColor
@@ -41,6 +44,14 @@ class FavoriteStopTableViewCell : UITableViewCell {
         return stack
     }()
     
+    convenience init(stop : BusStop, routes : [BusRoute]) {
+        self.init(frame: CGRect.zero)
+        self.stop = stop
+        self.routes = routes
+        SetupStopInfo()
+        SetupBusRoutes()
+    }
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -50,12 +61,26 @@ class FavoriteStopTableViewCell : UITableViewCell {
         contentView.addSubview(busStopNameLabel)
         contentView.addSubview(routeInfoStack)
         
-        routeInfoStack.addArrangedSubview(FavouriteStopRouteInfoView(frame: CGRect.zero))
-        routeInfoStack.addArrangedSubview(FavouriteStopRouteInfoView(frame: CGRect.zero))
-        routeInfoStack.addArrangedSubview(FavouriteStopRouteInfoView(frame: CGRect.zero))
-        routeInfoStack.addArrangedSubview(FavouriteStopRouteInfoView(frame: CGRect.zero))
+        let route1 = BusRoute(routeNumber: 85, routeName: "Mackenzie King Station", firstBusTime: "25m", secondBusTime: "1h35")
+        routeInfoStack.addArrangedSubview(FavouriteStopRouteInfoView(frame: CGRect.zero, route: route1))
         
         ApplyConstraints()
+    }
+    
+    private func SetupStopInfo() {
+        guard let stopInfo = stop else { return }
+        busStopNumberLabel.text = String(stopInfo.stopCode)
+        busStopNameLabel.text = stopInfo.stopName
+    }
+    
+    private func SetupBusRoutes() {
+        if routes != nil {
+            for route in routes! {
+                let routeInfoCell = FavouriteStopRouteInfoView(frame: CGRect.zero)
+                
+                routeInfoStack.addArrangedSubview(routeInfoCell)
+            }
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -63,7 +88,6 @@ class FavoriteStopTableViewCell : UITableViewCell {
     }
     
     private func ApplyConstraints() {
-        
         redLineView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             redLineView.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -92,7 +116,6 @@ class FavoriteStopTableViewCell : UITableViewCell {
             routeInfoStack.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.95),
             routeInfoStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         ])
-        
     }
     
 }
