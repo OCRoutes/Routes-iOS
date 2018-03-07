@@ -16,6 +16,7 @@
 		CA1F9E452020DBA300392754 /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1F9E442020DBA300392754 /* BusStop.swift */; };
 		CA1F9E4A2020E0A600392754 /* FavoriteRoutesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1F9E492020E0A600392754 /* FavoriteRoutesViewController.swift */; };
 		CA1F9E4C2020E5B700392754 /* RoutesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1F9E4B2020E5B700392754 /* RoutesViewController.swift */; };
+		CAAC479A20506493009B2E0D /* Parchment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAAC479920506493009B2E0D /* Parchment.framework */; };
 		CAD5582F20226DA900C3558F /* TriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD5582C20226DA900C3558F /* TriangleView.swift */; };
 		CAD5583020226DA900C3558F /* BusStopDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD5582D20226DA900C3558F /* BusStopDetailView.swift */; };
 		CAD5583120226DA900C3558F /* BusStopAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD5582E20226DA900C3558F /* BusStopAnnotationView.swift */; };
@@ -37,6 +38,7 @@
 		CA1F9E442020DBA300392754 /* BusStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStop.swift; sourceTree = "<group>"; };
 		CA1F9E492020E0A600392754 /* FavoriteRoutesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRoutesViewController.swift; sourceTree = "<group>"; };
 		CA1F9E4B2020E5B700392754 /* RoutesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesViewController.swift; sourceTree = "<group>"; };
+		CAAC479920506493009B2E0D /* Parchment.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parchment.framework; path = Carthage/Build/iOS/Parchment.framework; sourceTree = "<group>"; };
 		CAD5582C20226DA900C3558F /* TriangleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriangleView.swift; sourceTree = "<group>"; };
 		CAD5582D20226DA900C3558F /* BusStopDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStopDetailView.swift; sourceTree = "<group>"; };
 		CAD5582E20226DA900C3558F /* BusStopAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStopAnnotationView.swift; sourceTree = "<group>"; };
@@ -51,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAAC479A20506493009B2E0D /* Parchment.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +65,7 @@
 			children = (
 				CA1F9E2F2020335800392754 /* OCRoutes */,
 				CA1F9E2E2020335800392754 /* Products */,
+				CAAC479820506493009B2E0D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -121,6 +125,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		CAAC479820506493009B2E0D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CAAC479920506493009B2E0D /* Parchment.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -131,6 +143,7 @@
 				CA1F9E292020335800392754 /* Sources */,
 				CA1F9E2A2020335800392754 /* Frameworks */,
 				CA1F9E2B2020335800392754 /* Resources */,
+				CAAC479B205064AF009B2E0D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -186,6 +199,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		CAAC479B205064AF009B2E0D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Parchment.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CA1F9E292020335800392754 /* Sources */ = {
@@ -336,6 +366,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G3KGQDJHJS;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = OCRoutes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = OCR.OCRoutes;
@@ -351,6 +385,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G3KGQDJHJS;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = OCRoutes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = OCR.OCRoutes;
