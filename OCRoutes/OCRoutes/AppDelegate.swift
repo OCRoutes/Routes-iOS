@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // home view init
         let favoriteNavController = UINavigationController()
-        favoriteNavController.viewControllers = [FavoriteRoutesViewController()]
+        favoriteNavController.viewControllers = [HomeViewController()]
         
         // all routes view init
         let routesNavController = UINavigationController()
