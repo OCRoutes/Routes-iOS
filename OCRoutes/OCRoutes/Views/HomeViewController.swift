@@ -25,11 +25,11 @@ class HomeViewController : UIViewController, PagingViewControllerDataSource, Pag
         
         self.navigationController?.navigationBar.topItem?.title = "Favorites"
         
-        pagingViewController.borderColor = .clear
-        pagingViewController.selectedTextColor = Style.mainColor
+        pagingViewController.borderColor = Style.darkGrey_lowalpha
+        pagingViewController.selectedTextColor = .black
         pagingViewController.indicatorColor = Style.mainColor
         pagingViewController.textColor = Style.darkGrey
-        pagingViewController.font = UIFont(name: "Avenir Next", size: 15)!
+        pagingViewController.font = UIFont(name: "AvenirNext-DemiBold", size: 15)!
         
         pagingViewController.view.translatesAutoresizingMaskIntoConstraints = false
         let safeArea = view.safeAreaLayoutGuide
@@ -38,7 +38,7 @@ class HomeViewController : UIViewController, PagingViewControllerDataSource, Pag
             pagingViewController.view.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
             pagingViewController.view.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
             pagingViewController.view.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
-            ])
+        ])
     }
     
     override func didReceiveMemoryWarning() {
