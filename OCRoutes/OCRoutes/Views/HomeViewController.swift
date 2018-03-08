@@ -57,9 +57,9 @@ class HomeViewController : UIViewController, PagingViewControllerDataSource, Pag
     
     func pagingViewController<T>(_ pagingViewController: PagingViewController<T>, viewControllerForIndex index: Int) -> UIViewController {
         if index == 0 {
-            return FavoriteRoutesViewController()
+            return FavouriteStopsViewController()
         } else {
-            return FavoriteRoutesViewController()
+            return FavouriteRoutesViewController()
         }
     }
     
