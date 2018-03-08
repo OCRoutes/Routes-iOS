@@ -20,7 +20,7 @@ class MapViewController: UIViewController {
         view.backgroundColor = .white
         
         // Setting nav controller title
-        self.navigationController?.navigationBar.topItem?.title = "Map"
+        self.navigationController?.navigationBar.topItem?.title = "MAP"
         
         SetupMapView()
         PlaceMapMarkers()

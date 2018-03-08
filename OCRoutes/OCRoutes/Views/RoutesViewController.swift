@@ -20,7 +20,7 @@ class RoutesViewController : UIViewController {
         super.viewDidLoad()
         
         // Setting nav controller title
-        self.navigationController?.navigationBar.topItem?.title = "Routes"
+        self.navigationController?.navigationBar.topItem?.title = "ALL ROUTES"
         
         // Setting up view attributes
         view.backgroundColor = .white

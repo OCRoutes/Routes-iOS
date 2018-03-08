@@ -23,7 +23,7 @@ class HomeViewController : UIViewController, PagingViewControllerDataSource, Pag
         view.addSubview(pagingViewController.view)
         pagingViewController.didMove(toParentViewController: self)
         
-        self.navigationController?.navigationBar.topItem?.title = "Favorites"
+        self.navigationController?.navigationBar.topItem?.title = "FAVOURITE ROUTES"
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.backIndicatorImage = UIImage()
         

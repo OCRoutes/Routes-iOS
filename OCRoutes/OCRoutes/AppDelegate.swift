@@ -23,8 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = .white
         UINavigationBar.appearance().tintColor = .white
         UINavigationBar.appearance().titleTextAttributes = [
-            NSAttributedStringKey.foregroundColor: Style.titleColor,
-            NSAttributedStringKey.font: UIFont(name: "AvenirNext-DemiBold", size: 18)!
+            NSAttributedStringKey.foregroundColor: UIColor.black,
+            NSAttributedStringKey.font: UIFont(name: "AvenirNext-Bold", size: 18)!
         ]
         UIApplication.shared.statusBarStyle = .lightContent
         
