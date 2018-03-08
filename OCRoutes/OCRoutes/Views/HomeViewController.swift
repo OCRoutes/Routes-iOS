@@ -33,6 +33,8 @@ class HomeViewController : UIViewController, PagingViewControllerDataSource, Pag
         pagingViewController.textColor = Style.darkGrey
         pagingViewController.font = UIFont(name: "AvenirNext-DemiBold", size: 15)!
         
+        pagingViewController.contentInteraction = .none
+        
         pagingViewController.view.translatesAutoresizingMaskIntoConstraints = false
         let safeArea = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
