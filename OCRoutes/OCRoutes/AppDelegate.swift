@@ -54,9 +54,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBarItems = rootTabController.tabBar.items! as [UITabBarItem]
         rootTabController.tabBar.tintColor = Style.mainColor
         tabBarItems[0].title = "Home"
+        tabBarItems[0].image = UIImage(named: "star")
         tabBarItems[1].title = "Routes"
+        tabBarItems[1].image = UIImage(named: "front-bus")
         tabBarItems[2].title = "Stops"
+        tabBarItems[2].image = UIImage(named: "direction")
         tabBarItems[3].title = "Map"
+        tabBarItems[3].image = UIImage(named: "map")
         
         window?.rootViewController = rootTabController
         window?.makeKeyAndVisible()
