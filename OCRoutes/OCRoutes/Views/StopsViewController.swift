@@ -13,7 +13,7 @@ class StopsViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.topItem?.title = "All Stops"
+        self.navigationController?.navigationBar.topItem?.title = "ALL STOPS"
         view.backgroundColor = .white
     }
     

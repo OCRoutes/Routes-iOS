@@ -1,26 +1,23 @@
 //
-//  RoutesViewController.swift
+//  FavouriteStopsViewController.swift
 //  OCRoutes
 //
-//  Created by Brandon Danis on 2018-01-30.
+//  Created by Brandon Danis on 2018-03-07.
 //  Copyright © 2018 RoutesInc. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class RoutesViewController : UIViewController {
+class FavouriteStopsViewController : UIViewController {
     
-    let titleString: String = "All Routes"
-    var titleLabel: UILabel!
+    private let titleString: String = "Favorite Stops"
+    private var titleLabel: UILabel!
     
-    fileprivate var routesTableView : UITableView!
+    fileprivate var favsTableView : UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Setting nav controller title
-        self.navigationController?.navigationBar.topItem?.title = "ALL ROUTES"
         
         // Setting up view attributes
         view.backgroundColor = .white
@@ -41,8 +38,8 @@ class RoutesViewController : UIViewController {
     }
     
     private func SetupFavsTableView() {
-        routesTableView = UITableView(frame: CGRect.zero)
-        view.addSubview(routesTableView)
+        favsTableView = UITableView(frame: CGRect.zero)
+        view.addSubview(favsTableView)
     }
     
     override func didReceiveMemoryWarning() {
@@ -60,21 +57,20 @@ class RoutesViewController : UIViewController {
             titleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
         
-        // Routes table view constraints
-        routesTableView.translatesAutoresizingMaskIntoConstraints = false
+        // Favs table view constraints
+        favsTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            routesTableView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            routesTableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
-            routesTableView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            routesTableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
+            favsTableView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            favsTableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
+            favsTableView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            favsTableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
         ])
-        
     }
     
 }
 
 // UITableViewDataSource delegation
-extension RoutesViewController : UITableViewDataSource {
+extension FavouriteStopsViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
     }

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class FavoriteRoutesViewController : UIViewController {
+class FavouriteRoutesViewController : UIViewController {
     
     private let titleString: String = "Favorite Routes"
     private var titleLabel: UILabel!
@@ -36,9 +36,7 @@ class FavoriteRoutesViewController : UIViewController {
         ])
         titleLabel.textAlignment = .center
         view.addSubview(titleLabel)
-        
-        
-        
+    
         ApplyConstraint()
     }
     
@@ -75,7 +73,7 @@ class FavoriteRoutesViewController : UIViewController {
 }
 
 // UITableViewDataSource delegation
-extension FavoriteRoutesViewController : UITableViewDataSource {
+extension FavouriteRoutesViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
     }

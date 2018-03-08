@@ -20,11 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         
         // Setting global attributes //
-        UINavigationBar.appearance().barTintColor = Style.mainColor
-        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().barTintColor = .white
+        UINavigationBar.appearance().tintColor = .white
         UINavigationBar.appearance().titleTextAttributes = [
-            NSAttributedStringKey.foregroundColor: UIColor.white,
-            NSAttributedStringKey.font: UIFont(name: "Avenir Next", size: 28)!
+            NSAttributedStringKey.foregroundColor: UIColor.black,
+            NSAttributedStringKey.font: UIFont(name: "AvenirNext-Bold", size: 18)!
         ]
         UIApplication.shared.statusBarStyle = .lightContent
         
@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // home view init
         let favoriteNavController = UINavigationController()
-        favoriteNavController.viewControllers = [FavoriteRoutesViewController()]
+        favoriteNavController.viewControllers = [HomeViewController()]
         
         // all routes view init
         let routesNavController = UINavigationController()
