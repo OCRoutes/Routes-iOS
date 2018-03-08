@@ -11,9 +11,6 @@ import UIKit
 
 class FavouriteStopsViewController : UIViewController {
     
-    private let titleString: String = "Favorite Stops"
-    private var titleLabel: UILabel!
-    
     fileprivate var favsTableView : UITableView!
     
     override func viewDidLoad() {
@@ -25,20 +22,21 @@ class FavouriteStopsViewController : UIViewController {
         // Setting up tableview
         SetupFavsTableView()
         
-        // Setup placeholder label
-        titleLabel = UILabel(frame: CGRect.zero)
-        titleLabel.attributedText = NSAttributedString(string: titleString, attributes: [
-            NSAttributedStringKey.font: UIFont(name: "Avenir Next", size: 40)!,
-            NSAttributedStringKey.foregroundColor: Style.mainColor
-        ])
-        titleLabel.textAlignment = .center
-        view.addSubview(titleLabel)
-        
+        // Apply constraints
         ApplyConstraint()
     }
     
     private func SetupFavsTableView() {
         favsTableView = UITableView(frame: CGRect.zero)
+        
+        // Setup delegates
+        favsTableView.dataSource = self
+        favsTableView.delegate = self
+        
+        // Setup cell dynamic row height
+        favsTableView.rowHeight = UITableViewAutomaticDimension
+        favsTableView.estimatedRowHeight = 150
+        
         view.addSubview(favsTableView)
     }
     
@@ -48,14 +46,6 @@ class FavouriteStopsViewController : UIViewController {
     
     private func ApplyConstraint() {
         let safeArea = view.safeAreaLayoutGuide
-        
-        // Title label constraints
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
-            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            titleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
         
         // Favs table view constraints
         favsTableView.translatesAutoresizingMaskIntoConstraints = false
@@ -70,12 +60,28 @@ class FavouriteStopsViewController : UIViewController {
 }
 
 // UITableViewDataSource delegation
-extension FavouriteStopsViewController : UITableViewDataSource {
+extension FavouriteStopsViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        switch indexPath.row {
+        case 0:
+            let busStop = BusStop(stopId: "AB123", stopCode: "7689", stopName: "King Edward", stopLatitude: 123.123, stopLongitude: 456.456)
+            let busRoute1 = BusRoute(routeNumber: 89, routeName: "Blair", firstBusTime: "24m", secondBusTime: "1h31m")
+            return FavoriteStopTableViewCell(stop: busStop, routes: [busRoute1])
+        case 1:
+            let busStop = BusStop(stopId: "AB123", stopCode: "1234", stopName: "Place dOrleans", stopLatitude: 123.123, stopLongitude: 456.456)
+            let busRoute1 = BusRoute(routeNumber: 83, routeName: "Blair", firstBusTime: "<1m", secondBusTime: "31m")
+            let busRoute2 = BusRoute(routeNumber: 83, routeName: "Blair", firstBusTime: "3m", secondBusTime: "7m")
+            let busRoute3 = BusRoute(routeNumber: 83, routeName: "Kanata", firstBusTime: "5m", secondBusTime: "59m")
+            return FavoriteStopTableViewCell(stop: busStop, routes: [busRoute1, busRoute2, busRoute3])
+        default:
+            let busStop = BusStop(stopId: "AB123", stopCode: "7689", stopName: "King Edward", stopLatitude: 123.123, stopLongitude: 456.456)
+            let busRoute1 = BusRoute(routeNumber: 123, routeName: "Blair", firstBusTime: "24m", secondBusTime: "1h31m")
+            return FavoriteStopTableViewCell(stop: busStop, routes: [busRoute1])
+        }
+        
     }
 }
