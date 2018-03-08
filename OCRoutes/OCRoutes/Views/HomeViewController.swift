@@ -24,6 +24,8 @@ class HomeViewController : UIViewController, PagingViewControllerDataSource, Pag
         pagingViewController.didMove(toParentViewController: self)
         
         self.navigationController?.navigationBar.topItem?.title = "Favorites"
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.backIndicatorImage = UIImage()
         
         pagingViewController.borderColor = Style.darkGrey_lowalpha
         pagingViewController.selectedTextColor = .black
