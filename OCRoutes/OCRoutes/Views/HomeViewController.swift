@@ -51,17 +51,17 @@ class HomeViewController : UIViewController, PagingViewControllerDataSource, Pag
     
     func pagingViewController<T>(_ pagingViewController: PagingViewController<T>, pagingItemForIndex index: Int) -> T {
         if index == 0 {
-            return PagingIndexItem(index: index, title: "Stops") as! T
-        } else {
             return PagingIndexItem(index: index, title: "Routes") as! T
+        } else {
+            return PagingIndexItem(index: index, title: "Stop") as! T
         }
     }
     
     func pagingViewController<T>(_ pagingViewController: PagingViewController<T>, viewControllerForIndex index: Int) -> UIViewController {
         if index == 0 {
-            return FavouriteStopsViewController()
-        } else {
             return FavouriteRoutesViewController()
+        } else {
+            return FavouriteStopsViewController()
         }
     }
     
