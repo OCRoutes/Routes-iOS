@@ -53,14 +53,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Setting up tab bar icons/titles
         let tabBarItems = rootTabController.tabBar.items! as [UITabBarItem]
         rootTabController.tabBar.tintColor = Style.mainColor
-        tabBarItems[0].title = "Home"
         tabBarItems[0].image = UIImage(named: "star")
-        tabBarItems[1].title = "Routes"
+        tabBarItems[0].imageInsets = UIEdgeInsetsMake(6,0,-6,0)
         tabBarItems[1].image = UIImage(named: "front-bus")
-        tabBarItems[2].title = "Stops"
+        tabBarItems[1].imageInsets = UIEdgeInsetsMake(6,0,-6,0)
         tabBarItems[2].image = UIImage(named: "direction")
-        tabBarItems[3].title = "Map"
+        tabBarItems[2].imageInsets = UIEdgeInsetsMake(6,0,-6,0)
         tabBarItems[3].image = UIImage(named: "map")
+        tabBarItems[3].imageInsets = UIEdgeInsetsMake(6,0,-6,0)
         
         window?.rootViewController = rootTabController
         window?.makeKeyAndVisible()
