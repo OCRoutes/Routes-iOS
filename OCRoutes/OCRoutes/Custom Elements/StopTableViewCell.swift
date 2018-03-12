@@ -1,17 +1,19 @@
 //
-//  FavoriteStopTableViewCell.swift
+//  StopTableViewCell.swift
 //  OCRoutes
 //
-//  Created by Brandon Danis on 2018-02-02.
+//  Created by Brandon Danis on 2018-03-12.
 //  Copyright © 2018 RoutesInc. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class FavoriteStopTableViewCell : UITableViewCell {
+class StopTableViewCell : UITableViewCell {
     
     private var trackStyle : TrackStyle = .Normal
+    
+    private var redLineView : RedLineView!
     
     private var stop : BusStop? {
         didSet {
@@ -26,9 +28,7 @@ class FavoriteStopTableViewCell : UITableViewCell {
     }
     
     let mainStack : UIStackView = {
-        let stack = UIStackView()
-        
-        return stack
+        return UIStackView()
     }()
     
     //1st column
@@ -45,8 +45,6 @@ class FavoriteStopTableViewCell : UITableViewCell {
         return UIView()
     }()
     
-    var redLineView : RedLineView!
-    
     //3rd column stack
     let thirdColumn : UIStackView = {
         let stack = UIStackView()
@@ -60,18 +58,18 @@ class FavoriteStopTableViewCell : UITableViewCell {
         let label = UILabel()
         label.text = "King Edward / Tempelton"
         label.font = UIFont(name: "AvenirNext", size: 15)
-        label.textColor = Style.mainColor
+        label.textColor = .black
         return label
     }()
     
-    convenience init(stop : BusStop, routes : [BusRoute], style : TrackStyle) {
+    convenience init(stop: BusStop, routes: [BusRoute], style: TrackStyle) {
         self.init(style: .default, reuseIdentifier: "favStopCell", trackStyle: style)
         self.trackStyle = style
         defer { self.stop = stop }
         defer { self.routes = routes }
     }
     
-    init(style: UITableViewCellStyle, reuseIdentifier: String?, trackStyle : TrackStyle) {
+    init(style: UITableViewCellStyle, reuseIdentifier: String?, trackStyle: TrackStyle) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         redLineView = RedLineView(style: trackStyle)
@@ -84,10 +82,13 @@ class FavoriteStopTableViewCell : UITableViewCell {
         mainStack.addArrangedSubview(spacerView)
         
         spacerView.addSubview(thirdColumn)
-        
         thirdColumn.addArrangedSubview(busStopNameLabel)
-
+        
         ApplyConstraints()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     private func SetupStopInfo() {
@@ -102,10 +103,6 @@ class FavoriteStopTableViewCell : UITableViewCell {
                 thirdColumn.addArrangedSubview(FavouriteStopRouteInfoView(frame: CGRect.zero, route: route))
             }
         }
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     private func ApplyConstraints() {
@@ -129,7 +126,6 @@ class FavoriteStopTableViewCell : UITableViewCell {
             thirdColumn.leadingAnchor.constraint(equalTo: spacerView.leadingAnchor),
             thirdColumn.trailingAnchor.constraint(equalTo: spacerView.trailingAnchor)
         ])
-        
     }
     
 }
