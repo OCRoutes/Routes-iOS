@@ -33,7 +33,7 @@ class FavoriteStopTableViewCell : UITableViewCell {
     let busStopNumberLabel : UILabel = {
         let label = UILabel()
         label.text = "6783"
-        label.font = UIFont(name: "AvenirNext-Bold", size: 26)
+        label.font = UIFont(name: "AvenirNext-Bold", size: 20)
         label.textColor = .black
         label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         return label
@@ -61,7 +61,7 @@ class FavoriteStopTableViewCell : UITableViewCell {
     let busStopNameLabel : UILabel = {
         let label = UILabel()
         label.text = "King Edward / Tempelton"
-        label.font = UIFont(name: "AvenirNext", size: 20)
+        label.font = UIFont(name: "AvenirNext", size: 15)
         label.textColor = Style.mainColor
         return label
     }()
