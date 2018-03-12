@@ -161,12 +161,17 @@ class RedLineView : UIView {
         return view
     }()
     
+    let bigCircle : UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .green
-        
         addSubview(redLine)
+        addSubview(bigCircle)
         
         ApplyConstraints()
     }
@@ -178,11 +183,23 @@ class RedLineView : UIView {
     private func ApplyConstraints() {
         redLine.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            redLine.widthAnchor.constraint(equalToConstant: 10),
+            redLine.widthAnchor.constraint(equalToConstant: 6),
             redLine.topAnchor.constraint(equalTo: topAnchor),
             redLine.bottomAnchor.constraint(equalTo: bottomAnchor),
             redLine.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
+        
+        bigCircle.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            bigCircle.widthAnchor.constraint(equalToConstant: 18),
+            bigCircle.heightAnchor.constraint(equalToConstant: 18),
+            bigCircle.topAnchor.constraint(equalTo: topAnchor, constant: 5),
+            bigCircle.centerXAnchor.constraint(equalTo: centerXAnchor)
+        ])
+        bigCircle.layer.cornerRadius = 18 / 2.0
+        bigCircle.clipsToBounds = true
+        bigCircle.layer.borderColor = Style.mainColor.cgColor
+        bigCircle.layer.borderWidth = 2.0
     }
     
 }
