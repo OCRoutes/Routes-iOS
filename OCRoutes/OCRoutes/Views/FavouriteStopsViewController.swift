@@ -37,6 +37,10 @@ class FavouriteStopsViewController : UIViewController {
         favsTableView.rowHeight = UITableViewAutomaticDimension
         favsTableView.estimatedRowHeight = 150
         
+        favsTableView.separatorStyle = .none
+        
+        favsTableView.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.00)
+        
         view.addSubview(favsTableView)
     }
     
