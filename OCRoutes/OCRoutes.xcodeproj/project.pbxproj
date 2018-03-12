@@ -16,6 +16,7 @@
 		CA1F9E452020DBA300392754 /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1F9E442020DBA300392754 /* BusStop.swift */; };
 		CA1F9E4A2020E0A600392754 /* FavouriteRoutesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1F9E492020E0A600392754 /* FavouriteRoutesViewController.swift */; };
 		CA1F9E4C2020E5B700392754 /* RoutesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1F9E4B2020E5B700392754 /* RoutesViewController.swift */; };
+		CA28492C20570ADB00EDCBF5 /* RedLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA28492B20570ADB00EDCBF5 /* RedLineView.swift */; };
 		CAAC479A20506493009B2E0D /* Parchment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAAC479920506493009B2E0D /* Parchment.framework */; };
 		CAAC479F205095F8009B2E0D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAC479E205095F8009B2E0D /* HomeViewController.swift */; };
 		CAAC47A12050E007009B2E0D /* FavouriteStopsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAC47A02050E007009B2E0D /* FavouriteStopsViewController.swift */; };
@@ -40,6 +41,7 @@
 		CA1F9E442020DBA300392754 /* BusStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStop.swift; sourceTree = "<group>"; };
 		CA1F9E492020E0A600392754 /* FavouriteRoutesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteRoutesViewController.swift; sourceTree = "<group>"; };
 		CA1F9E4B2020E5B700392754 /* RoutesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesViewController.swift; sourceTree = "<group>"; };
+		CA28492B20570ADB00EDCBF5 /* RedLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedLineView.swift; sourceTree = "<group>"; };
 		CAAC479920506493009B2E0D /* Parchment.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parchment.framework; path = Carthage/Build/iOS/Parchment.framework; sourceTree = "<group>"; };
 		CAAC479E205095F8009B2E0D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CAAC47A02050E007009B2E0D /* FavouriteStopsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteStopsViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				CA1F9E422020CDEA00392754 /* BusStopAnnotation.swift */,
 				CAD558352025072000C3558F /* FavoriteStopTableViewCell.swift */,
 				CAD5583B202643B400C3558F /* FavouriteStopRouteInfoView.swift */,
+				CA28492B20570ADB00EDCBF5 /* RedLineView.swift */,
 			);
 			path = "Custom Elements";
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 				CA1F9E432020CDEA00392754 /* BusStopAnnotation.swift in Sources */,
 				CAD5583020226DA900C3558F /* BusStopDetailView.swift in Sources */,
 				CAAC479F205095F8009B2E0D /* HomeViewController.swift in Sources */,
+				CA28492C20570ADB00EDCBF5 /* RedLineView.swift in Sources */,
 				CAD5583120226DA900C3558F /* BusStopAnnotationView.swift in Sources */,
 				CA11EC512020E71600FB3541 /* Style.swift in Sources */,
 				CA1F9E452020DBA300392754 /* BusStop.swift in Sources */,
