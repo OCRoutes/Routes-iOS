@@ -182,7 +182,7 @@ class RedLineView : UIView {
         NSLayoutConstraint.activate([
             bigCircle.widthAnchor.constraint(equalToConstant: 18),
             bigCircle.heightAnchor.constraint(equalToConstant: 18),
-            bigCircle.topAnchor.constraint(equalTo: topAnchor, constant: 5),
+            bigCircle.centerYAnchor.constraint(equalTo: centerYAnchor),
             bigCircle.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
         bigCircle.layer.cornerRadius = 18 / 2.0
