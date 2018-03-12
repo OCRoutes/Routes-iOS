@@ -46,7 +46,7 @@ class FavouriteStopRouteInfoView : UIView {
     let nextBusTimeLabel : UILabel = {
         let label = UILabel()
         label.attributedText = NSAttributedString(string: "24m", attributes: [
-            NSAttributedStringKey.font: UIFont(name: "Avenir Next", size: 13)!,
+            NSAttributedStringKey.font: UIFont(name: "AvenirNext-DemiBold", size: 13)!,
             NSAttributedStringKey.foregroundColor: Style.darkGrey
         ])
         label.textAlignment = .right
@@ -68,11 +68,11 @@ class FavouriteStopRouteInfoView : UIView {
     private func SetupRouteInfo() {
         if let myRoute = route {
             routeNumberLabel.attributedText = NSAttributedString(string: String(myRoute.routeNumber), attributes: [
-                NSAttributedStringKey.font: UIFont(name: "AvenirNext-Bold", size: 18)!,
+                NSAttributedStringKey.font: UIFont(name: "AvenirNext-Bold", size: 13)!,
                 NSAttributedStringKey.foregroundColor: Style.mainColor
             ])
             routeNameLabel.attributedText = NSAttributedString(string: myRoute.routeName, attributes: [
-                NSAttributedStringKey.font: UIFont(name: "Avenir Next", size: 18)!,
+                NSAttributedStringKey.font: UIFont(name: "Avenir Next", size: 13)!,
                 NSAttributedStringKey.foregroundColor: Style.darkGrey
             ])
             
@@ -82,7 +82,7 @@ class FavouriteStopRouteInfoView : UIView {
             
             if let firstTime = myRoute.firstBusTime {
                 nextBusTimeLabel.attributedText = NSAttributedString(string: firstTime, attributes: [
-                    NSAttributedStringKey.font: UIFont(name: "Avenir Next", size: 18)!,
+                    NSAttributedStringKey.font: UIFont(name: "AvenirNext-DemiBold", size: 13)!,
                     NSAttributedStringKey.foregroundColor: Style.darkGrey
                 ])
                 mainStack.addArrangedSubview(nextBusTimeLabel)

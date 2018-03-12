@@ -9,7 +9,15 @@
 import Foundation
 import UIKit
 
+enum TrackStyle {
+    case Normal
+    case Leading
+    case Ending
+}
+
 class FavoriteStopTableViewCell : UITableViewCell {
+    
+    private var trackStyle : TrackStyle = .Normal
     
     private var stop : BusStop? {
         didSet {
@@ -39,15 +47,11 @@ class FavoriteStopTableViewCell : UITableViewCell {
         return label
     }()
     
-    //2nd column
-    let redLineView : RedLineView = {
-        let view = RedLineView(frame: CGRect.zero)
-        return view
-    }()
-    
     let spacerView : UIView = {
         return UIView()
     }()
+    
+    var redLineView : RedLineView!
     
     //3rd column stack
     let thirdColumn : UIStackView = {
@@ -75,14 +79,17 @@ class FavoriteStopTableViewCell : UITableViewCell {
         return stack
     }()
     
-    convenience init(stop : BusStop, routes : [BusRoute]) {
-        self.init(frame: CGRect.zero)
+    convenience init(stop : BusStop, routes : [BusRoute], style : TrackStyle) {
+        self.init(style: .default, reuseIdentifier: "favStopCell", trackStyle: style)
+        self.trackStyle = style
         defer { self.stop = stop }
         defer { self.routes = routes }
     }
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    init(style: UITableViewCellStyle, reuseIdentifier: String?, trackStyle : TrackStyle) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        redLineView = RedLineView(style: trackStyle)
         
         //Adding elements to contentView
         contentView.addSubview(mainStack)
@@ -132,8 +139,8 @@ class FavoriteStopTableViewCell : UITableViewCell {
         
         thirdColumn.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            thirdColumn.topAnchor.constraint(equalTo: spacerView.topAnchor, constant: 5),
-            thirdColumn.bottomAnchor.constraint(equalTo: spacerView.bottomAnchor, constant: -5),
+            thirdColumn.topAnchor.constraint(equalTo: spacerView.topAnchor, constant: 10),
+            thirdColumn.bottomAnchor.constraint(equalTo: spacerView.bottomAnchor, constant: -10),
             thirdColumn.leadingAnchor.constraint(equalTo: spacerView.leadingAnchor),
             thirdColumn.trailingAnchor.constraint(equalTo: spacerView.trailingAnchor)
         ])
@@ -143,6 +150,8 @@ class FavoriteStopTableViewCell : UITableViewCell {
 }
 
 class RedLineView : UIView {
+    
+    private var trackStyle : TrackStyle = .Normal
     
     let redLine : UIView = {
         let view = UIView()
@@ -156,8 +165,14 @@ class RedLineView : UIView {
         return view
     }()
     
-    override init(frame: CGRect) {
+    convenience init (style : TrackStyle) {
+        self.init(frame: CGRect.zero, style: style)
+    }
+    
+    init(frame: CGRect, style: TrackStyle) {
         super.init(frame: frame)
+        
+        self.trackStyle = style
         
         addSubview(redLine)
         addSubview(bigCircle)
@@ -172,11 +187,24 @@ class RedLineView : UIView {
     private func ApplyConstraints() {
         redLine.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            redLine.widthAnchor.constraint(equalToConstant: 6),
-            redLine.topAnchor.constraint(equalTo: topAnchor),
-            redLine.bottomAnchor.constraint(equalTo: bottomAnchor),
+            redLine.widthAnchor.constraint(equalToConstant: 5),
             redLine.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
+
+        switch trackStyle {
+            case .Normal:
+                redLine.topAnchor.constraint(equalTo: topAnchor).isActive = true
+                redLine.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+                break
+            case .Leading:
+                redLine.topAnchor.constraint(equalTo: centerYAnchor).isActive = true
+                redLine.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+                break
+            case .Ending:
+                redLine.topAnchor.constraint(equalTo: topAnchor).isActive = true
+                redLine.bottomAnchor.constraint(equalTo: centerYAnchor).isActive = true
+                break
+        }
         
         bigCircle.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -188,7 +216,8 @@ class RedLineView : UIView {
         bigCircle.layer.cornerRadius = 18 / 2.0
         bigCircle.clipsToBounds = true
         bigCircle.layer.borderColor = Style.mainColor.cgColor
-        bigCircle.layer.borderWidth = 2.0
+        bigCircle.layer.borderWidth = 3.0
+        
     }
     
 }
