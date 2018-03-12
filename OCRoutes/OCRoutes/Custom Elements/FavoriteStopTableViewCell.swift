@@ -34,7 +34,7 @@ class FavoriteStopTableViewCell : UITableViewCell {
         let label = UILabel()
         label.text = "6783"
         label.font = UIFont(name: "AvenirNext-Bold", size: 26)
-        label.textColor = Style.mainColor
+        label.textColor = .black
         label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         return label
     }()
@@ -43,6 +43,10 @@ class FavoriteStopTableViewCell : UITableViewCell {
     let redLineView : RedLineView = {
         let view = RedLineView(frame: CGRect.zero)
         return view
+    }()
+    
+    let spacerView : UIView = {
+        return UIView()
     }()
     
     //3rd column stack
@@ -57,8 +61,8 @@ class FavoriteStopTableViewCell : UITableViewCell {
     let busStopNameLabel : UILabel = {
         let label = UILabel()
         label.text = "King Edward / Tempelton"
-        label.font = UIFont(name: "AvenirNext", size: 18)
-        label.textColor = Style.darkGrey
+        label.font = UIFont(name: "AvenirNext", size: 20)
+        label.textColor = Style.mainColor
         return label
     }()
     
@@ -85,14 +89,11 @@ class FavoriteStopTableViewCell : UITableViewCell {
         
         mainStack.addArrangedSubview(busStopNumberLabel)
         mainStack.addArrangedSubview(redLineView)
-        mainStack.addArrangedSubview(thirdColumn)
+        mainStack.addArrangedSubview(spacerView)
+        
+        spacerView.addSubview(thirdColumn)
         
         thirdColumn.addArrangedSubview(busStopNameLabel)
-        
-        
-//        contentView.addSubview(busStopNumberLabel)
-//        contentView.addSubview(busStopNameLabel)
-//        contentView.addSubview(routeInfoStack)
 
         ApplyConstraints()
     }
@@ -120,8 +121,8 @@ class FavoriteStopTableViewCell : UITableViewCell {
         NSLayoutConstraint.activate([
             mainStack.topAnchor.constraint(equalTo: contentView.topAnchor),
             mainStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            mainStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            mainStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+            mainStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            mainStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5)
         ])
         
         redLineView.translatesAutoresizingMaskIntoConstraints = false
@@ -129,26 +130,14 @@ class FavoriteStopTableViewCell : UITableViewCell {
             redLineView.widthAnchor.constraint(equalToConstant: 30)
         ])
         
-//        busStopNumberLabel.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            busStopNumberLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-//            busStopNumberLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15)
-//        ])
-//
-//        busStopNameLabel.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            busStopNameLabel.leftAnchor.constraint(equalTo: busStopNumberLabel.rightAnchor, constant: 10),
-//            busStopNameLabel.bottomAnchor.constraint(equalTo: busStopNumberLabel.bottomAnchor),
-//            busStopNameLabel.heightAnchor.constraint(equalTo: busStopNumberLabel.heightAnchor)
-//        ])
-//
-//        routeInfoStack.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            routeInfoStack.topAnchor.constraint(equalTo: busStopNumberLabel.bottomAnchor, constant: 10),
-//            routeInfoStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
-//            routeInfoStack.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15),
-//            routeInfoStack.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -15)
-//        ])
+        thirdColumn.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            thirdColumn.topAnchor.constraint(equalTo: spacerView.topAnchor, constant: 5),
+            thirdColumn.bottomAnchor.constraint(equalTo: spacerView.bottomAnchor, constant: -5),
+            thirdColumn.leadingAnchor.constraint(equalTo: spacerView.leadingAnchor),
+            thirdColumn.trailingAnchor.constraint(equalTo: spacerView.trailingAnchor)
+        ])
+        
     }
     
 }
