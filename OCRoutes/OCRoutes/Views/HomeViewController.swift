@@ -23,7 +23,7 @@ class HomeViewController : UIViewController, PagingViewControllerDataSource, Pag
         view.addSubview(pagingViewController.view)
         pagingViewController.didMove(toParentViewController: self)
         
-        self.navigationController?.navigationBar.topItem?.title = "FAVOURITE ROUTES"
+        self.navigationController?.navigationBar.topItem?.title = "FAVOURITES"
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.backIndicatorImage = UIImage()
         
@@ -32,9 +32,7 @@ class HomeViewController : UIViewController, PagingViewControllerDataSource, Pag
         pagingViewController.indicatorColor = Style.mainColor
         pagingViewController.textColor = Style.darkGrey
         pagingViewController.font = UIFont(name: "AvenirNext-DemiBold", size: 15)!
-        
-        pagingViewController.contentInteraction = .none
-        
+
         pagingViewController.view.translatesAutoresizingMaskIntoConstraints = false
         let safeArea = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([

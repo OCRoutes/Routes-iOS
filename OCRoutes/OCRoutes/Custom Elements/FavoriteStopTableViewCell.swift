@@ -9,7 +9,15 @@
 import Foundation
 import UIKit
 
+enum TrackStyle {
+    case Normal
+    case Leading
+    case Ending
+}
+
 class FavoriteStopTableViewCell : UITableViewCell {
+    
+    private var trackStyle : TrackStyle = .Normal
     
     private var stop : BusStop? {
         didSet {
@@ -23,22 +31,46 @@ class FavoriteStopTableViewCell : UITableViewCell {
         }
     }
     
+    let mainStack : UIStackView = {
+        let stack = UIStackView()
+        
+        return stack
+    }()
+    
+    //1st column
     let busStopNumberLabel : UILabel = {
         let label = UILabel()
         label.text = "6783"
-        label.font = UIFont(name: "AvenirNext-Bold", size: 26)
+        label.font = UIFont(name: "AvenirNext-Bold", size: 20)
+        label.textColor = .black
+        label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        return label
+    }()
+    
+    let spacerView : UIView = {
+        return UIView()
+    }()
+    
+    var redLineView : RedLineView!
+    
+    //3rd column stack
+    let thirdColumn : UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        return stack
+    }()
+    
+    //3rd column label
+    let busStopNameLabel : UILabel = {
+        let label = UILabel()
+        label.text = "King Edward / Tempelton"
+        label.font = UIFont(name: "AvenirNext", size: 15)
         label.textColor = Style.mainColor
         return label
     }()
     
-    let busStopNameLabel : UILabel = {
-        let label = UILabel()
-        label.text = "King Edward / Tempelton"
-        label.font = UIFont(name: "AvenirNext", size: 18)
-        label.textColor = Style.darkGrey
-        return label
-    }()
-    
+    // 3rd column stack for route info
     let routeInfoStack : UIStackView = {
         let stack = UIStackView()
         stack.alignment = .fill
@@ -47,19 +79,28 @@ class FavoriteStopTableViewCell : UITableViewCell {
         return stack
     }()
     
-    convenience init(stop : BusStop, routes : [BusRoute]) {
-        self.init(frame: CGRect.zero)
+    convenience init(stop : BusStop, routes : [BusRoute], style : TrackStyle) {
+        self.init(style: .default, reuseIdentifier: "favStopCell", trackStyle: style)
+        self.trackStyle = style
         defer { self.stop = stop }
         defer { self.routes = routes }
     }
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    init(style: UITableViewCellStyle, reuseIdentifier: String?, trackStyle : TrackStyle) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        redLineView = RedLineView(style: trackStyle)
+        
         //Adding elements to contentView
-        contentView.addSubview(busStopNumberLabel)
-        contentView.addSubview(busStopNameLabel)
-        contentView.addSubview(routeInfoStack)
+        contentView.addSubview(mainStack)
+        
+        mainStack.addArrangedSubview(busStopNumberLabel)
+        mainStack.addArrangedSubview(redLineView)
+        mainStack.addArrangedSubview(spacerView)
+        
+        spacerView.addSubview(thirdColumn)
+        
+        thirdColumn.addArrangedSubview(busStopNameLabel)
 
         ApplyConstraints()
     }
@@ -73,7 +114,7 @@ class FavoriteStopTableViewCell : UITableViewCell {
     private func SetupBusRoutes() {
         if routes != nil {
             for route in routes! {
-                routeInfoStack.addArrangedSubview(FavouriteStopRouteInfoView(frame: CGRect.zero, route: route))
+                thirdColumn.addArrangedSubview(FavouriteStopRouteInfoView(frame: CGRect.zero, route: route))
             }
         }
     }
@@ -83,26 +124,100 @@ class FavoriteStopTableViewCell : UITableViewCell {
     }
     
     private func ApplyConstraints() {
-        busStopNumberLabel.translatesAutoresizingMaskIntoConstraints = false
+        mainStack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            busStopNumberLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            busStopNumberLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15)
+            mainStack.topAnchor.constraint(equalTo: contentView.topAnchor),
+            mainStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            mainStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            mainStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5)
         ])
         
-        busStopNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        redLineView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            busStopNameLabel.leftAnchor.constraint(equalTo: busStopNumberLabel.rightAnchor, constant: 10),
-            busStopNameLabel.bottomAnchor.constraint(equalTo: busStopNumberLabel.bottomAnchor),
-            busStopNameLabel.heightAnchor.constraint(equalTo: busStopNumberLabel.heightAnchor)
+            redLineView.widthAnchor.constraint(equalToConstant: 30)
         ])
         
-        routeInfoStack.translatesAutoresizingMaskIntoConstraints = false
+        thirdColumn.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            routeInfoStack.topAnchor.constraint(equalTo: busStopNumberLabel.bottomAnchor, constant: 10),
-            routeInfoStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
-            routeInfoStack.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15),
-            routeInfoStack.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -15)
+            thirdColumn.topAnchor.constraint(equalTo: spacerView.topAnchor, constant: 10),
+            thirdColumn.bottomAnchor.constraint(equalTo: spacerView.bottomAnchor, constant: -10),
+            thirdColumn.leadingAnchor.constraint(equalTo: spacerView.leadingAnchor),
+            thirdColumn.trailingAnchor.constraint(equalTo: spacerView.trailingAnchor)
         ])
+        
+    }
+    
+}
+
+class RedLineView : UIView {
+    
+    private var trackStyle : TrackStyle = .Normal
+    
+    let redLine : UIView = {
+        let view = UIView()
+        view.backgroundColor = Style.mainColor
+        return view
+    }()
+    
+    let bigCircle : UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }()
+    
+    convenience init (style : TrackStyle) {
+        self.init(frame: CGRect.zero, style: style)
+    }
+    
+    init(frame: CGRect, style: TrackStyle) {
+        super.init(frame: frame)
+        
+        self.trackStyle = style
+        
+        addSubview(redLine)
+        addSubview(bigCircle)
+        
+        ApplyConstraints()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func ApplyConstraints() {
+        redLine.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            redLine.widthAnchor.constraint(equalToConstant: 5),
+            redLine.centerXAnchor.constraint(equalTo: centerXAnchor)
+        ])
+
+        switch trackStyle {
+            case .Normal:
+                redLine.topAnchor.constraint(equalTo: topAnchor).isActive = true
+                redLine.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+                break
+            case .Leading:
+                redLine.topAnchor.constraint(equalTo: centerYAnchor).isActive = true
+                redLine.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+                break
+            case .Ending:
+                redLine.topAnchor.constraint(equalTo: topAnchor).isActive = true
+                redLine.bottomAnchor.constraint(equalTo: centerYAnchor).isActive = true
+                break
+        }
+        
+        bigCircle.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            bigCircle.widthAnchor.constraint(equalToConstant: 18),
+            bigCircle.heightAnchor.constraint(equalToConstant: 18),
+            bigCircle.centerYAnchor.constraint(equalTo: centerYAnchor),
+            bigCircle.centerXAnchor.constraint(equalTo: centerXAnchor)
+        ])
+        bigCircle.layer.cornerRadius = 18 / 2.0
+        bigCircle.clipsToBounds = true
+        bigCircle.layer.borderColor = Style.mainColor.cgColor
+        bigCircle.layer.borderWidth = 3.0
+        
     }
     
 }
