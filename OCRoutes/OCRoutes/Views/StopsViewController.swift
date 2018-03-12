@@ -77,13 +77,13 @@ extension StopsViewController : UITableViewDataSource, UITableViewDelegate {
         case 0:
             let busStop = BusStop(stopId: "AB123", stopCode: "7688", stopName: "King Edward", stopLatitude: 123.123, stopLongitude: 456.456)
             let busRoute1 = BusRoute(routeNumber: 89, routeName: "Blair", firstBusTime: "24m", secondBusTime: "1h31m")
-            return FavoriteStopTableViewCell(stop: busStop, routes: [busRoute1], style: .Leading)
+            return StopTableViewCell(stop: busStop, routes: [busRoute1], style: .Leading)
         case 1:
             let busStop = BusStop(stopId: "AB123", stopCode: "1234", stopName: "Place dOrleans", stopLatitude: 123.123, stopLongitude: 456.456)
             let busRoute1 = BusRoute(routeNumber: 83, routeName: "Blair", firstBusTime: "<1m", secondBusTime: "31m")
             let busRoute2 = BusRoute(routeNumber: 83, routeName: "Blair", firstBusTime: "3m", secondBusTime: "7m")
             let busRoute3 = BusRoute(routeNumber: 83, routeName: "Kanata", firstBusTime: "5m", secondBusTime: "59m")
-            return FavoriteStopTableViewCell(stop: busStop, routes: [busRoute1, busRoute2, busRoute3], style: .Normal)
+            return StopTableViewCell(stop: busStop, routes: [busRoute1, busRoute2, busRoute3], style: .Normal)
         case 9:
             let busStop = BusStop(stopId: "AB123", stopCode: "7689", stopName: "King Edward", stopLatitude: 123.123, stopLongitude: 456.456)
             let busRoute1 = BusRoute(routeNumber: 89, routeName: "Blair", firstBusTime: "24m", secondBusTime: "1h31m")
@@ -91,7 +91,7 @@ extension StopsViewController : UITableViewDataSource, UITableViewDelegate {
             let busRoute3 = BusRoute(routeNumber: 83, routeName: "Kanata", firstBusTime: "5m", secondBusTime: "59m")
             let busRoute4 = BusRoute(routeNumber: 83, routeName: "Kanata", firstBusTime: "5m", secondBusTime: "59m")
             let busRoute5 = BusRoute(routeNumber: 83, routeName: "Kanata", firstBusTime: "5m", secondBusTime: "59m")
-            return FavoriteStopTableViewCell(stop: busStop, routes: [busRoute1, busRoute2, busRoute3, busRoute4, busRoute5], style: .Ending)
+            return StopTableViewCell(stop: busStop, routes: [busRoute1, busRoute2, busRoute3, busRoute4, busRoute5], style: .Ending)
         default:
             let busStop = BusStop(stopId: "AB123", stopCode: "7689", stopName: "King Edward", stopLatitude: 123.123, stopLongitude: 456.456)
             let busRoute1 = BusRoute(routeNumber: 89, routeName: "Blair", firstBusTime: "24m", secondBusTime: "1h31m")
@@ -99,7 +99,7 @@ extension StopsViewController : UITableViewDataSource, UITableViewDelegate {
             let busRoute3 = BusRoute(routeNumber: 83, routeName: "Kanata", firstBusTime: "5m", secondBusTime: "59m")
             let busRoute4 = BusRoute(routeNumber: 83, routeName: "Kanata", firstBusTime: "5m", secondBusTime: "59m")
             let busRoute5 = BusRoute(routeNumber: 83, routeName: "Kanata", firstBusTime: "5m", secondBusTime: "59m")
-            return FavoriteStopTableViewCell(stop: busStop, routes: [busRoute1, busRoute2, busRoute3, busRoute4, busRoute5], style: .Normal)
+            return StopTableViewCell(stop: busStop, routes: [busRoute1, busRoute2, busRoute3, busRoute4, busRoute5], style: .Normal)
         }
     }
 }

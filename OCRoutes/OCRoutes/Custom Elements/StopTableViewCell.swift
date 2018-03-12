@@ -49,6 +49,8 @@ class StopTableViewCell : UITableViewCell {
     let thirdColumn : UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
+        stack.spacing = 1.0
+        stack.contentMode = .scaleToFill
         stack.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         return stack
     }()
@@ -100,7 +102,7 @@ class StopTableViewCell : UITableViewCell {
     private func SetupBusRoutes() {
         if routes != nil {
             for route in routes! {
-                thirdColumn.addArrangedSubview(FavouriteStopRouteInfoView(frame: CGRect.zero, route: route))
+                thirdColumn.addArrangedSubview(RouteInfoCubeView(frame: CGRect.zero))
             }
         }
     }
