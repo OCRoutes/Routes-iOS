@@ -21,9 +21,9 @@ class StopTableViewCell : UITableViewCell {
         }
     }
     
-    private var routes : [BusRoute]? {
+    fileprivate var routes : [BusRoute]? {
         didSet {
-            SetupBusRoutes()
+            routeCubeCollection.reloadData()
         }
     }
     
@@ -42,18 +42,19 @@ class StopTableViewCell : UITableViewCell {
     }()
     
     let spacerView : UIView = {
-        return UIView()
+        let view = UIView()
+        view.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        return view
     }()
     
     //3rd column stack
-    let thirdColumn : UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.spacing = 1.0
-        stack.contentMode = .scaleToFill
-        stack.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
-        return stack
-    }()
+//    let thirdColumn : UIStackView = {
+//        let stack = UIStackView()
+//        stack.axis = .vertical
+//        stack.spacing = 1.0
+//        stack.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+//        return stack
+//    }()
     
     //3rd column label
     let busStopNameLabel : UILabel = {
@@ -62,6 +63,15 @@ class StopTableViewCell : UITableViewCell {
         label.font = UIFont(name: "AvenirNext", size: 15)
         label.textColor = .black
         return label
+    }()
+    
+    let routeCubeCollection : UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        
+        let collection = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        collection.backgroundColor = UIColor.clear
+        
+        return collection
     }()
     
     convenience init(stop: BusStop, routes: [BusRoute], style: TrackStyle) {
@@ -76,6 +86,10 @@ class StopTableViewCell : UITableViewCell {
         
         redLineView = RedLineView(style: trackStyle)
         
+        routeCubeCollection.delegate = self
+        routeCubeCollection.dataSource = self
+        routeCubeCollection.register(RouteInfoCubeView.self, forCellWithReuseIdentifier: "cell")
+        
         //Adding elements to contentView
         contentView.addSubview(mainStack)
         
@@ -83,8 +97,8 @@ class StopTableViewCell : UITableViewCell {
         mainStack.addArrangedSubview(redLineView)
         mainStack.addArrangedSubview(spacerView)
         
-        spacerView.addSubview(thirdColumn)
-        thirdColumn.addArrangedSubview(busStopNameLabel)
+        spacerView.addSubview(busStopNameLabel)
+        spacerView.addSubview(routeCubeCollection)
         
         ApplyConstraints()
     }
@@ -97,14 +111,6 @@ class StopTableViewCell : UITableViewCell {
         guard let stopInfo = stop else { return }
         busStopNumberLabel.text = stopInfo.stopCode
         busStopNameLabel.text = stopInfo.stopName
-    }
-    
-    private func SetupBusRoutes() {
-        if routes != nil {
-            for route in routes! {
-                thirdColumn.addArrangedSubview(RouteInfoCubeView(frame: CGRect.zero))
-            }
-        }
     }
     
     private func ApplyConstraints() {
@@ -121,13 +127,51 @@ class StopTableViewCell : UITableViewCell {
             redLineView.widthAnchor.constraint(equalToConstant: 30)
         ])
         
-        thirdColumn.translatesAutoresizingMaskIntoConstraints = false
+        busStopNameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            thirdColumn.topAnchor.constraint(equalTo: spacerView.topAnchor, constant: 10),
-            thirdColumn.bottomAnchor.constraint(equalTo: spacerView.bottomAnchor, constant: -10),
-            thirdColumn.leadingAnchor.constraint(equalTo: spacerView.leadingAnchor),
-            thirdColumn.trailingAnchor.constraint(equalTo: spacerView.trailingAnchor)
+            busStopNameLabel.topAnchor.constraint(equalTo: spacerView.topAnchor, constant: 5),
+//            busStopNameLabel.bottomAnchor.constraint(equalTo: routeCubeCollection.topAnchor, constant: 0),
+            busStopNameLabel.leadingAnchor.constraint(equalTo: spacerView.leadingAnchor),
+            busStopNameLabel.trailingAnchor.constraint(equalTo: spacerView.trailingAnchor)
+        ])
+//
+        
+        print(routeCubeCollection.frame)
+        routeCubeCollection.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            routeCubeCollection.topAnchor.constraint(equalTo: busStopNameLabel.bottomAnchor),
+            routeCubeCollection.leadingAnchor.constraint(equalTo: spacerView.leadingAnchor),
+            routeCubeCollection.trailingAnchor.constraint(equalTo: spacerView.trailingAnchor),
+            routeCubeCollection.heightAnchor.constraint(greaterThanOrEqualToConstant: 150),
+            routeCubeCollection.bottomAnchor.constraint(equalTo: spacerView.bottomAnchor)
         ])
     }
+}
+
+extension StopTableViewCell : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        if let count = routes?.count {
+//            return count
+//        }
+        return 30
+    }
     
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! RouteInfoCubeView
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 30, height: 30)
+    }
+    
+    // cell bottom padding
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.5
+    }
+    
+    // cell side padding
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.5
+    }
 }

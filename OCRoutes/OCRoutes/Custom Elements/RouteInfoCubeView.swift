@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class RouteInfoCubeView : UIView {
+class RouteInfoCubeView : UICollectionViewCell {
     
     private var CUBE_COLOR : UIColor = Style.mainColor
     
@@ -21,13 +21,14 @@ class RouteInfoCubeView : UIView {
             NSAttributedStringKey.font: UIFont(name: "AvenirNext-Bold", size: 20)!,
             NSAttributedStringKey.foregroundColor: UIColor.white
         ])
+        label.textAlignment = .center
         return label
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = CUBE_COLOR
-        addSubview(routeNumberLabel)
+        contentView.addSubview(routeNumberLabel)
         ApplyConstraints()
     }
     
@@ -36,18 +37,18 @@ class RouteInfoCubeView : UIView {
     }
     
     private func ApplyConstraints() {
-        translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            widthAnchor.constraint(equalToConstant: CUBE_SIZE),
-            heightAnchor.constraint(equalToConstant: CUBE_SIZE)
-        ])
+//        translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            widthAnchor.constraint(equalToConstant: CUBE_SIZE),
+//            heightAnchor.constraint(equalToConstant: CUBE_SIZE)
+//        ])
         
         routeNumberLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            routeNumberLabel.topAnchor.constraint(equalTo: topAnchor, constant: 5),
-            routeNumberLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
-            routeNumberLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 5),
-            routeNumberLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -5)
+            routeNumberLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            routeNumberLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            routeNumberLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            routeNumberLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor)
 //            routeNumberLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
 //            routeNumberLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
