@@ -18,21 +18,9 @@ class FavouriteRoutesViewController : UIViewController {
         
         // Setting up view attributes
         view.backgroundColor = .white
-        
-        // Setting nav controller title
-        // self.navigationController?.navigationBar.topItem?.title = "Favorites"
-        
+
         // Setting up tableview
         SetupFavsTableView()
-        
-        // Setup placeholder label
-        /*titleLabel = UILabel(frame: CGRect.zero)
-        titleLabel.attributedText = NSAttributedString(string: titleString, attributes: [
-            NSAttributedStringKey.font: UIFont(name: "Avenir Next", size: 40)!,
-            NSAttributedStringKey.foregroundColor: Style.mainColor
-        ])
-        titleLabel.textAlignment = .center
-        view.addSubview(titleLabel)*/
     
         ApplyConstraint()
     }
@@ -55,14 +43,6 @@ class FavouriteRoutesViewController : UIViewController {
     
     private func ApplyConstraint() {
         let safeArea = view.safeAreaLayoutGuide
-        
-        // Title label constraints
-//        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
-//            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            titleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-//        ])
         
         // Favs table view constraints
         favsTableView.translatesAutoresizingMaskIntoConstraints = false

@@ -21,9 +21,7 @@ class FavouriteRoutesTableViewCell : UITableViewCell {
     
     // Init main stack
     let mainStack : UIStackView = {
-        let stack = UIStackView()
-        
-        return stack
+        return UIStackView()
     }()
     
     // 1st column stack : Route number
@@ -36,11 +34,6 @@ class FavouriteRoutesTableViewCell : UITableViewCell {
         label.sizeToFit()
         label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         return label
-    }()
-    
-    // Space between columns
-    let spacerView : UIView = {
-        return UIView()
     }()
     
     // 2nd column stack : Red line between cols
