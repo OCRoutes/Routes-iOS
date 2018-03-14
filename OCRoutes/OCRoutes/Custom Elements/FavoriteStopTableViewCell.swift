@@ -64,15 +64,6 @@ class FavoriteStopTableViewCell : UITableViewCell {
         return label
     }()
     
-    // 3rd column stack for route info
-    let routeInfoStack : UIStackView = {
-        let stack = UIStackView()
-        stack.alignment = .fill
-        stack.axis = .vertical
-        stack.spacing = 5.0
-        return stack
-    }()
-    
     convenience init(stop : BusStop, routes : [BusRoute], style : TrackStyle) {
         self.init(style: .default, reuseIdentifier: "favStopCell", trackStyle: style)
         self.trackStyle = style
@@ -124,6 +115,11 @@ class FavoriteStopTableViewCell : UITableViewCell {
             mainStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             mainStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
             mainStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5)
+        ])
+        
+        busStopNumberLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            busStopNumberLabel.widthAnchor.constraint(equalToConstant: busStopNumberLabel.frame.width)
         ])
         
         redLineView.translatesAutoresizingMaskIntoConstraints = false
