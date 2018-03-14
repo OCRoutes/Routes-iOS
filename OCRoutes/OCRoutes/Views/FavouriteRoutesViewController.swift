@@ -89,16 +89,16 @@ extension FavouriteRoutesViewController : UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
-            let busRoute = BusRoute(routeNumber: 89, routeName: "Blair", firstBusTime: "24m", secondBusTime: "1h31m")
+            let busRoute = BusRoute(routeNumber: 104, routeName: "Mackenzie King Station", firstBusTime: "24m", secondBusTime: "1h31m")
             return FavouriteRoutesTableViewCell(route: busRoute, style: .Leading)
         case 1:
-            let busRoute = BusRoute(routeNumber: 89, routeName: "Blair", firstBusTime: "24m", secondBusTime: "1h31m")
+            let busRoute = BusRoute(routeNumber: 9, routeName: "Greenboro", firstBusTime: "24m", secondBusTime: "1h31m")
             return FavouriteRoutesTableViewCell(route: busRoute, style: .Normal)
         case 2:
-            let busRoute = BusRoute(routeNumber: 89, routeName: "Blair", firstBusTime: "24m", secondBusTime: "1h31m")
+            let busRoute = BusRoute(routeNumber: 98, routeName: "Aeroport / Airport", firstBusTime: "24m", secondBusTime: "1h31m")
             return FavouriteRoutesTableViewCell(route: busRoute, style: .Ending)
         default:
-            let busRoute = BusRoute(routeNumber: 89, routeName: "Blair", firstBusTime: "24m", secondBusTime: "1h31m")
+            let busRoute = BusRoute(routeNumber: 98, routeName: "Blair", firstBusTime: "24m", secondBusTime: "1h31m")
             return FavouriteRoutesTableViewCell(route: busRoute, style: .Normal)
         }
     }

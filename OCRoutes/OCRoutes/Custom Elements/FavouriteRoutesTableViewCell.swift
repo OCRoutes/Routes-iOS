@@ -29,9 +29,9 @@ class FavouriteRoutesTableViewCell : UITableViewCell {
     // 1st column stack : Route number
     let busRouteNumberLabel : UILabel = {
         let label = UILabel()
-        label.text = "95"
-        label.font = UIFont(name: "AvenirNext-Bold", size: 20)
+        label.font = UIFont(name: "AvenirNext-Bold", size: 18)
         label.textColor = .black
+        label.textAlignment = .center
         label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         return label
     }()
@@ -53,12 +53,14 @@ class FavouriteRoutesTableViewCell : UITableViewCell {
         return label
     }()
     
+    // Convenience init
     convenience init(route : BusRoute, style : TrackStyle) {
         self.init(style: .default, reuseIdentifier: "favRouteCell", trackStyle: style)
         self.trackStyle = style
         defer { self.route = route }
     }
     
+    // Init
     init(style: UITableViewCellStyle, reuseIdentifier: String?, trackStyle: TrackStyle) {
         super.init(style: style, reuseIdentifier : reuseIdentifier)
         
@@ -86,6 +88,7 @@ class FavouriteRoutesTableViewCell : UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // Constraints
     private func ApplyConstraints() {
         mainStack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -98,6 +101,11 @@ class FavouriteRoutesTableViewCell : UITableViewCell {
         redLineView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             redLineView.widthAnchor.constraint(equalToConstant: 30)
+        ])
+        
+        busRouteNumberLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            busRouteNumberLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.15)
         ])
     }
     
