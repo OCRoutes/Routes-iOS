@@ -18,10 +18,11 @@ class RouteInfoCubeView : UICollectionViewCell {
     let routeNumberLabel : UILabel = {
         let label = UILabel()
         label.attributedText = NSAttributedString(string: "85", attributes: [
-            NSAttributedStringKey.font: UIFont(name: "AvenirNext-Bold", size: 20)!,
+            NSAttributedStringKey.font: UIFont(name: "AvenirNext-Bold", size: 15)!,
             NSAttributedStringKey.foregroundColor: UIColor.white
         ])
         label.textAlignment = .center
+        label.sizeToFit()
         return label
     }()
     
@@ -37,21 +38,15 @@ class RouteInfoCubeView : UICollectionViewCell {
     }
     
     private func ApplyConstraints() {
-//        translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            widthAnchor.constraint(equalToConstant: CUBE_SIZE),
-//            heightAnchor.constraint(equalToConstant: CUBE_SIZE)
-//        ])
-        
+
         routeNumberLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             routeNumberLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
             routeNumberLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             routeNumberLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor),
             routeNumberLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor)
-//            routeNumberLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-//            routeNumberLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
+        layer.cornerRadius = 5.0
     }
     
 }

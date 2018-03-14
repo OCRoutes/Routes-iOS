@@ -91,7 +91,7 @@ extension StopsViewController : UITableViewDataSource, UITableViewDelegate {
             let busRoute3 = BusRoute(routeNumber: 83, routeName: "Kanata", firstBusTime: "5m", secondBusTime: "59m")
             let busRoute4 = BusRoute(routeNumber: 83, routeName: "Kanata", firstBusTime: "5m", secondBusTime: "59m")
             let busRoute5 = BusRoute(routeNumber: 83, routeName: "Kanata", firstBusTime: "5m", secondBusTime: "59m")
-            return StopTableViewCell(stop: busStop, routes: [busRoute1, busRoute2, busRoute3, busRoute4, busRoute5], style: .Ending)
+            return StopTableViewCell(stop: busStop, routes: [busRoute1, busRoute2, busRoute3, busRoute4, busRoute5, busRoute1, busRoute2, busRoute3, busRoute4, busRoute5, busRoute1, busRoute1, busRoute2, busRoute3, busRoute4, busRoute5, busRoute1, busRoute1, busRoute2, busRoute3, busRoute4, busRoute5, busRoute1, busRoute1, busRoute2, busRoute3, busRoute4, busRoute5, busRoute1, busRoute1, busRoute2, busRoute3, busRoute4, busRoute5, busRoute1], style: .Ending)
         default:
             let busStop = BusStop(stopId: "AB123", stopCode: "7689", stopName: "King Edward", stopLatitude: 123.123, stopLongitude: 456.456)
             let busRoute1 = BusRoute(routeNumber: 89, routeName: "Blair", firstBusTime: "24m", secondBusTime: "1h31m")
@@ -99,7 +99,7 @@ extension StopsViewController : UITableViewDataSource, UITableViewDelegate {
             let busRoute3 = BusRoute(routeNumber: 83, routeName: "Kanata", firstBusTime: "5m", secondBusTime: "59m")
             let busRoute4 = BusRoute(routeNumber: 83, routeName: "Kanata", firstBusTime: "5m", secondBusTime: "59m")
             let busRoute5 = BusRoute(routeNumber: 83, routeName: "Kanata", firstBusTime: "5m", secondBusTime: "59m")
-            return StopTableViewCell(stop: busStop, routes: [busRoute1, busRoute2, busRoute3, busRoute4, busRoute5], style: .Normal)
+            return StopTableViewCell(stop: busStop, routes: [busRoute1, busRoute2, busRoute3, busRoute4, busRoute5, busRoute1, busRoute2, busRoute3, busRoute4, busRoute5, busRoute1, busRoute2, busRoute3, busRoute4, busRoute5], style: .Normal)
         }
     }
 }

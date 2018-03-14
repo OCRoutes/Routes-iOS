@@ -11,6 +11,9 @@ import UIKit
 
 class StopTableViewCell : UITableViewCell {
     
+    fileprivate let CUBE_SIZE : CGFloat = 30.0
+    fileprivate let CUBE_PADDING : CGFloat = 2.0
+    
     private var trackStyle : TrackStyle = .Normal
     
     private var redLineView : RedLineView!
@@ -46,15 +49,6 @@ class StopTableViewCell : UITableViewCell {
         view.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         return view
     }()
-    
-    //3rd column stack
-//    let thirdColumn : UIStackView = {
-//        let stack = UIStackView()
-//        stack.axis = .vertical
-//        stack.spacing = 1.0
-//        stack.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
-//        return stack
-//    }()
     
     //3rd column label
     let busStopNameLabel : UILabel = {
@@ -106,54 +100,52 @@ class StopTableViewCell : UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func SetupStopInfo() {
         guard let stopInfo = stop else { return }
         busStopNumberLabel.text = stopInfo.stopCode
         busStopNameLabel.text = stopInfo.stopName
     }
-    
+
     private func ApplyConstraints() {
         mainStack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             mainStack.topAnchor.constraint(equalTo: contentView.topAnchor),
             mainStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            mainStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
-            mainStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5)
+            mainStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            mainStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
         ])
-        
+
         redLineView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             redLineView.widthAnchor.constraint(equalToConstant: 30)
         ])
-        
+
         busStopNameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             busStopNameLabel.topAnchor.constraint(equalTo: spacerView.topAnchor, constant: 5),
-//            busStopNameLabel.bottomAnchor.constraint(equalTo: routeCubeCollection.topAnchor, constant: 0),
             busStopNameLabel.leadingAnchor.constraint(equalTo: spacerView.leadingAnchor),
             busStopNameLabel.trailingAnchor.constraint(equalTo: spacerView.trailingAnchor)
         ])
-//
-        
-        print(routeCubeCollection.frame)
+
         routeCubeCollection.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             routeCubeCollection.topAnchor.constraint(equalTo: busStopNameLabel.bottomAnchor),
             routeCubeCollection.leadingAnchor.constraint(equalTo: spacerView.leadingAnchor),
             routeCubeCollection.trailingAnchor.constraint(equalTo: spacerView.trailingAnchor),
-            routeCubeCollection.heightAnchor.constraint(greaterThanOrEqualToConstant: 150),
-            routeCubeCollection.bottomAnchor.constraint(equalTo: spacerView.bottomAnchor)
+            routeCubeCollection.bottomAnchor.constraint(equalTo: spacerView.bottomAnchor, constant: -5),
+            routeCubeCollection.heightAnchor.constraint(equalToConstant: 65)
         ])
     }
+
 }
 
 extension StopTableViewCell : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        if let count = routes?.count {
-//            return count
-//        }
-        return 30
+        if let count = routes?.count {
+            return count
+        }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -162,16 +154,16 @@ extension StopTableViewCell : UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 30, height: 30)
+        return CGSize(width: CUBE_SIZE, height: CUBE_SIZE)
     }
     
     // cell bottom padding
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0.5
+        return CUBE_PADDING
     }
     
     // cell side padding
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0.5
+        return CUBE_PADDING
     }
 }
