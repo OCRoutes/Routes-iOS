@@ -44,10 +44,6 @@ class FavouriteRoutesViewController : UIViewController {
         favsTableView.dataSource = self
         favsTableView.delegate = self
         
-        // Setup cell dynamic row height
-        favsTableView.rowHeight = UITableViewAutomaticDimension
-        favsTableView.rowHeight = 70
-        
         favsTableView.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha:1.00)
         
         view.addSubview(favsTableView)
@@ -83,7 +79,11 @@ class FavouriteRoutesViewController : UIViewController {
 // UITableViewDataSource delegation
 extension FavouriteRoutesViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70.0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -94,7 +94,7 @@ extension FavouriteRoutesViewController : UITableViewDelegate, UITableViewDataSo
         case 1:
             let busRoute = BusRoute(routeNumber: 9, routeName: "Greenboro", firstBusTime: "24m", secondBusTime: "1h31m")
             return FavouriteRoutesTableViewCell(route: busRoute, style: .Normal)
-        case 2:
+        case 9:
             let busRoute = BusRoute(routeNumber: 98, routeName: "Aeroport / Airport", firstBusTime: "24m", secondBusTime: "1h31m")
             return FavouriteRoutesTableViewCell(route: busRoute, style: .Ending)
         default:
