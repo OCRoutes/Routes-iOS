@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		267B3EE4205848C00065FD7B /* FavouriteRoutesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267B3EE3205848C00065FD7B /* FavouriteRoutesTableViewCell.swift */; };
 		CA11EC512020E71600FB3541 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA11EC502020E71600FB3541 /* Style.swift */; };
 		CA1F9E312020335800392754 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1F9E302020335800392754 /* AppDelegate.swift */; };
 		CA1F9E332020335800392754 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1F9E322020335800392754 /* MapViewController.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		267B3EE3205848C00065FD7B /* FavouriteRoutesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteRoutesTableViewCell.swift; sourceTree = "<group>"; };
 		CA11EC502020E71600FB3541 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		CA1F9E2D2020335800392754 /* OCRoutes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OCRoutes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA1F9E302020335800392754 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				CAD558352025072000C3558F /* FavoriteStopTableViewCell.swift */,
 				CAD5583B202643B400C3558F /* FavouriteStopRouteInfoView.swift */,
 				CA28492B20570ADB00EDCBF5 /* RedLineView.swift */,
+				267B3EE3205848C00065FD7B /* FavouriteRoutesTableViewCell.swift */,
 			);
 			path = "Custom Elements";
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 				CAFC098C2038CBBF00AB4F3D /* BusRoute.swift in Sources */,
 				CA1F9E4A2020E0A600392754 /* FavouriteRoutesViewController.swift in Sources */,
 				CAAC47A12050E007009B2E0D /* FavouriteStopsViewController.swift in Sources */,
+				267B3EE4205848C00065FD7B /* FavouriteRoutesTableViewCell.swift in Sources */,
 				CA1F9E332020335800392754 /* MapViewController.swift in Sources */,
 				CA1F9E432020CDEA00392754 /* BusStopAnnotation.swift in Sources */,
 				CAD5583020226DA900C3558F /* BusStopDetailView.swift in Sources */,
@@ -377,14 +381,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = G3KGQDJHJS;
+				DEVELOPMENT_TEAM = 34U57LC3TA;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = OCRoutes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = OCR.OCRoutes;
+				PRODUCT_BUNDLE_IDENTIFIER = OCR.OCRoutes1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -396,14 +400,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = G3KGQDJHJS;
+				DEVELOPMENT_TEAM = 34U57LC3TA;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = OCRoutes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = OCR.OCRoutes;
+				PRODUCT_BUNDLE_IDENTIFIER = OCR.OCRoutes1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
