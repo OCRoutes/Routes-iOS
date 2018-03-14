@@ -38,8 +38,10 @@ class StopTableViewCell : UITableViewCell {
     let busStopNumberLabel : UILabel = {
         let label = UILabel()
         label.text = "6783"
-        label.font = UIFont(name: "AvenirNext-Bold", size: 20)
+        label.font = UIFont(name: "AvenirNext-Bold", size: 18)
         label.textColor = .black
+        label.textAlignment = .center
+        label.sizeToFit()
         label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         return label
     }()
@@ -116,6 +118,11 @@ class StopTableViewCell : UITableViewCell {
             mainStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
         ])
 
+        busStopNumberLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            busStopNumberLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.15)
+        ])
+        
         redLineView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             redLineView.widthAnchor.constraint(equalToConstant: 30)
