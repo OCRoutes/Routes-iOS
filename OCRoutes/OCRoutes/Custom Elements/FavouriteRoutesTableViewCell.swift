@@ -29,9 +29,11 @@ class FavouriteRoutesTableViewCell : UITableViewCell {
     // 1st column stack : Route number
     let busRouteNumberLabel : UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AvenirNext-Bold", size: 18)
+        label.text = "1234"
+        label.font = UIFont(name: "AvenirNext-Bold", size: 20)
         label.textColor = .black
         label.textAlignment = .center
+        label.sizeToFit()
         label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         return label
     }()
@@ -88,7 +90,7 @@ class FavouriteRoutesTableViewCell : UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // Constraints
+    // Constraint
     private func ApplyConstraints() {
         mainStack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -105,7 +107,7 @@ class FavouriteRoutesTableViewCell : UITableViewCell {
         
         busRouteNumberLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            busRouteNumberLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.15)
+            busRouteNumberLabel.widthAnchor.constraint(equalToConstant: busRouteNumberLabel.frame.width)
         ])
     }
     
