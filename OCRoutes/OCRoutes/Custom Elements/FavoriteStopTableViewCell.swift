@@ -117,6 +117,11 @@ class FavoriteStopTableViewCell : UITableViewCell {
             mainStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5)
         ])
         
+        busStopNumberLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            busStopNumberLabel.widthAnchor.constraint(equalToConstant: busStopNumberLabel.frame.width)
+        ])
+        
         redLineView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             redLineView.widthAnchor.constraint(equalToConstant: 30)
