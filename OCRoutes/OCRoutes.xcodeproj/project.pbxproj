@@ -10,6 +10,7 @@
 		267B3EE4205848C00065FD7B /* FavouriteRoutesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267B3EE3205848C00065FD7B /* FavouriteRoutesTableViewCell.swift */; };
 		267B3EEA205A14FC0065FD7B /* RouteInfoCubeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267B3EE9205A14FC0065FD7B /* RouteInfoCubeView.swift */; };
 		267B3EEC205A15480065FD7B /* StopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267B3EEB205A15480065FD7B /* StopTableViewCell.swift */; };
+		267B3EF6205A2CBB0065FD7B /* fontawesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 267B3EF5205A25EA0065FD7B /* fontawesome.ttf */; };
 		CA11EC512020E71600FB3541 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA11EC502020E71600FB3541 /* Style.swift */; };
 		CA1F9E312020335800392754 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1F9E302020335800392754 /* AppDelegate.swift */; };
 		CA1F9E332020335800392754 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1F9E322020335800392754 /* MapViewController.swift */; };
@@ -36,6 +37,7 @@
 		267B3EE3205848C00065FD7B /* FavouriteRoutesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteRoutesTableViewCell.swift; sourceTree = "<group>"; };
 		267B3EE9205A14FC0065FD7B /* RouteInfoCubeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteInfoCubeView.swift; sourceTree = "<group>"; };
 		267B3EEB205A15480065FD7B /* StopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopTableViewCell.swift; sourceTree = "<group>"; };
+		267B3EF5205A25EA0065FD7B /* fontawesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fontawesome.ttf; sourceTree = "<group>"; };
 		CA11EC502020E71600FB3541 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		CA1F9E2D2020335800392754 /* OCRoutes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OCRoutes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA1F9E302020335800392754 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +74,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		267B3EED205A22050065FD7B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				267B3EF5205A25EA0065FD7B /* fontawesome.ttf */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		CA1F9E242020335800392754 = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +102,7 @@
 		CA1F9E2F2020335800392754 /* OCRoutes */ = {
 			isa = PBXGroup;
 			children = (
+				267B3EED205A22050065FD7B /* Resources */,
 				CA1F9E482020DE6E00392754 /* Views */,
 				CA1F9E472020DE6100392754 /* Custom Elements */,
 				CA1F9E462020DE5100392754 /* Models */,
@@ -211,6 +222,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				267B3EF6205A2CBB0065FD7B /* fontawesome.ttf in Resources */,
 				CA1F9E3B2020335800392754 /* LaunchScreen.storyboard in Resources */,
 				CA1F9E382020335800392754 /* Assets.xcassets in Resources */,
 			);

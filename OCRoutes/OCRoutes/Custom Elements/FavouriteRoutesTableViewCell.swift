@@ -39,12 +39,21 @@ class FavouriteRoutesTableViewCell : UITableViewCell {
     // 2nd column stack : Red line between cols
     var redLineView : RedLineView!
     
-    // 3rd columns stack : Bus info
+    // 3rd column stack : Bus info
     let busRouteNameLabel : UILabel = {
         let label = UILabel()
         label.text = "South Keys"
         label.font = UIFont(name: "AvenirNext-DemiBold", size: 15)
         label.textColor = .black
+        return label
+    }()
+    
+    // 4th column stack : Star
+    let favButton : UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "fontawesome", size: 20)
+        label.attributedText = NSAttributedString(string: "\u{f005}", attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+        label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         return label
     }()
     
@@ -67,6 +76,7 @@ class FavouriteRoutesTableViewCell : UITableViewCell {
         mainStack.addArrangedSubview(busRouteNumberLabel)
         mainStack.addArrangedSubview(redLineView)
         mainStack.addArrangedSubview(busRouteNameLabel)
+        mainStack.addArrangedSubview(favButton)
         
         ApplyConstraints()
     }
@@ -96,6 +106,11 @@ class FavouriteRoutesTableViewCell : UITableViewCell {
         redLineView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             redLineView.widthAnchor.constraint(equalToConstant: 30)
+        ])
+        
+        favButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            favButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
         ])
         
         busRouteNumberLabel.translatesAutoresizingMaskIntoConstraints = false
