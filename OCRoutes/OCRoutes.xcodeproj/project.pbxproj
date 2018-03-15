@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		267B3EE4205848C00065FD7B /* FavouriteRoutesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267B3EE3205848C00065FD7B /* FavouriteRoutesTableViewCell.swift */; };
+		267B3EEA205A14FC0065FD7B /* RouteInfoCubeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267B3EE9205A14FC0065FD7B /* RouteInfoCubeView.swift */; };
+		267B3EEC205A15480065FD7B /* StopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267B3EEB205A15480065FD7B /* StopTableViewCell.swift */; };
 		CA11EC512020E71600FB3541 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA11EC502020E71600FB3541 /* Style.swift */; };
 		CA1F9E312020335800392754 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1F9E302020335800392754 /* AppDelegate.swift */; };
 		CA1F9E332020335800392754 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1F9E322020335800392754 /* MapViewController.swift */; };
@@ -32,6 +34,8 @@
 
 /* Begin PBXFileReference section */
 		267B3EE3205848C00065FD7B /* FavouriteRoutesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteRoutesTableViewCell.swift; sourceTree = "<group>"; };
+		267B3EE9205A14FC0065FD7B /* RouteInfoCubeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteInfoCubeView.swift; sourceTree = "<group>"; };
+		267B3EEB205A15480065FD7B /* StopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopTableViewCell.swift; sourceTree = "<group>"; };
 		CA11EC502020E71600FB3541 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		CA1F9E2D2020335800392754 /* OCRoutes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OCRoutes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA1F9E302020335800392754 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +124,8 @@
 				CAD5583B202643B400C3558F /* FavouriteStopRouteInfoView.swift */,
 				CA28492B20570ADB00EDCBF5 /* RedLineView.swift */,
 				267B3EE3205848C00065FD7B /* FavouriteRoutesTableViewCell.swift */,
+				267B3EE9205A14FC0065FD7B /* RouteInfoCubeView.swift */,
+				267B3EEB205A15480065FD7B /* StopTableViewCell.swift */,
 			);
 			path = "Custom Elements";
 			sourceTree = "<group>";
@@ -241,6 +247,7 @@
 				CA1F9E332020335800392754 /* MapViewController.swift in Sources */,
 				CA1F9E432020CDEA00392754 /* BusStopAnnotation.swift in Sources */,
 				CAD5583020226DA900C3558F /* BusStopDetailView.swift in Sources */,
+				267B3EEC205A15480065FD7B /* StopTableViewCell.swift in Sources */,
 				CAAC479F205095F8009B2E0D /* HomeViewController.swift in Sources */,
 				CA28492C20570ADB00EDCBF5 /* RedLineView.swift in Sources */,
 				CAD5583120226DA900C3558F /* BusStopAnnotationView.swift in Sources */,
@@ -252,6 +259,7 @@
 				CAD558342025022E00C3558F /* StopsViewController.swift in Sources */,
 				CAD5582F20226DA900C3558F /* TriangleView.swift in Sources */,
 				CA1F9E312020335800392754 /* AppDelegate.swift in Sources */,
+				267B3EEA205A14FC0065FD7B /* RouteInfoCubeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -5,7 +5,6 @@
 //  Created by Brandon Danis on 2018-02-02.
 //  Copyright © 2018 RoutesInc. All rights reserved.
 //
-
 import Foundation
 import UIKit
 
@@ -28,20 +27,21 @@ class StopsViewController : UIViewController {
         // Setting up tableview
         SetupFavsTableView()
         
-        // Setup placeholder label
-        titleLabel = UILabel(frame: CGRect.zero)
-        titleLabel.attributedText = NSAttributedString(string: titleString, attributes: [
-            NSAttributedStringKey.font: UIFont(name: "Avenir Next", size: 40)!,
-            NSAttributedStringKey.foregroundColor: Style.mainColor
-            ])
-        titleLabel.textAlignment = .center
-        view.addSubview(titleLabel)
-        
         ApplyConstraint()
     }
     
     private func SetupFavsTableView() {
         stopsTableView = UITableView(frame: CGRect.zero)
+        
+        stopsTableView.delegate = self
+        stopsTableView.dataSource = self
+        
+        // Setup cell dynamic row height
+        stopsTableView.rowHeight = UITableViewAutomaticDimension
+        stopsTableView.estimatedRowHeight = 150
+        
+        stopsTableView.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.00)
+        
         view.addSubview(stopsTableView)
     }
     
@@ -51,14 +51,6 @@ class StopsViewController : UIViewController {
     
     private func ApplyConstraint() {
         let safeArea = view.safeAreaLayoutGuide
-        
-        // Title label constraints
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
-            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            titleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-            ])
         
         // Routes table view constraints
         stopsTableView.translatesAutoresizingMaskIntoConstraints = false
@@ -74,12 +66,39 @@ class StopsViewController : UIViewController {
 }
 
 // UITableViewDataSource delegation
-extension StopsViewController : UITableViewDataSource {
+extension StopsViewController : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        switch indexPath.row {
+        case 0:
+            let busStop = BusStop(stopId: "AB123", stopCode: "8", stopName: "King Edward", stopLatitude: 123.123, stopLongitude: 456.456)
+            let busRoute1 = BusRoute(routeNumber: 89, routeName: "Blair", firstBusTime: "24m", secondBusTime: "1h31m")
+            return StopTableViewCell(stop: busStop, routes: [busRoute1], style: .Leading)
+        case 1:
+            let busStop = BusStop(stopId: "AB123", stopCode: "134", stopName: "Place dOrleans", stopLatitude: 123.123, stopLongitude: 456.456)
+            let busRoute1 = BusRoute(routeNumber: 83, routeName: "Blair", firstBusTime: "<1m", secondBusTime: "31m")
+            let busRoute2 = BusRoute(routeNumber: 83, routeName: "Blair", firstBusTime: "3m", secondBusTime: "7m")
+            let busRoute3 = BusRoute(routeNumber: 83, routeName: "Kanata", firstBusTime: "5m", secondBusTime: "59m")
+            return StopTableViewCell(stop: busStop, routes: [busRoute1, busRoute2, busRoute3], style: .Normal)
+        case 9:
+            let busStop = BusStop(stopId: "AB123", stopCode: "7689", stopName: "King Edward", stopLatitude: 123.123, stopLongitude: 456.456)
+            let busRoute1 = BusRoute(routeNumber: 89, routeName: "Blair", firstBusTime: "24m", secondBusTime: "1h31m")
+            let busRoute2 = BusRoute(routeNumber: 83, routeName: "Kanata", firstBusTime: "5m", secondBusTime: "59m")
+            let busRoute3 = BusRoute(routeNumber: 83, routeName: "Kanata", firstBusTime: "5m", secondBusTime: "59m")
+            let busRoute4 = BusRoute(routeNumber: 83, routeName: "Kanata", firstBusTime: "5m", secondBusTime: "59m")
+            let busRoute5 = BusRoute(routeNumber: 83, routeName: "Kanata", firstBusTime: "5m", secondBusTime: "59m")
+            return StopTableViewCell(stop: busStop, routes: [busRoute1, busRoute2, busRoute3, busRoute4, busRoute5, busRoute1, busRoute2, busRoute3, busRoute4, busRoute5, busRoute1, busRoute1, busRoute2, busRoute3, busRoute4, busRoute5, busRoute1, busRoute1, busRoute2, busRoute3, busRoute4, busRoute5, busRoute1, busRoute1, busRoute2, busRoute3, busRoute4, busRoute5, busRoute1, busRoute1, busRoute2, busRoute3, busRoute4, busRoute5, busRoute1], style: .Ending)
+        default:
+            let busStop = BusStop(stopId: "AB123", stopCode: "7689", stopName: "King Edward", stopLatitude: 123.123, stopLongitude: 456.456)
+            let busRoute1 = BusRoute(routeNumber: 89, routeName: "Blair", firstBusTime: "24m", secondBusTime: "1h31m")
+            let busRoute2 = BusRoute(routeNumber: 83, routeName: "Kanata", firstBusTime: "5m", secondBusTime: "59m")
+            let busRoute3 = BusRoute(routeNumber: 83, routeName: "Kanata", firstBusTime: "5m", secondBusTime: "59m")
+            let busRoute4 = BusRoute(routeNumber: 83, routeName: "Kanata", firstBusTime: "5m", secondBusTime: "59m")
+            let busRoute5 = BusRoute(routeNumber: 83, routeName: "Kanata", firstBusTime: "5m", secondBusTime: "59m")
+            return StopTableViewCell(stop: busStop, routes: [busRoute1, busRoute2, busRoute3, busRoute4, busRoute5, busRoute1, busRoute2, busRoute3, busRoute4, busRoute5, busRoute1, busRoute2, busRoute3, busRoute4, busRoute5], style: .Normal)
+        }
     }
 }
