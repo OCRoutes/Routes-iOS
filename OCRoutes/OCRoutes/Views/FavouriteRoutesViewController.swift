@@ -11,9 +11,6 @@ import UIKit
 
 class FavouriteRoutesViewController : UIViewController {
     
-    private let titleString: String = "Favorite Routes"
-    private var titleLabel: UILabel!
-    
     fileprivate var favsTableView : UITableView!
     
     override func viewDidLoad() {
@@ -21,27 +18,22 @@ class FavouriteRoutesViewController : UIViewController {
         
         // Setting up view attributes
         view.backgroundColor = .white
-        
-        // Setting nav controller title
-        self.navigationController?.navigationBar.topItem?.title = "Favorites"
-        
+
         // Setting up tableview
         SetupFavsTableView()
-        
-        // Setup placeholder label
-        titleLabel = UILabel(frame: CGRect.zero)
-        titleLabel.attributedText = NSAttributedString(string: titleString, attributes: [
-            NSAttributedStringKey.font: UIFont(name: "Avenir Next", size: 40)!,
-            NSAttributedStringKey.foregroundColor: Style.mainColor
-        ])
-        titleLabel.textAlignment = .center
-        view.addSubview(titleLabel)
     
         ApplyConstraint()
     }
     
     private func SetupFavsTableView() {
         favsTableView = UITableView(frame: CGRect.zero)
+        
+        // Setup delegate
+        favsTableView.dataSource = self
+        favsTableView.delegate = self
+        
+        favsTableView.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha:1.00)
+        
         view.addSubview(favsTableView)
     }
     
@@ -51,14 +43,6 @@ class FavouriteRoutesViewController : UIViewController {
     
     private func ApplyConstraint() {
         let safeArea = view.safeAreaLayoutGuide
-        
-        // Title label constraints
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
-            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            titleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
         
         // Favs table view constraints
         favsTableView.translatesAutoresizingMaskIntoConstraints = false
@@ -73,12 +57,29 @@ class FavouriteRoutesViewController : UIViewController {
 }
 
 // UITableViewDataSource delegation
-extension FavouriteRoutesViewController : UITableViewDataSource {
+extension FavouriteRoutesViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70.0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        switch indexPath.row {
+        case 0:
+            let busRoute = BusRoute(routeNumber: 104, routeName: "Mackenzie King Station", firstBusTime: "24m", secondBusTime: "1h31m")
+            return FavouriteRoutesTableViewCell(route: busRoute, style: .Leading)
+        case 1:
+            let busRoute = BusRoute(routeNumber: 9, routeName: "Greenboro", firstBusTime: "24m", secondBusTime: "1h31m")
+            return FavouriteRoutesTableViewCell(route: busRoute, style: .Normal)
+        case 9:
+            let busRoute = BusRoute(routeNumber: 98, routeName: "Aeroport / Airport", firstBusTime: "24m", secondBusTime: "1h31m")
+            return FavouriteRoutesTableViewCell(route: busRoute, style: .Ending)
+        default:
+            let busRoute = BusRoute(routeNumber: 98, routeName: "Blair", firstBusTime: "24m", secondBusTime: "1h31m")
+            return FavouriteRoutesTableViewCell(route: busRoute, style: .Normal)
+        }
     }
 }
