@@ -18,7 +18,7 @@ class FavouriteRoutesViewController : UIViewController {
         
         // Setting up view attributes
         view.backgroundColor = .white
-
+        
         // Setting up tableview
         SetupFavsTableView()
     
@@ -32,7 +32,12 @@ class FavouriteRoutesViewController : UIViewController {
         favsTableView.dataSource = self
         favsTableView.delegate = self
         
-        favsTableView.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha:1.00)
+        // Colour scheme of view
+        favsTableView.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1.00)
+        favsTableView.separatorColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1.00)
+        favsTableView.layoutMargins = UIEdgeInsets.zero
+        favsTableView.separatorInset = UIEdgeInsets.zero
+        
         
         view.addSubview(favsTableView)
     }
@@ -68,6 +73,7 @@ extension FavouriteRoutesViewController : UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         switch indexPath.row {
         case 0:
             let busRoute = BusRoute(routeNumber: 9999, routeName: "Mackenzie King Station", firstBusTime: "24m", secondBusTime: "1h31m")
