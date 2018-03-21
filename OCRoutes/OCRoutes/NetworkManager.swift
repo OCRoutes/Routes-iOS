@@ -15,6 +15,8 @@ class NetworkManager {
     static private let defaultSession = URLSession(configuration: .default)
     
     static private var defaultTask : URLSessionDataTask?
+    static private var allStopsTask : URLSessionDataTask?
+    static private var allRoutesTask : URLSessionDataTask?
     
     static public func CheckServerHealth() {
         defaultTask?.cancel()
@@ -43,7 +45,7 @@ class NetworkManager {
     }
     
     static public func GetAllStops(callback: @escaping (_ err: String?, _ busStops: [BusStop]?) -> Void) {
-        defaultTask?.cancel()
+        allStopsTask?.cancel()
         
         guard let urlComponents = URLComponents(string: "\(API_URL)/stops?lat=45.419534&lon=-75.678803") else {
             print("Failed to create urlComponents")
@@ -55,7 +57,7 @@ class NetworkManager {
             return
         }
         
-        defaultTask = defaultSession.dataTask(with: url, completionHandler: { (data, res, err) in
+        allStopsTask = defaultSession.dataTask(with: url, completionHandler: { (data, res, err) in
             if err != nil {
                 debugPrint("Error when getting all stops")
                 return callback(err.debugDescription, nil)
@@ -76,11 +78,11 @@ class NetworkManager {
             }
         })
         
-        defaultTask?.resume()
+        allStopsTask?.resume()
     }
     
     static public func GetAllRoutes(callback: @escaping (_ err: String?, _ busRoutes: [BusRoute]?) -> Void) {
-        defaultTask?.cancel()
+        allRoutesTask?.cancel()
         
         guard let urlComponents = URLComponents(string: "\(API_URL)/routes") else {
             print("Failed to create urlComponents")
@@ -92,7 +94,7 @@ class NetworkManager {
             return
         }
         
-        defaultTask = defaultSession.dataTask(with: url, completionHandler: { (data, res, err) in
+        allRoutesTask = defaultSession.dataTask(with: url, completionHandler: { (data, res, err) in
             
             if err != nil {
                 debugPrint("Error when getting all stops")
@@ -115,7 +117,7 @@ class NetworkManager {
             
         })
         
-        defaultTask?.resume()
+        allRoutesTask?.resume()
     }
 }
 
