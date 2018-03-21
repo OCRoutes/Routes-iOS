@@ -16,7 +16,7 @@ struct BusStop : Codable {
     var stop_lat : Double
     var stop_lon : Double
     var distance : Double?
-    var routes : [ String ]?
+    var routes : [ BusRoute ]?
     
     init(stop_id: String, stop_code: String?, stop_name: String, stop_lat: Double, stop_lon: Double) {
         self.stop_id = stop_id
@@ -33,7 +33,7 @@ struct BusStop : Codable {
         case stop_lat = "stop_lat"
         case stop_lon = "stop_lon"
         case distance = "distance"
-        case routes = "routes"
+        case routes = "stop_routes"
     }
 
 }

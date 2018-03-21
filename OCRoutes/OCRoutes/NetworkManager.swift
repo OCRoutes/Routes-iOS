@@ -78,5 +78,4 @@ class NetworkManager {
         
         defaultTask?.resume()
     }
-    
 }
