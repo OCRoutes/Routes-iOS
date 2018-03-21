@@ -13,6 +13,8 @@ struct BusRoute : Codable {
     let routeId : String
     let routeNumber : String
     let routeName : String?
+    var directionId : String?
+    
     var firstBusTime : String? = "--"
     var secondBusTime : String? = "--"
     
@@ -24,9 +26,12 @@ struct BusRoute : Codable {
     
     enum CodingKeys: String, CodingKey {
         case routeNumber = "route_short_name"
-        case routeName = "last_name"
+        case routeName = "trip_headsign"
         case routeId = "route_id"
+        case directionId = "direction_id"
     }
+    
+    
     
 }
 

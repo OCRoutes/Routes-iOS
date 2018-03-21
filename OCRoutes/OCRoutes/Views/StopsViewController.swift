@@ -36,7 +36,7 @@ class StopsViewController : UIViewController {
         // Setting up tableview
         SetupFavsTableView()
         
-        NetworkManager.GetAllRoutes() { (err, busStops) in
+        NetworkManager.GetAllStops { (err, busStops) in
             self.allStops = busStops
         }
         
