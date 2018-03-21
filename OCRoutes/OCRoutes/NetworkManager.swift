@@ -45,7 +45,7 @@ class NetworkManager {
     static public func GetAllRoutes(callback: @escaping (_ err: String?, _ busStops: [BusStop]?) -> Void) {
         defaultTask?.cancel()
         
-        guard let urlComponents = URLComponents(string: "\(API_URL)/stops?lat=45.4223123&lon=-75.6797467") else {
+        guard let urlComponents = URLComponents(string: "\(API_URL)/stops?lat=45.419534&lon=-75.678803") else {
             print("Failed to create urlComponents")
             return //TODO: handle a failure in a better way
         }

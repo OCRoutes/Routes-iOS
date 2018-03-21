@@ -15,9 +15,6 @@ struct BusRoute : Codable {
     let routeName : String?
     var firstBusTime : String? = "--"
     var secondBusTime : String? = "--"
-//    var description : String?
-//    var routeType : Int?
-//    var routeURL : String?
     
     init(routeId: String, routeNumber: String, routeName: String) {
         self.routeId = routeId

@@ -37,7 +37,6 @@ class RouteInfoCubeView : UICollectionViewCell {
     }
     
     private func ApplyConstraints() {
-
         routeNumberLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             routeNumberLabel.topAnchor.constraint(equalTo: contentView.topAnchor),

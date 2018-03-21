@@ -92,8 +92,8 @@ class FavoriteStopTableViewCell : UITableViewCell {
     
     private func SetupStopInfo() {
         guard let stopInfo = stop else { return }
-        busStopNumberLabel.text = stopInfo.stopCode
-        busStopNameLabel.text = stopInfo.stopName
+        busStopNumberLabel.text = stopInfo.stop_code
+        busStopNameLabel.text = stopInfo.stop_name
     }
     
     private func SetupBusRoutes() {

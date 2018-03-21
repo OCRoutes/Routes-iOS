@@ -75,7 +75,6 @@ class StopsViewController : UIViewController {
         ])
         
     }
-    
 }
 
 // UITableViewDataSource delegation
@@ -94,8 +93,8 @@ extension StopsViewController : UITableViewDataSource, UITableViewDelegate {
             if (indexPath.row == 0) {
                 trackStyle = .Leading
             }
-            
-            if (indexPath.row - 1 == allStops!.count) {
+
+            if ((indexPath.row + 1) == allStops!.count) {
                 trackStyle = .Ending
             }
             

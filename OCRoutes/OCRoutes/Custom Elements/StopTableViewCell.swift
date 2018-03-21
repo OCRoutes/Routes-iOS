@@ -37,7 +37,7 @@ class StopTableViewCell : UITableViewCell {
     //1st column
     let busStopNumberLabel : UILabel = {
         let label = UILabel()
-        label.text = "6783"
+        label.text = "SNOW"
         label.font = UIFont(name: "AvenirNext-Bold", size: 20)
         label.textColor = .black
         label.textAlignment = .center
@@ -70,7 +70,7 @@ class StopTableViewCell : UITableViewCell {
         return collection
     }()
     
-    convenience init(stop: BusStop, routes: [BusRoute], style: TrackStyle) {
+    convenience init(stop: BusStop, routes: [BusRoute]?, style: TrackStyle) {
         self.init(style: .default, reuseIdentifier: "favStopCell", trackStyle: style)
         self.trackStyle = style
         defer { self.stop = stop }
@@ -84,7 +84,7 @@ class StopTableViewCell : UITableViewCell {
         
         routeCubeCollection.delegate = self
         routeCubeCollection.dataSource = self
-        routeCubeCollection.register(RouteInfoCubeView.self, forCellWithReuseIdentifier: "cell")
+        routeCubeCollection.register(RouteInfoCubeView.self, forCellWithReuseIdentifier: "routecube")
         
         //Adding elements to contentView
         contentView.addSubview(mainStack)
@@ -105,8 +105,14 @@ class StopTableViewCell : UITableViewCell {
 
     private func SetupStopInfo() {
         guard let stopInfo = stop else { return }
-        busStopNumberLabel.text = stopInfo.stopCode
-        busStopNameLabel.text = stopInfo.stopName
+        
+        if stopInfo.stop_code != nil {
+            busStopNumberLabel.text = stopInfo.stop_code
+        } else {
+            busStopNumberLabel.text = String(stopInfo.stop_id.prefix(4))
+        }
+        
+        busStopNameLabel.text = stopInfo.stop_name
     }
 
     private func ApplyConstraints() {
@@ -141,7 +147,7 @@ class StopTableViewCell : UITableViewCell {
             routeCubeCollection.leadingAnchor.constraint(equalTo: spacerView.leadingAnchor),
             routeCubeCollection.trailingAnchor.constraint(equalTo: spacerView.trailingAnchor),
             routeCubeCollection.bottomAnchor.constraint(equalTo: spacerView.bottomAnchor, constant: -5),
-            routeCubeCollection.heightAnchor.constraint(equalToConstant: 65)
+            routeCubeCollection.heightAnchor.constraint(equalToConstant: 45)
         ])
     }
 
@@ -156,7 +162,15 @@ extension StopTableViewCell : UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! RouteInfoCubeView
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "routecube", for: indexPath) as! RouteInfoCubeView
+        
+        if let route = routes?[indexPath.row] {
+            if route.routeNumber == "SNOW" {
+                cell.routeNumberLabel.text = String(route.routeId.prefix(3))
+            } else {
+                cell.routeNumberLabel.text = route.routeNumber
+            }
+        }
         return cell
     }
     

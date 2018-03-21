@@ -119,10 +119,10 @@
 		CA1F9E472020DE6100392754 /* Custom Elements */ = {
 			isa = PBXGroup;
 			children = (
+				CA1F9E422020CDEA00392754 /* BusStopAnnotation.swift */,
 				CAD5582E20226DA900C3558F /* BusStopAnnotationView.swift */,
 				CAD5582D20226DA900C3558F /* BusStopDetailView.swift */,
 				CAD5582C20226DA900C3558F /* TriangleView.swift */,
-				CA1F9E422020CDEA00392754 /* BusStopAnnotation.swift */,
 				CAD558352025072000C3558F /* FavoriteStopTableViewCell.swift */,
 				CAD5583B202643B400C3558F /* FavouriteStopRouteInfoView.swift */,
 				CA28492B20570ADB00EDCBF5 /* RedLineView.swift */,
