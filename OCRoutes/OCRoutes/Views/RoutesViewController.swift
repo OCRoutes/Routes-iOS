@@ -10,6 +10,14 @@ import Foundation
 import UIKit
 
 class RoutesViewController : UIViewController {
+
+    private var allRoutes : [BusRoute]? {
+        didSet {
+            DispatchQueue.main.async {
+                self.routesTableView.reloadData()
+            }
+        }
+    }
     
     let titleString: String = "All Routes"
     var titleLabel: UILabel!
@@ -76,6 +84,9 @@ class RoutesViewController : UIViewController {
 // UITableViewDataSource delegation
 extension RoutesViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let count = allRoutes?.count {
+            return count
+        }
         return 0
     }
     

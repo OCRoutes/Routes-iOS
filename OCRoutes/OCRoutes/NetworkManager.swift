@@ -18,6 +18,17 @@ class NetworkManager {
     static private var allStopsTask : URLSessionDataTask?
     static private var allRoutesTask : URLSessionDataTask?
     
+    static private var allRoutesDict : Dictionary<String, BusRoute> = [:]
+    static private var allStopDict : Dictionary<String, BusStop> = [:]
+    
+    static public func GetAllRoutes() -> [BusRoute] {
+        return Array(allRoutesDict.values.map { $0 })
+    }
+    
+    static public func GetAllStops() -> [BusStop] {
+        return Array(allStopDict.values.map { $0 })
+    }
+    
     static public func CheckServerHealth() {
         defaultTask?.cancel()
         
@@ -44,7 +55,7 @@ class NetworkManager {
         defaultTask?.resume()
     }
     
-    static public func GetAllStops(callback: @escaping (_ err: String?, _ busStops: [BusStop]?) -> Void) {
+    static public func GetAllStops(callback: @escaping (_ err: String?) -> Void) {
         allStopsTask?.cancel()
         
         guard let urlComponents = URLComponents(string: "\(API_URL)/stops?lat=45.419534&lon=-75.678803") else {
@@ -60,28 +71,33 @@ class NetworkManager {
         allStopsTask = defaultSession.dataTask(with: url, completionHandler: { (data, res, err) in
             if err != nil {
                 debugPrint("Error when getting all stops")
-                return callback(err.debugDescription, nil)
+                return callback(err.debugDescription)
             }
             
             guard let data = data else {
                 debugPrint("Failed to get data")
-                return callback("Failed to get data", nil)
+                return callback("Failed to get data")
             }
             
             do {
                 let decoder = JSONDecoder()
-                let netRes = try decoder.decode([BusStop].self, from: data)
-                return callback(nil, netRes)
+                let stops = try decoder.decode([BusStop].self, from: data)
+                
+                for stop in stops {
+                    allStopDict[stop.stop_id] = stop
+                }
+                
+                return callback(nil)
             } catch let error {
                 print(error)
-                return callback("Failed to decode data", nil)
+                return callback("Failed to decode data")
             }
         })
         
         allStopsTask?.resume()
     }
     
-    static public func GetAllRoutes(callback: @escaping (_ err: String?, _ busRoutes: [BusRoute]?) -> Void) {
+    static public func GetAllRoutes(callback: @escaping (_ err: String?) -> Void) {
         allRoutesTask?.cancel()
         
         guard let urlComponents = URLComponents(string: "\(API_URL)/routes") else {
@@ -98,21 +114,26 @@ class NetworkManager {
             
             if err != nil {
                 debugPrint("Error when getting all stops")
-                return callback(err.debugDescription, nil)
+                return callback(err.debugDescription)
             }
             
             guard let data = data else {
                 debugPrint("Failed to get data")
-                return callback("Failed to get data", nil)
+                return callback("Failed to get data")
             }
             
             do {
                 let decoder = JSONDecoder()
-                let netRes = try decoder.decode([BusRoute].self, from: data)
-                return callback(nil, netRes)
+                let routes = try decoder.decode([BusRoute].self, from: data)
+                
+                for route in routes {
+                    allRoutesDict[route.routeId] = route
+                }
+                
+                return callback(nil)
             } catch let error {
                 print(error)
-                return callback("Failed to decode data", nil)
+                return callback("Failed to decode data")
             }
             
         })
