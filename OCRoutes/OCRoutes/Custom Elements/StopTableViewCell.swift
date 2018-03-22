@@ -79,6 +79,7 @@ class StopTableViewCell : UITableViewCell {
     
     init(style: UITableViewCellStyle, reuseIdentifier: String?, trackStyle: TrackStyle) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .none
         
         redLineView = RedLineView(style: trackStyle)
         
