@@ -44,6 +44,9 @@ class HomeViewController : UIViewController, PagingViewControllerDataSource, Pag
             pagingViewController.view.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
             pagingViewController.view.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
         ])
+        
+        NetworkManager.CheckServerHealth()
+        
     }
     
     override func didReceiveMemoryWarning() {

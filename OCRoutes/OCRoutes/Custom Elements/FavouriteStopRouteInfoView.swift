@@ -71,7 +71,7 @@ class FavouriteStopRouteInfoView : UIView {
                 NSAttributedStringKey.font: UIFont(name: "AvenirNext-Bold", size: 13)!,
                 NSAttributedStringKey.foregroundColor: Style.mainColor
             ])
-            routeNameLabel.attributedText = NSAttributedString(string: myRoute.routeName, attributes: [
+            routeNameLabel.attributedText = NSAttributedString(string: myRoute.routeName!, attributes: [
                 NSAttributedStringKey.font: UIFont(name: "Avenir Next", size: 13)!,
                 NSAttributedStringKey.foregroundColor: Style.darkGrey
             ])

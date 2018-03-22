@@ -20,6 +20,7 @@
 		CA28492C20570ADB00EDCBF5 /* RedLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA28492B20570ADB00EDCBF5 /* RedLineView.swift */; };
 		CA28492E20570CA400EDCBF5 /* StopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA28492D20570CA400EDCBF5 /* StopTableViewCell.swift */; };
 		CA2849302057123C00EDCBF5 /* RouteInfoCubeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA28492F2057123C00EDCBF5 /* RouteInfoCubeView.swift */; };
+		CA9AE556205CC6B700005733 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9AE555205CC6B700005733 /* NetworkManager.swift */; };
 		CAAC479A20506493009B2E0D /* Parchment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAAC479920506493009B2E0D /* Parchment.framework */; };
 		CAAC479F205095F8009B2E0D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAC479E205095F8009B2E0D /* HomeViewController.swift */; };
 		CAAC47A12050E007009B2E0D /* FavouriteStopsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAC47A02050E007009B2E0D /* FavouriteStopsViewController.swift */; };
@@ -48,6 +49,7 @@
 		CA28492B20570ADB00EDCBF5 /* RedLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedLineView.swift; sourceTree = "<group>"; };
 		CA28492D20570CA400EDCBF5 /* StopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopTableViewCell.swift; sourceTree = "<group>"; };
 		CA28492F2057123C00EDCBF5 /* RouteInfoCubeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteInfoCubeView.swift; sourceTree = "<group>"; };
+		CA9AE555205CC6B700005733 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CAAC479920506493009B2E0D /* Parchment.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parchment.framework; path = Carthage/Build/iOS/Parchment.framework; sourceTree = "<group>"; };
 		CAAC479E205095F8009B2E0D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CAAC47A02050E007009B2E0D /* FavouriteStopsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteStopsViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				CA1F9E472020DE6100392754 /* Custom Elements */,
 				CA1F9E462020DE5100392754 /* Models */,
 				CA1F9E302020335800392754 /* AppDelegate.swift */,
+				CA9AE555205CC6B700005733 /* NetworkManager.swift */,
 				CA1F9E372020335800392754 /* Assets.xcassets */,
 				CA1F9E392020335800392754 /* LaunchScreen.storyboard */,
 				CA1F9E3C2020335800392754 /* Info.plist */,
@@ -116,10 +119,10 @@
 		CA1F9E472020DE6100392754 /* Custom Elements */ = {
 			isa = PBXGroup;
 			children = (
+				CA1F9E422020CDEA00392754 /* BusStopAnnotation.swift */,
 				CAD5582E20226DA900C3558F /* BusStopAnnotationView.swift */,
 				CAD5582D20226DA900C3558F /* BusStopDetailView.swift */,
 				CAD5582C20226DA900C3558F /* TriangleView.swift */,
-				CA1F9E422020CDEA00392754 /* BusStopAnnotation.swift */,
 				CAD558352025072000C3558F /* FavoriteStopTableViewCell.swift */,
 				CAD5583B202643B400C3558F /* FavouriteStopRouteInfoView.swift */,
 				CA28492B20570ADB00EDCBF5 /* RedLineView.swift */,
@@ -243,6 +246,7 @@
 				CAFC098C2038CBBF00AB4F3D /* BusRoute.swift in Sources */,
 				CA1F9E4A2020E0A600392754 /* FavouriteRoutesViewController.swift in Sources */,
 				CAAC47A12050E007009B2E0D /* FavouriteStopsViewController.swift in Sources */,
+				CA9AE556205CC6B700005733 /* NetworkManager.swift in Sources */,
 				267B3EE4205848C00065FD7B /* FavouriteRoutesTableViewCell.swift in Sources */,
 				CA1F9E332020335800392754 /* MapViewController.swift in Sources */,
 				CA1F9E432020CDEA00392754 /* BusStopAnnotation.swift in Sources */,

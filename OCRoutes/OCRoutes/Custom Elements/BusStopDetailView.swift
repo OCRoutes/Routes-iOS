@@ -72,8 +72,8 @@ class BusStopDetailView : UIView {
     }
     
     func SetupWithBusStop(station: BusStop) {
-        busStopNumberLabel.text = String(station.stopCode)
-        busStopNameLabel.text = station.stopName
+        busStopNumberLabel.text = String(describing: station.stop_code)
+        busStopNameLabel.text = station.stop_name
     }
     
     private func ApplyConstraint() {

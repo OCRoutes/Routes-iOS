@@ -29,7 +29,7 @@ class BusStopAnnotation : NSObject, MKAnnotation {
     }
     
     convenience init(station: BusStop) {
-        self.init(latitude: station.stopLat, longitude: station.stopLong, title: station.stopName, subtitle: station.stopId)
+        self.init(latitude: 1234.234, longitude: 1234.2345, title: station.stop_name, subtitle: station.stop_id)
         self.station = station
     }
     

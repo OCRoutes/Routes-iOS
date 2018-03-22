@@ -17,10 +17,9 @@ class RouteInfoCubeView : UICollectionViewCell {
     
     let routeNumberLabel : UILabel = {
         let label = UILabel()
-        label.attributedText = NSAttributedString(string: "85", attributes: [
-            NSAttributedStringKey.font: UIFont(name: "AvenirNext-Bold", size: 15)!,
-            NSAttributedStringKey.foregroundColor: UIColor.white
-        ])
+        label.text = "85"
+        label.font = UIFont(name: "AvenirNext-Bold", size: 15)!
+        label.textColor = .white
         label.textAlignment = .center
         label.sizeToFit()
         return label
@@ -38,7 +37,6 @@ class RouteInfoCubeView : UICollectionViewCell {
     }
     
     private func ApplyConstraints() {
-
         routeNumberLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             routeNumberLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
