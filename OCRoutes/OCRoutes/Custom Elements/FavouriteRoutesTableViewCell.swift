@@ -27,7 +27,7 @@ class FavouriteRoutesTableViewCell : UITableViewCell {
     // 1st column stack : Route number
     let busRouteNumberLabel : UILabel = {
         let label = UILabel()
-        label.text = "1234"
+        label.text = "SNOW"
         label.font = UIFont(name: "AvenirNext-Bold", size: 20)
         label.textColor = .black
         label.textAlignment = .center
