@@ -27,6 +27,7 @@ class StopTableViewCell : UITableViewCell {
     fileprivate var routes : [BusRoute]? {
         didSet {
             routeCubeCollection.reloadData()
+            SetupStopInfo()
         }
     }
     
@@ -34,17 +35,7 @@ class StopTableViewCell : UITableViewCell {
         return UIStackView()
     }()
     
-    //1st column
-    let busStopNumberLabel : UILabel = {
-        let label = UILabel()
-        label.text = "SNOW"
-        label.font = UIFont(name: "AvenirNext-Bold", size: 20)
-        label.textColor = .black
-        label.textAlignment = .center
-        label.sizeToFit()
-        label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        return label
-    }()
+    private let routeNumberView = RouteInfoDistanceView()
     
     let spacerView : UIView = {
         let view = UIView()
@@ -90,7 +81,7 @@ class StopTableViewCell : UITableViewCell {
         //Adding elements to contentView
         contentView.addSubview(mainStack)
         
-        mainStack.addArrangedSubview(busStopNumberLabel)
+        mainStack.addArrangedSubview(routeNumberView)
         mainStack.addArrangedSubview(redLineView)
         mainStack.addArrangedSubview(spacerView)
         
@@ -108,9 +99,15 @@ class StopTableViewCell : UITableViewCell {
         guard let stopInfo = stop else { return }
         
         if stopInfo.stop_code != nil {
-            busStopNumberLabel.text = stopInfo.stop_code
+            routeNumberView.busStopNumberLabel.text = stopInfo.stop_code
         } else {
-            busStopNumberLabel.text = String(stopInfo.stop_id.prefix(4))
+            routeNumberView.busStopNumberLabel.text = String(stopInfo.stop_id.prefix(4))
+        }
+        
+        if let d = stopInfo.distance {
+            routeNumberView.routeDistanceLabel.text = "\(d)km"
+        } else {
+            routeNumberView.routeDistanceLabel.text = ""
         }
         
         busStopNameLabel.text = stopInfo.stop_name
@@ -124,10 +121,10 @@ class StopTableViewCell : UITableViewCell {
             mainStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             mainStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
         ])
-
-        busStopNumberLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        routeNumberView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            busStopNumberLabel.widthAnchor.constraint(equalToConstant: busStopNumberLabel.frame.width)
+            routeNumberView.widthAnchor.constraint(equalToConstant: routeNumberView.busStopNumberLabel.frame.width)
         ])
         
         redLineView.translatesAutoresizingMaskIntoConstraints = false
@@ -188,4 +185,61 @@ extension StopTableViewCell : UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return CUBE_PADDING
     }
+}
+
+class RouteInfoDistanceView: UIView {
+    
+    let busStopNumberLabel : UILabel = {
+        let label = UILabel()
+        label.text = "SNOW"
+        label.font = UIFont(name: "AvenirNext-Bold", size: 20)
+        label.textColor = .black
+        label.textAlignment = .center
+        label.sizeToFit()
+        return label
+    }()
+    
+    let routeDistanceLabel : UILabel = {
+        let label = UILabel()
+        label.text = "0.00km"
+        label.font = UIFont(name: "AvenirNext-DemiBold", size: 14)
+        label.textColor = UIColor.gray
+        label.textAlignment = .center
+        label.sizeToFit()
+        return label
+    }()
+    
+    convenience init() {
+        self.init(frame: .zero)
+        
+        addSubview(busStopNumberLabel)
+        addSubview(routeDistanceLabel)
+        
+        ApplyConstraints()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func ApplyConstraints() {
+        busStopNumberLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            busStopNumberLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -8),
+            busStopNumberLabel.leftAnchor.constraint(equalTo: leftAnchor),
+            busStopNumberLabel.rightAnchor.constraint(equalTo: rightAnchor)
+        ])
+        
+        routeDistanceLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            routeDistanceLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 8),
+            routeDistanceLabel.leftAnchor.constraint(equalTo: leftAnchor),
+            routeDistanceLabel.rightAnchor.constraint(equalTo: rightAnchor)
+        ])
+    }
+    
 }
