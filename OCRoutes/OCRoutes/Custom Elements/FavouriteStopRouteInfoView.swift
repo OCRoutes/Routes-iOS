@@ -36,8 +36,8 @@ class FavouriteStopRouteInfoView : UIView {
     let routeNameLabel : UILabel = {
         let label = UILabel()
         label.attributedText = NSAttributedString(string: "Mackenzie King Station", attributes: [
-            NSAttributedStringKey.font: UIFont(name: "Avenir Next", size: 13)!,
-            NSAttributedStringKey.foregroundColor: Style.darkGrey
+            NSAttributedStringKey.font: UIFont(name: "Avenir Next", size: 16)!,
+            NSAttributedStringKey.foregroundColor: UIColor.black
         ])
         label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         return label
@@ -46,7 +46,7 @@ class FavouriteStopRouteInfoView : UIView {
     let nextBusTimeLabel : UILabel = {
         let label = UILabel()
         label.attributedText = NSAttributedString(string: "24m", attributes: [
-            NSAttributedStringKey.font: UIFont(name: "AvenirNext-DemiBold", size: 13)!,
+            NSAttributedStringKey.font: UIFont(name: "AvenirNext-DemiBold", size: 16)!,
             NSAttributedStringKey.foregroundColor: Style.darkGrey
         ])
         label.textAlignment = .right

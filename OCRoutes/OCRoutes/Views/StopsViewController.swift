@@ -51,6 +51,11 @@ class StopsViewController : UIViewController {
         stopsTableView.rowHeight = UITableViewAutomaticDimension
         stopsTableView.estimatedRowHeight = 150
         
+        stopsTableView.backgroundColor = Style.lightWhite
+        stopsTableView.separatorColor = Style.lightWhite
+        stopsTableView.layoutMargins = .zero
+        stopsTableView.separatorInset = .zero
+        
         stopsTableView.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.00)
         
         view.addSubview(stopsTableView)

@@ -57,7 +57,7 @@ class HomeViewController : UIViewController, PagingViewControllerDataSource, Pag
         if index == 0 {
             return PagingIndexItem(index: index, title: "Routes") as! T
         } else {
-            return PagingIndexItem(index: index, title: "Stop") as! T
+            return PagingIndexItem(index: index, title: "Stops") as! T
         }
     }
     
