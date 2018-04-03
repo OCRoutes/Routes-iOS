@@ -32,6 +32,12 @@ class FavouriteRoutesViewController : UIViewController {
         favsTableView.dataSource = self
         favsTableView.delegate = self
         
+        // Colour scheme of view
+        favsTableView.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1.00)
+        favsTableView.separatorColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1.00)
+        favsTableView.layoutMargins = UIEdgeInsets.zero
+        favsTableView.separatorInset = UIEdgeInsets.zero
+        
         favsTableView.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha:1.00)
         
         view.addSubview(favsTableView)
@@ -62,6 +68,7 @@ extension FavouriteRoutesViewController : UITableViewDelegate, UITableViewDataSo
         return 10
     }
     
+    // Height of the cell
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70.0
     }
