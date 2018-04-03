@@ -19,14 +19,16 @@ class NetworkManager {
     static private var allRoutesTask : URLSessionDataTask?
     
     static private var allRoutesDict : Dictionary<String, BusRoute> = [:]
+    static private var allRoutesList : Array<BusRoute> = []
     static private var allStopDict : Dictionary<String, BusStop> = [:]
+    static private var allStopsList : Array<BusStop> = []
     
     static public func GetAllRoutes() -> [BusRoute] {
-        return Array(allRoutesDict.values.map { $0 })
+        return allRoutesList
     }
     
     static public func GetAllStops() -> [BusStop] {
-        return Array(allStopDict.values.map { $0 })
+        return allStopsList
     }
     
     static public func CheckServerHealth() {
@@ -83,6 +85,7 @@ class NetworkManager {
                 let decoder = JSONDecoder()
                 let stops = try decoder.decode([BusStop].self, from: data)
                 
+                self.allStopsList = stops
                 for stop in stops {
                     allStopDict[stop.stop_id] = stop
                 }
@@ -126,6 +129,7 @@ class NetworkManager {
                 let decoder = JSONDecoder()
                 let routes = try decoder.decode([BusRoute].self, from: data)
                 
+                self.allRoutesList = routes
                 for route in routes {
                     allRoutesDict[route.routeId] = route
                 }
