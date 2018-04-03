@@ -19,9 +19,6 @@ class RoutesViewController : UIViewController {
         }
     }
     
-    let titleString: String = "All Routes"
-    var titleLabel: UILabel!
-    
     fileprivate var routesTableView : UITableView!
     
     override func viewDidLoad() {
@@ -33,23 +30,20 @@ class RoutesViewController : UIViewController {
         // Setting up view attributes
         view.backgroundColor = .white
         
+        allRoutes = NetworkManager.GetAllRoutes()
+        
         // Setting up tableview
         SetupFavsTableView()
-        
-        // Setup placeholder label
-        titleLabel = UILabel(frame: CGRect.zero)
-        titleLabel.attributedText = NSAttributedString(string: titleString, attributes: [
-            NSAttributedStringKey.font: UIFont(name: "Avenir Next", size: 40)!,
-            NSAttributedStringKey.foregroundColor: Style.mainColor
-        ])
-        titleLabel.textAlignment = .center
-        view.addSubview(titleLabel)
         
         ApplyConstraint()
     }
     
     private func SetupFavsTableView() {
         routesTableView = UITableView(frame: CGRect.zero)
+        
+        routesTableView.dataSource = self
+        routesTableView.delegate = self
+        
         view.addSubview(routesTableView)
     }
     
@@ -59,14 +53,6 @@ class RoutesViewController : UIViewController {
     
     private func ApplyConstraint() {
         let safeArea = view.safeAreaLayoutGuide
-        
-        // Title label constraints
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
-            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            titleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
         
         // Routes table view constraints
         routesTableView.translatesAutoresizingMaskIntoConstraints = false
@@ -82,7 +68,7 @@ class RoutesViewController : UIViewController {
 }
 
 // UITableViewDataSource delegation
-extension RoutesViewController : UITableViewDataSource {
+extension RoutesViewController : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let count = allRoutes?.count {
             return count
@@ -90,7 +76,23 @@ extension RoutesViewController : UITableViewDataSource {
         return 0
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70.0
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        if let route = allRoutes?[indexPath.row] {
+            var trackStyle = TrackStyle.Normal
+            
+            if (indexPath.row == 0) {
+                trackStyle = .Leading
+            }
+            
+            if ((indexPath.row + 1) == allRoutes!.count) {
+                trackStyle = .Ending
+            }
+            return FavouriteRoutesTableViewCell(route: route, style: trackStyle)
+        }
+        return UITableViewCell(style: .default, reuseIdentifier: "brokencell")
     }
 }
