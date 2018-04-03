@@ -33,8 +33,8 @@ class FavouriteRoutesViewController : UIViewController {
         favsTableView.delegate = self
         
         // Colour scheme of view
-        favsTableView.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1.00)
-        favsTableView.separatorColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1.00)
+        favsTableView.backgroundColor = Style.lightWhite
+        favsTableView.separatorColor = Style.lightWhite
         favsTableView.layoutMargins = UIEdgeInsets.zero
         favsTableView.separatorInset = UIEdgeInsets.zero
         

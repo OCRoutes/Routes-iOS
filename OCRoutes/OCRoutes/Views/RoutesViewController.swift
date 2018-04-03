@@ -44,6 +44,11 @@ class RoutesViewController : UIViewController {
         routesTableView.dataSource = self
         routesTableView.delegate = self
         
+        routesTableView.backgroundColor = Style.lightWhite
+        routesTableView.separatorColor = Style.lightWhite
+        routesTableView.layoutMargins = .zero
+        routesTableView.separatorInset = .zero
+        
         view.addSubview(routesTableView)
     }
     
