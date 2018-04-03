@@ -12,6 +12,7 @@ import UIKit
 class FavouriteStopsViewController : UIViewController {
     
     fileprivate var favsTableView : UITableView!
+    private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,16 @@ class FavouriteStopsViewController : UIViewController {
         favsTableView.rowHeight = UITableViewAutomaticDimension
         favsTableView.estimatedRowHeight = 150
         
+        // Add Refresh Control to Table View
+        if #available(iOS 10.0, *) {
+            favsTableView.refreshControl = refreshControl
+        } else {
+            favsTableView.addSubview(refreshControl)
+        }
+        
+        // Configure Refresh Control
+        refreshControl.addTarget(self, action: #selector(refreshStopsData(_:)), for: .valueChanged)
+        
         favsTableView.backgroundColor = Style.lightWhite
         favsTableView.separatorColor = Style.lightWhite
         favsTableView.layoutMargins = .zero
@@ -49,6 +60,15 @@ class FavouriteStopsViewController : UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    @objc private func refreshStopsData(_ sender: Any) {
+        NetworkManager.GetAllStops() { _ in //no reason to request this but w/e
+            DispatchQueue.main.async {
+                // do something?
+                self.refreshControl.endRefreshing()
+            }
+        }
     }
     
     private func ApplyConstraint() {

@@ -11,6 +11,8 @@ import UIKit
 
 class RoutesViewController : UIViewController {
 
+    private let refreshControl = UIRefreshControl()
+    
     private var allRoutes : [BusRoute]? {
         didSet {
             DispatchQueue.main.async {
@@ -44,6 +46,16 @@ class RoutesViewController : UIViewController {
         routesTableView.dataSource = self
         routesTableView.delegate = self
         
+        // Add Refresh Control to Table View
+        if #available(iOS 10.0, *) {
+            routesTableView.refreshControl = refreshControl
+        } else {
+            routesTableView.addSubview(refreshControl)
+        }
+        
+        // Configure Refresh Control
+        refreshControl.addTarget(self, action: #selector(refreshRoutesData(_:)), for: .valueChanged)
+        
         routesTableView.backgroundColor = Style.lightWhite
         routesTableView.separatorColor = Style.lightWhite
         routesTableView.layoutMargins = .zero
@@ -54,6 +66,15 @@ class RoutesViewController : UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    @objc private func refreshRoutesData(_ sender: Any) {
+        NetworkManager.GetAllRoutes() { _ in
+            DispatchQueue.main.async {
+                self.allRoutes = NetworkManager.GetAllRoutes()
+                self.refreshControl.endRefreshing()
+            }
+        }
     }
     
     private func ApplyConstraint() {

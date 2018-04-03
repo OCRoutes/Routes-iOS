@@ -11,8 +11,7 @@ import UIKit
 
 class StopsViewController : UIViewController {
     
-    let titleString: String = "All Stops"
-    var titleLabel: UILabel!
+    private let refreshControl = UIRefreshControl()
     
     private var allStops : [BusStop]? {
         didSet {
@@ -51,6 +50,16 @@ class StopsViewController : UIViewController {
         stopsTableView.rowHeight = UITableViewAutomaticDimension
         stopsTableView.estimatedRowHeight = 150
         
+        // Add Refresh Control to Table View
+        if #available(iOS 10.0, *) {
+            stopsTableView.refreshControl = refreshControl
+        } else {
+            stopsTableView.addSubview(refreshControl)
+        }
+        
+        // Configure Refresh Control
+        refreshControl.addTarget(self, action: #selector(refreshStopsData(_:)), for: .valueChanged)
+        
         stopsTableView.backgroundColor = Style.lightWhite
         stopsTableView.separatorColor = Style.lightWhite
         stopsTableView.layoutMargins = .zero
@@ -63,6 +72,15 @@ class StopsViewController : UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    @objc private func refreshStopsData(_ sender: Any) {
+        NetworkManager.GetAllStops() { _ in
+            DispatchQueue.main.async {
+                self.allStops = NetworkManager.GetAllStops()
+                self.refreshControl.endRefreshing()
+            }
+        }
     }
     
     private func ApplyConstraint() {
