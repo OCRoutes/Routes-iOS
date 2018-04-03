@@ -10,7 +10,7 @@ import Foundation
 
 class NetworkManager {
     
-    static private let API_URL : String = "http://localhost:8080"
+    static private let API_URL : String = "https://76facd14.ngrok.io"
     
     static private let defaultSession = URLSession(configuration: .default)
     
