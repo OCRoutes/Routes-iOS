@@ -52,7 +52,7 @@ class FavouriteRoutesTableViewCell : UITableViewCell {
     let favButton : UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "fontawesome", size: 20)
-        label.attributedText = NSAttributedString(string: "\u{f005}", attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+        label.attributedText = NSAttributedString(string: "\u{f006}", attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
         label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         return label
     }()
@@ -101,7 +101,7 @@ class FavouriteRoutesTableViewCell : UITableViewCell {
             mainStack.topAnchor.constraint(equalTo: contentView.topAnchor),
             mainStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             mainStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
-            mainStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5)
+            mainStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15)
         ])
         
         redLineView.translatesAutoresizingMaskIntoConstraints = false

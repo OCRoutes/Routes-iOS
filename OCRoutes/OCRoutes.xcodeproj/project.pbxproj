@@ -17,6 +17,7 @@
 		CA1F9E452020DBA300392754 /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1F9E442020DBA300392754 /* BusStop.swift */; };
 		CA1F9E4A2020E0A600392754 /* FavouriteRoutesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1F9E492020E0A600392754 /* FavouriteRoutesViewController.swift */; };
 		CA1F9E4C2020E5B700392754 /* RoutesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1F9E4B2020E5B700392754 /* RoutesViewController.swift */; };
+		CA25DDFA2073FBF000DBDD02 /* fontawesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA25DDF92073FBEF00DBDD02 /* fontawesome.ttf */; };
 		CA28492C20570ADB00EDCBF5 /* RedLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA28492B20570ADB00EDCBF5 /* RedLineView.swift */; };
 		CA28492E20570CA400EDCBF5 /* StopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA28492D20570CA400EDCBF5 /* StopTableViewCell.swift */; };
 		CA2849302057123C00EDCBF5 /* RouteInfoCubeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA28492F2057123C00EDCBF5 /* RouteInfoCubeView.swift */; };
@@ -46,6 +47,7 @@
 		CA1F9E442020DBA300392754 /* BusStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStop.swift; sourceTree = "<group>"; };
 		CA1F9E492020E0A600392754 /* FavouriteRoutesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteRoutesViewController.swift; sourceTree = "<group>"; };
 		CA1F9E4B2020E5B700392754 /* RoutesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesViewController.swift; sourceTree = "<group>"; };
+		CA25DDF92073FBEF00DBDD02 /* fontawesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fontawesome.ttf; sourceTree = "<group>"; };
 		CA28492B20570ADB00EDCBF5 /* RedLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedLineView.swift; sourceTree = "<group>"; };
 		CA28492D20570CA400EDCBF5 /* StopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopTableViewCell.swift; sourceTree = "<group>"; };
 		CA28492F2057123C00EDCBF5 /* RouteInfoCubeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteInfoCubeView.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				CA1F9E462020DE5100392754 /* Models */,
 				CA1F9E302020335800392754 /* AppDelegate.swift */,
 				CA9AE555205CC6B700005733 /* NetworkManager.swift */,
+				CA25DDF92073FBEF00DBDD02 /* fontawesome.ttf */,
 				CA1F9E372020335800392754 /* Assets.xcassets */,
 				CA1F9E392020335800392754 /* LaunchScreen.storyboard */,
 				CA1F9E3C2020335800392754 /* Info.plist */,
@@ -214,6 +217,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA25DDFA2073FBF000DBDD02 /* fontawesome.ttf in Resources */,
 				CA1F9E3B2020335800392754 /* LaunchScreen.storyboard in Resources */,
 				CA1F9E382020335800392754 /* Assets.xcassets in Resources */,
 			);
