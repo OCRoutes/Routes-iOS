@@ -61,6 +61,16 @@ class StopTableViewCell : UITableViewCell {
         return collection
     }()
     
+    // 4th column stack : Star
+    let favButton : UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "fontawesome", size: 20)
+        label.textColor = Style.mainColor
+        label.text = "\u{f006}"
+        label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        return label
+    }()
+    
     convenience init(stop: BusStop, routes: [BusRoute]?, style: TrackStyle) {
         self.init(style: .default, reuseIdentifier: "favStopCell", trackStyle: style)
         self.trackStyle = style
@@ -84,6 +94,7 @@ class StopTableViewCell : UITableViewCell {
         mainStack.addArrangedSubview(routeNumberView)
         mainStack.addArrangedSubview(redLineView)
         mainStack.addArrangedSubview(spacerView)
+        mainStack.addArrangedSubview(favButton)
         
         spacerView.addSubview(busStopNameLabel)
         spacerView.addSubview(routeCubeCollection)
@@ -143,7 +154,7 @@ class StopTableViewCell : UITableViewCell {
         NSLayoutConstraint.activate([
             routeCubeCollection.topAnchor.constraint(equalTo: busStopNameLabel.bottomAnchor),
             routeCubeCollection.leadingAnchor.constraint(equalTo: spacerView.leadingAnchor),
-            routeCubeCollection.trailingAnchor.constraint(equalTo: spacerView.trailingAnchor),
+            routeCubeCollection.trailingAnchor.constraint(equalTo: spacerView.trailingAnchor, constant: -10),
             routeCubeCollection.bottomAnchor.constraint(equalTo: spacerView.bottomAnchor, constant: -5),
             routeCubeCollection.heightAnchor.constraint(equalToConstant: 45)
         ])
