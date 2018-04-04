@@ -67,6 +67,9 @@ class StopsViewController : UIViewController {
         
         stopsTableView.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.00)
         
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(StopsViewController.handleLongPress(_:)))
+        stopsTableView.addGestureRecognizer(longPressGesture)
+        
         view.addSubview(stopsTableView)
     }
     
@@ -79,6 +82,17 @@ class StopsViewController : UIViewController {
             DispatchQueue.main.async {
                 self.allStops = NetworkManager.GetAllStops()
                 self.refreshControl.endRefreshing()
+            }
+        }
+    }
+    
+    @objc func handleLongPress(_ longPressGestureRecognizer: UILongPressGestureRecognizer) {
+        if longPressGestureRecognizer.state == .began {
+            
+            let touchPoint = longPressGestureRecognizer.location(in: self.stopsTableView)
+            if let indexPath = stopsTableView.indexPathForRow(at: touchPoint) {
+                let cell = stopsTableView.cellForRow(at: indexPath) as! StopTableViewCell
+                cell.toggleFavourite()
             }
         }
     }

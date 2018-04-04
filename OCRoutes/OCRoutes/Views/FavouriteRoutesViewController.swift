@@ -96,7 +96,7 @@ class FavouriteRoutesViewController : UIViewController {
     @objc func handleLongPress(_ longPressGestureRecognizer: UILongPressGestureRecognizer) {
         if longPressGestureRecognizer.state == .began {
             
-            let touchPoint = longPressGestureRecognizer.location(in: self.view)
+            let touchPoint = longPressGestureRecognizer.location(in: self.favsTableView)
             if let indexPath = favsTableView.indexPathForRow(at: touchPoint) {
                 let cell = favsTableView.cellForRow(at: indexPath) as! FavouriteRoutesTableViewCell
                 cell.toggleFavourite()

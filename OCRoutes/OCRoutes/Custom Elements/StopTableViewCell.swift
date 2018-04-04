@@ -18,6 +18,8 @@ class StopTableViewCell : UITableViewCell {
     
     private var redLineView : RedLineView!
     
+    private let generator = UIImpactFeedbackGenerator(style: .heavy)
+    
     private var stop : BusStop? {
         didSet {
             SetupStopInfo()
@@ -72,7 +74,7 @@ class StopTableViewCell : UITableViewCell {
     }()
     
     convenience init(stop: BusStop, routes: [BusRoute]?, style: TrackStyle) {
-        self.init(style: .default, reuseIdentifier: "favStopCell", trackStyle: style)
+        self.init(style: .default, reuseIdentifier: "stopCell", trackStyle: style)
         self.trackStyle = style
         defer { self.stop = stop }
         defer { self.routes = routes }
@@ -122,6 +124,17 @@ class StopTableViewCell : UITableViewCell {
         }
         
         busStopNameLabel.text = stopInfo.stop_name
+    }
+    
+    public func toggleFavourite() {
+        generator.impactOccurred()
+        if NetworkManager.IsStopFavourited(self.stop!) {
+            favButton.text = "\u{f006}"
+            NetworkManager.RemoveStopFromFavs(self.stop!)
+        } else {
+            favButton.text = "\u{f005}"
+            NetworkManager.AddStopToFavs(self.stop!)
+        }
     }
 
     private func ApplyConstraints() {

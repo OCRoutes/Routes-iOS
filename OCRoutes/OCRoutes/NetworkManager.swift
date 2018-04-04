@@ -59,8 +59,20 @@ class NetworkManager {
         favouriteRoutes.append(route)
     }
     
+    static public func RemoveStopFromFavs(_ stop: BusStop) {
+        favouriteStops = favouriteStops.filter { $0.stop_id != stop.stop_id }
+    }
+    
+    static public func AddStopToFavs(_ stop: BusStop) {
+        favouriteStops.append(stop)
+    }
+    
     static public func GetFavouriteRoutes() -> [BusRoute] {
         return favouriteRoutes
+    }
+    
+    static public func GetFavouritedStops() -> [BusStop] {
+        return favouriteStops
     }
     
     static public func CheckServerHealth() {
