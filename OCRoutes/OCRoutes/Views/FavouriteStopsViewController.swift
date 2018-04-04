@@ -96,25 +96,35 @@ extension FavouriteStopsViewController : UITableViewDelegate, UITableViewDataSou
         switch indexPath.row {
         case 0:
             let busStop = BusStop(stop_id: "AB123", stop_code: "7688", stop_name: "King Edward", stop_lat: 123.123, stop_lon: 456.456)
-            let busRoute1 = BusRoute(routeId: "ABC123", routeNumber: "89", routeName: "Blair")
+            var busRoute1 = BusRoute(routeId: "ABC123", routeNumber: "89", routeName: "Blair")
+            busRoute1.firstBusTime = "10min"
             return FavoriteStopTableViewCell(stop: busStop, routes: [busRoute1], style: .Leading)
         case 1:
             let busStop = BusStop(stop_id: "AB123", stop_code: "1234", stop_name: "Place dOrleans", stop_lat: 123.123, stop_lon: 456.456)
-            let busRoute1 = BusRoute(routeId: "ABC123", routeNumber: "83", routeName: "Blair")
-            let busRoute2 = BusRoute(routeId: "ABC123", routeNumber: "83", routeName: "Blair")
-            let busRoute3 = BusRoute(routeId: "ABC123", routeNumber: "83", routeName: "Kanata")
+            var busRoute1 = BusRoute(routeId: "ABC123", routeNumber: "83", routeName: "Blair")
+            busRoute1.firstBusTime = "2min"
+            var busRoute2 = BusRoute(routeId: "ABC123", routeNumber: "83", routeName: "Blair")
+            busRoute2.firstBusTime = "<1min"
+            var busRoute3 = BusRoute(routeId: "ABC123", routeNumber: "83", routeName: "Kanata")
+            busRoute3.firstBusTime = "5min"
             return FavoriteStopTableViewCell(stop: busStop, routes: [busRoute1, busRoute2, busRoute3], style: .Normal)
         case 2:
             let busStop = BusStop(stop_id: "AB123", stop_code: "7689", stop_name: "King Edward", stop_lat: 123.123, stop_lon: 456.456)
-            let busRoute1 = BusRoute(routeId: "ABC123", routeNumber: "89", routeName: "Blair")
-            let busRoute2 = BusRoute(routeId: "ABC123", routeNumber: "83", routeName: "Kanata")
-            let busRoute3 = BusRoute(routeId: "ABC123", routeNumber: "83", routeName: "Kanata")
-            let busRoute4 = BusRoute(routeId: "ABC123", routeNumber: "83", routeName: "Kanata")
-            let busRoute5 = BusRoute(routeId: "ABC123", routeNumber: "83", routeName: "Kanata")
+            var busRoute1 = BusRoute(routeId: "ABC123", routeNumber: "89", routeName: "Blair")
+            busRoute1.firstBusTime = "3min"
+            var busRoute2 = BusRoute(routeId: "ABC123", routeNumber: "83", routeName: "Kanata")
+            busRoute2.firstBusTime = "1min"
+            var busRoute3 = BusRoute(routeId: "ABC123", routeNumber: "83", routeName: "Kanata")
+            busRoute3.firstBusTime = "<1min"
+            var busRoute4 = BusRoute(routeId: "ABC123", routeNumber: "83", routeName: "Kanata")
+            busRoute4.firstBusTime = "10min"
+            var busRoute5 = BusRoute(routeId: "ABC123", routeNumber: "83", routeName: "Kanata")
+            busRoute5.firstBusTime = "30min"
             return FavoriteStopTableViewCell(stop: busStop, routes: [busRoute1, busRoute2, busRoute3, busRoute4, busRoute5], style: .Ending)
         default:
             let busStop = BusStop(stop_id: "AB123", stop_code: "7689", stop_name: "King Edward", stop_lat: 123.123, stop_lon: 456.456)
-            let busRoute1 = BusRoute(routeId: "ABC123", routeNumber: "123", routeName: "Blair")
+            var busRoute1 = BusRoute(routeId: "ABC123", routeNumber: "123", routeName: "Blair")
+            busRoute1.firstBusTime = "1h"
             return FavoriteStopTableViewCell(stop: busStop, routes: [busRoute1], style: .Normal)
         }
 
