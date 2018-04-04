@@ -14,6 +14,14 @@ class FavouriteRoutesViewController : UIViewController {
     fileprivate var favsTableView : UITableView!
     private let refreshControl = UIRefreshControl()
     
+    private var favRoutes : [BusRoute]? {
+        didSet {
+            DispatchQueue.main.async {
+                self.favsTableView.reloadData()
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,6 +31,8 @@ class FavouriteRoutesViewController : UIViewController {
         // Setting up tableview
         SetupFavsTableView()
     
+        self.favRoutes = NetworkManager.GetFavouriteRoutes()
+        
         ApplyConstraint()
     }
     
@@ -85,7 +95,10 @@ class FavouriteRoutesViewController : UIViewController {
 // UITableViewDataSource delegation
 extension FavouriteRoutesViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        if let count = favRoutes?.count {
+            return count
+        }
+        return 0
     }
     
     // Height of the cell
@@ -94,19 +107,18 @@ extension FavouriteRoutesViewController : UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row {
-        case 0:
-            let busRoute = BusRoute(routeId: "ABC", routeNumber: "104", routeName: "Mackenzie King Station")
-            return FavouriteRoutesTableViewCell(route: busRoute, style: .Leading)
-        case 1:
-            let busRoute = BusRoute(routeId: "ABC", routeNumber: "9", routeName: "Greenboro")
-            return FavouriteRoutesTableViewCell(route: busRoute, style: .Normal)
-        case 9:
-            let busRoute = BusRoute(routeId: "ABC", routeNumber: "98", routeName: "Aeroport / Airport")
-            return FavouriteRoutesTableViewCell(route: busRoute, style: .Ending)
-        default:
-            let busRoute = BusRoute(routeId: "ABC", routeNumber: "98", routeName: "Blair")
-            return FavouriteRoutesTableViewCell(route: busRoute, style: .Normal)
+        if let route = favRoutes?[indexPath.row] {
+            var trackStyle = TrackStyle.Normal
+            
+            if (indexPath.row == 0) {
+                trackStyle = .Leading
+            }
+            
+            if ((indexPath.row + 1) == favRoutes!.count) {
+                trackStyle = .Ending
+            }
+            return FavouriteRoutesTableViewCell(route: route, style: trackStyle)
         }
+        return UITableViewCell(style: .default, reuseIdentifier: "brokencell")
     }
 }

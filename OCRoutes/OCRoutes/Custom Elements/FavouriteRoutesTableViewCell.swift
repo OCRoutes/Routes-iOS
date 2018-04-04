@@ -52,7 +52,8 @@ class FavouriteRoutesTableViewCell : UITableViewCell {
     let favButton : UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "fontawesome", size: 20)
-        label.attributedText = NSAttributedString(string: "\u{f006}", attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+        label.textColor = Style.mainColor
+        label.text = "\u{f006}"
         label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         return label
     }()
@@ -87,6 +88,11 @@ class FavouriteRoutesTableViewCell : UITableViewCell {
         guard let routeInfo = route else { return }
         busRouteNameLabel.text = routeInfo.routeName
         busRouteNumberLabel.text = String(routeInfo.routeNumber)
+        
+        if NetworkManager.IsRouteFavourited(routeInfo) {
+            favButton.text = "\u{f005}"
+        }
+        
     }
     
     // Required init

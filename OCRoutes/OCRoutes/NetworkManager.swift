@@ -20,8 +20,16 @@ class NetworkManager {
     
     static private var allRoutesDict : Dictionary<String, BusRoute> = [:]
     static private var allRoutesList : Array<BusRoute> = []
+    static private var favouriteRoutes : Array<BusRoute> = [
+        BusRoute(routeId: "98-279", routeNumber: "98", routeName: "Hawthorne"),
+        BusRoute(routeId: "2-279", routeNumber: "2", routeName: "Greenboro"),
+        BusRoute(routeId: "4-279", routeNumber: "4", routeName: "Rideau"),
+        BusRoute(routeId: "104-279", routeNumber: "104", routeName: "Place d'Orléans")
+    ]
+    
     static private var allStopDict : Dictionary<String, BusStop> = [:]
     static private var allStopsList : Array<BusStop> = []
+    static private var favouriteStops : Array<BusStop> = []
     
     static public func GetAllRoutes() -> [BusRoute] {
         return allRoutesList
@@ -29,6 +37,22 @@ class NetworkManager {
     
     static public func GetAllStops() -> [BusStop] {
         return allStopsList
+    }
+    
+    static public func IsStopFavourited(_ stop: BusStop) -> Bool {
+        return favouriteStops.contains(where: { (favStop) -> Bool in
+            favStop.stop_id == stop.stop_id
+        })
+    }
+    
+    static public func IsRouteFavourited(_ route: BusRoute) -> Bool {
+        return favouriteRoutes.contains(where: { (favRoute) -> Bool in
+            favRoute.routeId == route.routeId
+        })
+    }
+    
+    static public func GetFavouriteRoutes() -> [BusRoute] {
+        return favouriteRoutes
     }
     
     static public func CheckServerHealth() {
@@ -49,8 +73,7 @@ class NetworkManager {
                 print("ERROR: \(err.localizedDescription)")
                 return
             } else if let data = data, let res = res as? HTTPURLResponse {
-                print("HTTP Status: \(res.statusCode)")
-                print(data)
+                print("Server Status: \(res.statusCode)")
             }
         })
         
