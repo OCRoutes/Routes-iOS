@@ -61,11 +61,25 @@ class RoutesViewController : UIViewController {
         routesTableView.layoutMargins = .zero
         routesTableView.separatorInset = .zero
         
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(RoutesViewController.handleLongPress(_:)))
+        routesTableView.addGestureRecognizer(longPressGesture)
+        
         view.addSubview(routesTableView)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    @objc func handleLongPress(_ longPressGestureRecognizer: UILongPressGestureRecognizer) {
+        if longPressGestureRecognizer.state == .began {
+            
+            let touchPoint = longPressGestureRecognizer.location(in: self.routesTableView)
+            if let indexPath = routesTableView.indexPathForRow(at: touchPoint) {
+                let cell = routesTableView.cellForRow(at: indexPath) as! FavouriteRoutesTableViewCell
+                cell.toggleFavourite()
+            }
+        }
     }
     
     @objc private func refreshRoutesData(_ sender: Any) {

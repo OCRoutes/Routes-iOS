@@ -91,8 +91,6 @@ class FavouriteRoutesViewController : UIViewController {
         }
     }
     
-    
-    
     private func ApplyConstraint() {
         let safeArea = view.safeAreaLayoutGuide
         
