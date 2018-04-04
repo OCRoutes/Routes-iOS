@@ -8,10 +8,13 @@
 
 import Foundation
 import UIKit
+import AudioToolbox
 
 class FavouriteRoutesTableViewCell : UITableViewCell {
 
     private var trackStyle : TrackStyle = .Normal
+    
+    private let generator = UIImpactFeedbackGenerator(style: .heavy)
     
     private var route : BusRoute? {
         didSet {
@@ -101,6 +104,7 @@ class FavouriteRoutesTableViewCell : UITableViewCell {
     }
     
     public func toggleFavourite() {
+        generator.impactOccurred()
         if NetworkManager.IsRouteFavourited(self.route!) {
             favButton.text = "\u{f006}"
             NetworkManager.RemoveRouteFromFavs(self.route!)
