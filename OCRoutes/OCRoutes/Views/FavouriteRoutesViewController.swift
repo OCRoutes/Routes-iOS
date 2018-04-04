@@ -149,6 +149,7 @@ extension FavouriteRoutesViewController : UITableViewDelegate, UITableViewDataSo
             return count
         }
         appLogo.alpha = 1.0
+        emptyListLabel.alpha = 0.0
         return 0
     }
     

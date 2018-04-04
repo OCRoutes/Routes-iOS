@@ -22,6 +22,25 @@ class FavouriteStopsViewController : UIViewController {
         }
     }
     
+    private var appLogo: UIImageView = {
+        let view = UIImageView()
+        view.image = #imageLiteral(resourceName: "grey-logo")
+        view.contentMode = .scaleAspectFit
+        view.alpha = 0.0
+        view.isUserInteractionEnabled = false
+        return view
+    }()
+    
+    private let emptyListLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "AvenirNext-DemiBold", size: 15)
+        label.text = "You have no favourite stops."
+        label.textColor = Style.lightGrey
+        label.alpha = 0.0
+        label.textAlignment = .center
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,6 +49,9 @@ class FavouriteStopsViewController : UIViewController {
         
         // Setting up tableview
         SetupFavsTableView()
+        
+        view.addSubview(appLogo)
+        view.addSubview(emptyListLabel)
         
         self.favStops = NetworkManager.GetFavouritedStops()
         
@@ -104,6 +126,21 @@ class FavouriteStopsViewController : UIViewController {
             favsTableView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
             favsTableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
         ])
+        
+        appLogo.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            appLogo.centerXAnchor.constraint(equalTo: favsTableView.centerXAnchor),
+            appLogo.centerYAnchor.constraint(equalTo: favsTableView.centerYAnchor, constant: -10),
+            appLogo.widthAnchor.constraint(equalTo: favsTableView.widthAnchor, multiplier: 0.18),
+            appLogo.heightAnchor.constraint(equalTo: favsTableView.widthAnchor, multiplier: 0.18)
+        ])
+        
+        emptyListLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            emptyListLabel.topAnchor.constraint(equalTo: appLogo.bottomAnchor, constant: 5),
+            emptyListLabel.leftAnchor.constraint(equalTo: favsTableView.leftAnchor),
+            emptyListLabel.rightAnchor.constraint(equalTo: favsTableView.rightAnchor)
+        ])
     }
     
 }
@@ -112,8 +149,11 @@ class FavouriteStopsViewController : UIViewController {
 extension FavouriteStopsViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let count = favStops?.count {
+            count == 0 ? (appLogo.alpha = 1.0, emptyListLabel.alpha = 1.0) : (appLogo.alpha = 0.0, emptyListLabel.alpha = 0.0)
             return count
         }
+        appLogo.alpha = 1.0
+        emptyListLabel.alpha = 0.0
         return 0
     }
 
