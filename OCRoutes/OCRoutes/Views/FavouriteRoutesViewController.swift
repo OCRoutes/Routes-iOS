@@ -61,6 +61,9 @@ class FavouriteRoutesViewController : UIViewController {
         
         favsTableView.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha:1.00)
         
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(FavouriteRoutesViewController.handleLongPress(_:)))
+        favsTableView.addGestureRecognizer(longPressGesture)
+        
         view.addSubview(favsTableView)
     }
     
@@ -68,14 +71,27 @@ class FavouriteRoutesViewController : UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    @objc func handleLongPress(_ longPressGestureRecognizer: UILongPressGestureRecognizer) {
+        if longPressGestureRecognizer.state == .began {
+            
+            let touchPoint = longPressGestureRecognizer.location(in: self.view)
+            if let indexPath = favsTableView.indexPathForRow(at: touchPoint) {
+                let cell = favsTableView.cellForRow(at: indexPath) as! FavouriteRoutesTableViewCell
+                cell.toggleFavourite()
+            }
+        }
+    }
+    
     @objc private func refreshStopsData(_ sender: Any) {
         NetworkManager.GetAllStops() { _ in //no reason to request this but w/e
             DispatchQueue.main.async {
-                // do something?
+                self.favRoutes = NetworkManager.GetFavouriteRoutes()
                 self.refreshControl.endRefreshing()
             }
         }
     }
+    
+    
     
     private func ApplyConstraint() {
         let safeArea = view.safeAreaLayoutGuide

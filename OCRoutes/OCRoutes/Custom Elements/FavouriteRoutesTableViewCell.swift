@@ -100,6 +100,16 @@ class FavouriteRoutesTableViewCell : UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public func toggleFavourite() {
+        if NetworkManager.IsRouteFavourited(self.route!) {
+            favButton.text = "\u{f006}"
+            NetworkManager.RemoveRouteFromFavs(self.route!)
+        } else {
+            favButton.text = "\u{f005}"
+            NetworkManager.AddRouteToFavs(self.route!)
+        }
+    }
+    
     // Constraint
     private func ApplyConstraints() {
         mainStack.translatesAutoresizingMaskIntoConstraints = false

@@ -51,6 +51,14 @@ class NetworkManager {
         })
     }
     
+    static public func RemoveRouteFromFavs(_ route: BusRoute) {
+        favouriteRoutes = favouriteRoutes.filter { $0.routeId != route.routeId }
+    }
+    
+    static public func AddRouteToFavs(_ route: BusRoute) {
+        favouriteRoutes.append(route)
+    }
+    
     static public func GetFavouriteRoutes() -> [BusRoute] {
         return favouriteRoutes
     }
