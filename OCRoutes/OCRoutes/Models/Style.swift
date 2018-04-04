@@ -16,5 +16,6 @@ struct Style {
     static let darkGrey : UIColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.00)
     static let darkGrey_lowalpha : UIColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:0.25)
     static let titleColor : UIColor = UIColor(red: 0.54, green: 0.54, blue: 0.54, alpha: 1.00)
+    static let lightGrey : UIColor = UIColor(red:0.74, green:0.74, blue:0.74, alpha:1.00)
     
 }
