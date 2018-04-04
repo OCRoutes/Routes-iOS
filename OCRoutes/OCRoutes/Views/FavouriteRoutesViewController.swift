@@ -83,11 +83,9 @@ class FavouriteRoutesViewController : UIViewController {
     }
     
     @objc private func refreshStopsData(_ sender: Any) {
-        NetworkManager.GetAllStops() { _ in //no reason to request this but w/e
-            DispatchQueue.main.async {
-                self.favRoutes = NetworkManager.GetFavouriteRoutes()
-                self.refreshControl.endRefreshing()
-            }
+        self.favRoutes = NetworkManager.GetFavouriteRoutes()
+        DispatchQueue.main.async {
+            self.refreshControl.endRefreshing()
         }
     }
     
