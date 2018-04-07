@@ -9,7 +9,11 @@
 import Foundation
 import UIKit
 
-class StopsViewController : UIViewController {
+protocol StopViewControllerDelegate {
+    func HandleRouteSelection(_ stop: BusStop, _ route: BusRoute)
+}
+
+class StopsViewController : UIViewController, StopViewControllerDelegate {
     
     private let refreshControl = UIRefreshControl()
     
@@ -97,6 +101,11 @@ class StopsViewController : UIViewController {
         }
     }
     
+    // When a route cube is clicked within a stop cell
+    func HandleRouteSelection(_ stop: BusStop, _ route: BusRoute) {
+        print("Received request to display: \(stop.stop_name) | \(route.routeName!)")
+    }
+    
     private func ApplyConstraint() {
         let safeArea = view.safeAreaLayoutGuide
         
@@ -108,7 +117,6 @@ class StopsViewController : UIViewController {
             stopsTableView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
             stopsTableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
         ])
-        
     }
 }
 
@@ -132,8 +140,9 @@ extension StopsViewController : UITableViewDataSource, UITableViewDelegate {
             if ((indexPath.row + 1) == allStops!.count) {
                 trackStyle = .Ending
             }
-            
-            return StopTableViewCell(stop: stop, routes: stop.routes, style: trackStyle)
+            let stopCell = StopTableViewCell(stop: stop, routes: stop.routes, style: trackStyle)
+            stopCell.delegate = self
+            return stopCell
         }
         return UITableViewCell(style: .default, reuseIdentifier: "brokencell")
     }
