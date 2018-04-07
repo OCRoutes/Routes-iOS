@@ -24,14 +24,16 @@ struct BusRoute : Codable {
         self.routeNumber = routeNumber
     }
     
+    public func GetFirstBusTime() -> Int {
+        return NetworkManager.GetNextBusTime(self)
+    }
+    
     enum CodingKeys: String, CodingKey {
         case routeNumber = "route_short_name"
         case routeName = "trip_headsign"
         case routeId = "route_id"
         case directionId = "direction_id"
     }
-    
-    
     
 }
 

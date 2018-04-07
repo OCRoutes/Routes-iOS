@@ -82,13 +82,11 @@ class FavouriteStopRouteInfoView : UIView {
             mainStack.addArrangedSubview(routeNumberLabel)
             mainStack.addArrangedSubview(routeNameLabel)
             
-            if let firstTime = myRoute.firstBusTime {
-                nextBusTimeLabel.attributedText = NSAttributedString(string: firstTime, attributes: [
-                    NSAttributedStringKey.font: UIFont(name: "AvenirNext-DemiBold", size: 13)!,
-                    NSAttributedStringKey.foregroundColor: Style.darkGrey
-                ])
-                mainStack.addArrangedSubview(nextBusTimeLabel)
-            }
+            nextBusTimeLabel.attributedText = NSAttributedString(string: "\(myRoute.GetFirstBusTime())min", attributes: [
+                NSAttributedStringKey.font: UIFont(name: "AvenirNext-DemiBold", size: 13)!,
+                NSAttributedStringKey.foregroundColor: Style.darkGrey
+            ])
+            mainStack.addArrangedSubview(nextBusTimeLabel)
         }
     }
     

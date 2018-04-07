@@ -189,6 +189,10 @@ class NetworkManager {
         
         allRoutesTask?.resume()
     }
+    
+    static public func GetNextBusTime(_ route: BusRoute) -> Int {
+        return Int(arc4random_uniform(42))
+    }
 }
 
 
