@@ -96,7 +96,7 @@ extension StopRouteInformationViewController: UITableViewDelegate, UITableViewDa
             if ((indexPath.row + 1) == routes!.count) {
                 trackStyle = .Ending
             }
-            return FavouriteRoutesTableViewCell(route: route, style: trackStyle)
+            return StopRouteInformationTableViewCell(route: route, style: trackStyle)
         }
         return UITableViewCell(style: .default, reuseIdentifier: "brokencell")
     }
