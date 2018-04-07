@@ -103,7 +103,9 @@ class StopsViewController : UIViewController, StopViewControllerDelegate {
     
     // When a route cube is clicked within a stop cell
     func HandleRouteSelection(_ stop: BusStop, _ route: BusRoute) {
-        print("Received request to display: \(stop.stop_name) | \(route.routeName!)")
+        let vc = StopRouteInformationViewController(stop, route)
+        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
     
     private func ApplyConstraint() {
