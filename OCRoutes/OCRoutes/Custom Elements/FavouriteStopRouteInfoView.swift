@@ -72,7 +72,7 @@ class FavouriteStopRouteInfoView : UIView {
                 NSAttributedStringKey.foregroundColor: Style.mainColor
             ])
             
-            let routeName = myRoute.routeName != nil ? myRoute.routeName! : "Place d'Orléans"
+            let routeName = myRoute.routeName != nil ? myRoute.routeName! : ""
             routeNameLabel.attributedText = NSAttributedString(string: routeName, attributes: [
                 NSAttributedStringKey.font: UIFont(name: "Avenir Next", size: 13)!,
                 NSAttributedStringKey.foregroundColor: Style.darkGrey
