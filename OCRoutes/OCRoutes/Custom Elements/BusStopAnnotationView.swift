@@ -77,7 +77,7 @@ class BusStopAnnotationView : MKAnnotationView {
     func loadBusStopDetailView() -> BusStopDetailView? { // 4
         if let stationAnnotation = annotation as? BusStopAnnotation {
             let view = BusStopDetailView(frame: annotationSize)
-            view.SetupWithBusStop(station: stationAnnotation.station!)
+            view.SetupWithBusStop(stop: stationAnnotation.stop!)
             return view
         }
         return nil

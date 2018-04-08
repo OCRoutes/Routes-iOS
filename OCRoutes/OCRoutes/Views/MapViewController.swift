@@ -11,7 +11,7 @@ import MapKit
 
 class MapViewController: UIViewController {
 
-    var mapView : MKMapView!
+    var mapView : MKMapView = MKMapView(frame: CGRect.zero)
     let initialLocation = CLLocation(latitude: 45.42037, longitude: -75.678609)
     let locationManager = CLLocationManager()
     
@@ -23,7 +23,6 @@ class MapViewController: UIViewController {
         self.navigationController?.navigationBar.topItem?.title = "MAP"
         
         SetupMapView()
-        PlaceMapMarkers()
         SetupContraint()
     }
 
@@ -33,7 +32,6 @@ class MapViewController: UIViewController {
     }
     
     func SetupMapView() {
-        mapView = MKMapView(frame: CGRect.zero)
         mapView.delegate = self
         
         checkLocationAuthorizationStatus()
@@ -54,10 +52,9 @@ class MapViewController: UIViewController {
         view.addSubview(mapView)
     }
     
-    func PlaceMapMarkers() {
-        let station = BusStop(stop_id: "ABC", stop_code: "7356", stop_name: "King Edward", stop_lat: 45.423743, stop_lon: -75.687995)
-        let bus1 = BusStopAnnotation(station: station)
-        mapView.addAnnotations([bus1])
+    func PlaceBusStop(_ stop: BusStop) {
+        let busAnnotation = BusStopAnnotation(stop)
+        mapView.addAnnotation(busAnnotation)
     }
     
     func checkLocationAuthorizationStatus() {

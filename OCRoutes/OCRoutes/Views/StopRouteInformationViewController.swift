@@ -41,6 +41,9 @@ class StopRouteInformationViewController: UIViewController {
         self.navigationController?.navigationBar.backItem?.title = " "
         self.title = stop?.stop_name
         
+        let mapButton = UIBarButtonItem(title: "Map", style: UIBarButtonItemStyle.plain, target: self, action: #selector(OpenMap(_:)))
+        self.navigationItem.rightBarButtonItem = mapButton
+        
         SetupTableView()
         
         ApplyConstraints()
@@ -58,6 +61,12 @@ class StopRouteInformationViewController: UIViewController {
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    @objc func OpenMap(_ sender: AnyObject) {
+        let mapVC = MapViewController()
+        mapVC.PlaceBusStop(self.stop!)
+        self.navigationController?.pushViewController(mapVC, animated: true)
     }
     
     private func ApplyConstraints() {

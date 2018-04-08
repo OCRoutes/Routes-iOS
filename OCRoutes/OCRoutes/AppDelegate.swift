@@ -74,8 +74,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         // Remove the name of previous view from navigation bar next to back button
-        let BarButtonItemAppearance = UIBarButtonItem.appearance()
-        BarButtonItemAppearance.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.clear], for: .normal)
+//        let BarButtonItemAppearance = UIBarButtonItem.appearance()
+//        BarButtonItemAppearance.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.clear], for: .normal)
         
         UINavigationBar.appearance().tintColor = Style.mainColor
         
