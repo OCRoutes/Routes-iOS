@@ -43,7 +43,7 @@ class OnboardingViewController : UIViewController, PaperOnboardingDataSource, Pa
     }
     
     func onboardingItem(at index: Int) -> OnboardingItemInfo {
-        let backgroundColorOne = UIColor(red: 125/255, green: 223/255, blue: 100/255, alpha: 1)
+        let backgroundColorOne = UIColor(red: 90/255, green: 181/255, blue: 101/255, alpha: 1)
         let backgroundColorTwo = UIColor(red: 46/255, green: 134/255, blue: 171/255, alpha: 1)
         let backgroundColorThree = UIColor(red: 76/255, green: 44/255, blue: 114/255, alpha: 1)
         let backgroundColorFour = Style.mainColor
