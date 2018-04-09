@@ -29,6 +29,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ]
         UIApplication.shared.statusBarStyle = .lightContent
         
+        window?.rootViewController = LoadingScreenViewController()
+        window?.makeKeyAndVisible()
+        
+        // Remove the name of previous view from navigation bar next to back button
+//        let BarButtonItemAppearance = UIBarButtonItem.appearance()
+//        BarButtonItemAppearance.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.clear], for: .normal)
+        
+        UINavigationBar.appearance().tintColor = Style.mainColor
+        
+        return true
+    }
+    
+    func switchToMainView() {
         // root tab controller init
         let rootTabController = UITabBarController()
         
@@ -65,22 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBarItems[3].image = UIImage(named: "map")
         tabBarItems[3].imageInsets = UIEdgeInsetsMake(6,0,-6,0)
         
-        self.rootView = rootTabController
-        
-        window?.rootViewController = LoadingScreenViewController()
-        window?.makeKeyAndVisible()
-        
-        // Remove the name of previous view from navigation bar next to back button
-//        let BarButtonItemAppearance = UIBarButtonItem.appearance()
-//        BarButtonItemAppearance.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.clear], for: .normal)
-        
-        UINavigationBar.appearance().tintColor = Style.mainColor
-        
-        return true
-    }
-    
-    func switchToMainView() {
-        self.window?.rootViewController = self.rootView
+        self.window?.rootViewController = rootTabController
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

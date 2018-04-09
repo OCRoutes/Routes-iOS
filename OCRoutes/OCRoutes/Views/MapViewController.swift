@@ -24,6 +24,7 @@ class MapViewController: UIViewController {
         
         SetupMapView()
         SetupContraint()
+        mapView.fitAll()
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,13 +41,6 @@ class MapViewController: UIViewController {
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
         }
         
-        if let myLocation = self.locationManager.location {
-            centerMapOnLocation(location: myLocation)
-        } else {
-            centerMapOnLocation(location: initialLocation)
-        }
-        mapView.fitAll()
-        
         mapView.showsCompass = true
         mapView.showsScale = true
         
@@ -56,6 +50,7 @@ class MapViewController: UIViewController {
     func PlaceBusStop(_ stop: BusStop) {
         let busAnnotation = BusStopAnnotation(stop)
         mapView.addAnnotation(busAnnotation)
+        mapView.fitAll()
     }
     
     func SetupAllBusStops() {
