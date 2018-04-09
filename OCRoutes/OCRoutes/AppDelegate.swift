@@ -13,17 +13,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var rootView: UIViewController!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        NetworkManager.GetAllRoutes { (err: String?) in
-            if err != nil { print(err!) }
-        }
-        
-        NetworkManager.GetAllStops { (err: String?) in
-            if err != nil { print(err!) }
-        }
         
         window = UIWindow(frame: UIScreen.main.bounds)
         
@@ -36,6 +29,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ]
         UIApplication.shared.statusBarStyle = .lightContent
         
+        window?.rootViewController = LoadingScreenViewController()
+        window?.makeKeyAndVisible()
+        
+        // Remove the name of previous view from navigation bar next to back button
+//        let BarButtonItemAppearance = UIBarButtonItem.appearance()
+//        BarButtonItemAppearance.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.clear], for: .normal)
+        
+        UINavigationBar.appearance().tintColor = Style.mainColor
+        
+        return true
+    }
+    
+    func switchToMainView() {
         // root tab controller init
         let rootTabController = UITabBarController()
         
@@ -53,7 +59,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // map view init
         let mapNavController = UINavigationController()
-        mapNavController.viewControllers = [MapViewController()]
+        let mapVC = MapViewController()
+        mapVC.SetupAllBusStops()
+        mapNavController.viewControllers = [mapVC]
         
         // Inserting root view controllers into tab controller
         rootTabController.viewControllers = [favoriteNavController, routesNavController, stopsNavController, mapNavController]
@@ -70,10 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBarItems[3].image = UIImage(named: "map")
         tabBarItems[3].imageInsets = UIEdgeInsetsMake(6,0,-6,0)
         
-        window?.rootViewController = rootTabController
-        window?.makeKeyAndVisible()
-        
-        return true
+        self.window?.rootViewController = rootTabController
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

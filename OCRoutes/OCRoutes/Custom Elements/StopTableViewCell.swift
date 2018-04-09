@@ -14,6 +14,8 @@ class StopTableViewCell : UITableViewCell {
     fileprivate let CUBE_SIZE : CGFloat = 30.0
     fileprivate let CUBE_PADDING : CGFloat = 2.0
     
+    public var delegate: StopViewControllerDelegate?
+    
     private var trackStyle : TrackStyle = .Normal
     
     private var redLineView : RedLineView!
@@ -208,6 +210,11 @@ extension StopTableViewCell : UICollectionViewDelegate, UICollectionViewDataSour
     // cell side padding
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return CUBE_PADDING
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard routes != nil, stop != nil else { return }
+        self.delegate?.HandleRouteSelection(self.stop!, routes![indexPath.row])
     }
 }
 

@@ -1,17 +1,19 @@
 //
-//  FavouriteRoutesTableViewCell.swift
+//  StopRouteInformationTableViewCell.swift
 //  OCRoutes
 //
-//  Created by sana on 2018-03-13.
+//  Created by Brandon Danis on 2018-04-07.
 //  Copyright © 2018 RoutesInc. All rights reserved.
 //
+
+import Foundation
 
 import Foundation
 import UIKit
 import AudioToolbox
 
-class FavouriteRoutesTableViewCell : UITableViewCell {
-
+class StopRouteInformationTableViewCell : UITableViewCell {
+    
     private var trackStyle : TrackStyle = .Normal
     
     private let generator = UIImpactFeedbackGenerator(style: .heavy)
@@ -51,19 +53,18 @@ class FavouriteRoutesTableViewCell : UITableViewCell {
         return label
     }()
     
-    // 4th column stack : Star
-    let favButton : UILabel = {
+    // 4th column stack : BusTime
+    let busTimeLabel : UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "fontawesome", size: 20)
-        label.textColor = Style.mainColor
-        label.text = "\u{f006}"
-        label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        label.text = "55min"
+        label.font = UIFont(name: "AvenirNext-DemiBold", size: 15)
+        label.textColor = .black
         return label
     }()
     
     // Convenience init
     convenience init(route : BusRoute, style : TrackStyle) {
-        self.init(style: .default, reuseIdentifier: "favRouteCell", trackStyle: style)
+        self.init(style: .default, reuseIdentifier: "stopInfoCell", trackStyle: style)
         self.trackStyle = style
         defer { self.route = route }
     }
@@ -81,7 +82,7 @@ class FavouriteRoutesTableViewCell : UITableViewCell {
         mainStack.addArrangedSubview(busRouteNumberLabel)
         mainStack.addArrangedSubview(redLineView)
         mainStack.addArrangedSubview(busRouteNameLabel)
-        mainStack.addArrangedSubview(favButton)
+        mainStack.addArrangedSubview(busTimeLabel)
         
         ApplyConstraints()
     }
@@ -91,27 +92,12 @@ class FavouriteRoutesTableViewCell : UITableViewCell {
         guard let routeInfo = route else { return }
         busRouteNameLabel.text = routeInfo.routeName
         busRouteNumberLabel.text = String(routeInfo.routeNumber)
-        
-        if NetworkManager.IsRouteFavourited(routeInfo) {
-            favButton.text = "\u{f005}"
-        }
-        
+        busTimeLabel.text = "\(NetworkManager.GetNextBusTime(routeInfo))min"
     }
     
     // Required init
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    public func toggleFavourite() {
-        generator.impactOccurred()
-        if NetworkManager.IsRouteFavourited(self.route!) {
-            favButton.text = "\u{f006}"
-            NetworkManager.RemoveRouteFromFavs(self.route!)
-        } else {
-            favButton.text = "\u{f005}"
-            NetworkManager.AddRouteToFavs(self.route!)
-        }
     }
     
     // Constraint
@@ -122,17 +108,17 @@ class FavouriteRoutesTableViewCell : UITableViewCell {
             mainStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             mainStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
             mainStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15)
-        ])
+            ])
         
         redLineView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             redLineView.widthAnchor.constraint(equalToConstant: 30)
-        ])
+            ])
         
         busRouteNumberLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             busRouteNumberLabel.widthAnchor.constraint(equalToConstant: busRouteNumberLabel.frame.width)
-        ])
+            ])
     }
     
 }

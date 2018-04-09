@@ -10,7 +10,7 @@ import Foundation
 
 class NetworkManager {
     
-    static private let API_URL : String = "https://76facd14.ngrok.io"
+    static private let API_URL : String = "https://a1cb58bc.ngrok.io"
     
     static private let defaultSession = URLSession(configuration: .default)
     
@@ -41,18 +41,20 @@ class NetworkManager {
     
     static public func IsStopFavourited(_ stop: BusStop) -> Bool {
         return favouriteStops.contains(where: { (favStop) -> Bool in
-            favStop.stop_id == stop.stop_id
+            favStop.stop_id == stop.stop_id && favStop.stop_name == stop.stop_name
         })
     }
     
     static public func IsRouteFavourited(_ route: BusRoute) -> Bool {
         return favouriteRoutes.contains(where: { (favRoute) -> Bool in
-            favRoute.routeId == route.routeId
+            (favRoute.routeId == route.routeId && favRoute.routeName! == route.routeName!)
         })
     }
     
     static public func RemoveRouteFromFavs(_ route: BusRoute) {
-        favouriteRoutes = favouriteRoutes.filter { $0.routeId != route.routeId }
+        favouriteRoutes = favouriteRoutes.filter {
+            !($0.routeId == route.routeId && $0.routeName! == route.routeName!)
+        }
     }
     
     static public func AddRouteToFavs(_ route: BusRoute) {
@@ -60,7 +62,7 @@ class NetworkManager {
     }
     
     static public func RemoveStopFromFavs(_ stop: BusStop) {
-        favouriteStops = favouriteStops.filter { $0.stop_id != stop.stop_id }
+        favouriteStops = favouriteStops.filter { $0.stop_id != stop.stop_id && $0.stop_name != stop.stop_name }
     }
     
     static public func AddStopToFavs(_ stop: BusStop) {
@@ -186,6 +188,21 @@ class NetworkManager {
         })
         
         allRoutesTask?.resume()
+    }
+    
+    static public func GetStopRouteInformation(_ stop: BusStop, _ route: BusRoute, callback: @escaping (_ err: String?, _ routes: [BusRoute]) -> Void){
+        
+        callback(nil, [
+            BusRoute(routeId: "ABC", routeNumber: route.routeNumber, routeName: route.routeName!),
+            BusRoute(routeId: "ABC", routeNumber: route.routeNumber, routeName: route.routeName!),
+            BusRoute(routeId: "ABC", routeNumber: route.routeNumber, routeName: route.routeName!),
+            BusRoute(routeId: "ABC", routeNumber: route.routeNumber, routeName: route.routeName!)
+        ])
+        
+    }
+    
+    static public func GetNextBusTime(_ route: BusRoute) -> Int {
+        return Int(arc4random_uniform(42))
     }
 }
 
