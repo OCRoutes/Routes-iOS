@@ -40,6 +40,7 @@ class BusStopDetailView : UIView {
         label.text = "7285"
         label.font = UIFont(name: "AvenirNext-Bold", size: 20)
         label.textColor = .white
+        label.textAlignment = .center
         return label
     }()
     
@@ -49,6 +50,7 @@ class BusStopDetailView : UIView {
         label.font = UIFont(name: "Avenir Next", size: 16)
         label.textColor = UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.00)
         label.numberOfLines = 0
+        label.textAlignment = .center
         return label
     }()
     
@@ -74,6 +76,11 @@ class BusStopDetailView : UIView {
     func SetupWithBusStop(stop: BusStop) {
         busStopNumberLabel.text = stop.stop_code!
         busStopNameLabel.text = stop.stop_name
+    }
+    
+    func SetupWithBus(bus: BusRoute) {
+        busStopNumberLabel.text = bus.routeNumber
+        busStopNameLabel.text = "\(bus.firstBusTime!)min"
     }
     
     private func ApplyConstraint() {
