@@ -56,7 +56,7 @@ class OnboardingViewController : UIViewController, PaperOnboardingDataSource, Pa
                 OnboardingItemInfo(
                         informationImage: #imageLiteral(resourceName: "wave"),
                         title: "HEY THERE!",
-                        description: "Thank you for downloading Routes! We hope to make your daily commute a bit simpler! Here are some few tips for using our app.",
+                        description: "Thank you for downloading Routes! We hope to make your daily commute a bit simpler! Here are a few tips for using our app.",
                         pageIcon: UIImage(),
                         color: backgroundColorOne,
                         titleColor: .white,
@@ -105,23 +105,14 @@ class OnboardingViewController : UIViewController, PaperOnboardingDataSource, Pa
     }
     
     func onboardingWillTransitonToIndex(_ index: Int) {
-        if index == 2 {
-            
-            if self.getStartedButton.alpha == 1 {
-                UIView.animate(withDuration: 0.2, animations: {
-                    self.getStartedButton.alpha = 0
-                    self.getStartedButton.isUserInteractionEnabled = false
-                })
-            }
-        }
-    }
-    
-    func onboardingDidTransitonToIndex(_ index: Int) {
         if index == 3 {
-            UIView.animate(withDuration: 0.4, animations: {
+            UIView.animate(withDuration: 0.2, animations: {
                 self.getStartedButton.alpha = 1
                 self.getStartedButton.isUserInteractionEnabled = true
             })
+        } else {
+            self.getStartedButton.alpha = 0
+            self.getStartedButton.isUserInteractionEnabled = false
         }
     }
     
