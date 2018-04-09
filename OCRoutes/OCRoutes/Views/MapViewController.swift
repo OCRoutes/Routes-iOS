@@ -45,6 +45,7 @@ class MapViewController: UIViewController {
         } else {
             centerMapOnLocation(location: initialLocation)
         }
+        mapView.fitAll()
         
         mapView.showsCompass = true
         mapView.showsScale = true
@@ -55,6 +56,14 @@ class MapViewController: UIViewController {
     func PlaceBusStop(_ stop: BusStop) {
         let busAnnotation = BusStopAnnotation(stop)
         mapView.addAnnotation(busAnnotation)
+    }
+    
+    func SetupAllBusStops() {
+        let stops = NetworkManager.GetAllStops()
+        for stop in stops {
+            let stopAnnotation = BusStopAnnotation(stop)
+            mapView.addAnnotation(stopAnnotation)
+        }
     }
     
     func checkLocationAuthorizationStatus() {
@@ -95,5 +104,17 @@ extension MapViewController : MKMapViewDelegate {
             annotationView!.annotation = annotation
         }
         return annotationView
+    }
+}
+
+extension MKMapView {
+    func fitAll() {
+        var zoomRect            = MKMapRectNull;
+        for annotation in annotations {
+            let annotationPoint = MKMapPointForCoordinate(annotation.coordinate)
+            let pointRect       = MKMapRectMake(annotationPoint.x, annotationPoint.y, 0.01, 0.01);
+            zoomRect            = MKMapRectUnion(zoomRect, pointRect);
+        }
+        setVisibleMapRect(zoomRect, edgePadding: UIEdgeInsetsMake(100, 100, 100, 100), animated: true)
     }
 }

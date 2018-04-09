@@ -53,7 +53,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // map view init
         let mapNavController = UINavigationController()
-        mapNavController.viewControllers = [MapViewController()]
+        let mapVC = MapViewController()
+        mapVC.SetupAllBusStops()
+        mapNavController.viewControllers = [mapVC]
         
         // Inserting root view controllers into tab controller
         rootTabController.viewControllers = [favoriteNavController, routesNavController, stopsNavController, mapNavController]

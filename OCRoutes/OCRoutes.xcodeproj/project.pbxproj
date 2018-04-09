@@ -56,6 +56,7 @@
 		CA9AE555205CC6B700005733 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CAAA1AB82079527F001A4C54 /* StopRouteInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopRouteInformationViewController.swift; sourceTree = "<group>"; };
 		CAAA1ABA20796603001A4C54 /* StopRouteInformationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopRouteInformationTableViewCell.swift; sourceTree = "<group>"; };
+		CAAA1ABD207B0BCE001A4C54 /* site_gpx.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = site_gpx.gpx; sourceTree = "<group>"; };
 		CAAC479920506493009B2E0D /* Parchment.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parchment.framework; path = Carthage/Build/iOS/Parchment.framework; sourceTree = "<group>"; };
 		CAAC479E205095F8009B2E0D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CAAC47A02050E007009B2E0D /* FavouriteStopsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteStopsViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +107,7 @@
 				CA1F9E302020335800392754 /* AppDelegate.swift */,
 				CA9AE555205CC6B700005733 /* NetworkManager.swift */,
 				CA25DDF92073FBEF00DBDD02 /* fontawesome.ttf */,
+				CAAA1ABD207B0BCE001A4C54 /* site_gpx.gpx */,
 				CA1F9E372020335800392754 /* Assets.xcassets */,
 				CA1F9E392020335800392754 /* LaunchScreen.storyboard */,
 				CA1F9E3C2020335800392754 /* Info.plist */,
