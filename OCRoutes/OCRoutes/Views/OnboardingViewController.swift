@@ -14,16 +14,15 @@ class OnboardingViewController : UIViewController, PaperOnboardingDataSource, Pa
     
     fileprivate var onboardingView = PaperOnboarding()
     
-    let getStartedButton : UILabel = {
-        let label = UILabel()
-        label.text = "CLICK TO START"
-        label.font = UIFont(name: "AvenirNext-Bold", size: 18)!
-        label.textColor = .white
-        label.textAlignment = .center
-        label.sizeToFit()
-        label.alpha = 0;
-        label.isUserInteractionEnabled = false
-        return label
+    let getStartedButton : UIButton = {
+        let button = UIButton()
+        button.setTitle("CLICK TO START", for: .normal)
+        button.titleLabel?.font = UIFont(name: "AvenirNext-Bold", size: 18)!
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(getStartedClicked), for: .touchUpInside)
+        button.alpha = 0
+        button.isUserInteractionEnabled = false
+        return button
     }()
     
     override func viewDidLoad() {
@@ -35,6 +34,12 @@ class OnboardingViewController : UIViewController, PaperOnboardingDataSource, Pa
         view.addSubview(getStartedButton)
         
         ApplyConstraint()
+    }
+    
+    @objc func getStartedClicked(sender: UIButton) {
+        print("Touched")
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.switchToMainView()
     }
     
     // How many screens do we want

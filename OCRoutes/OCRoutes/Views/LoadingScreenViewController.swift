@@ -50,10 +50,17 @@ class LoadingScreenViewController: UIViewController {
             if err != nil { print(err!) }
             NetworkManager.GetAllStops { (err: String?) in
                 DispatchQueue.main.sync {
-                    
                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                    appDelegate.switchToMainView()
                     
+                    let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+                    if launchedBefore  {
+                        print("Not first launch.")
+                        appDelegate.switchToMainView()
+                    } else {
+                        print("First launch, setting UserDefault.")
+                        UserDefaults.standard.set(true, forKey: "launchedBefore")
+                        appDelegate.switchToOnboarding()
+                    }
                 }
             }
         }
