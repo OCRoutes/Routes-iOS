@@ -11,7 +11,7 @@ import MapKit
 
 class BusStopAnnotation : NSObject, MKAnnotation {
     
-    var station: BusStop?
+    var stop: BusStop?
     var title: String?
     var subtitle: String?
     var latitude: Double
@@ -28,9 +28,9 @@ class BusStopAnnotation : NSObject, MKAnnotation {
         self.subtitle = subtitle
     }
     
-    convenience init(station: BusStop) {
-        self.init(latitude: 1234.234, longitude: 1234.2345, title: station.stop_name, subtitle: station.stop_id)
-        self.station = station
+    convenience init(_ stop: BusStop) {
+        self.init(latitude: stop.stop_lat, longitude: stop.stop_lon, title: stop.stop_name, subtitle: stop.stop_id)
+        self.stop = stop
     }
     
     var coordinate: CLLocationCoordinate2D {

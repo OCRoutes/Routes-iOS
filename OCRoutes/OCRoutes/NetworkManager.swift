@@ -190,6 +190,17 @@ class NetworkManager {
         allRoutesTask?.resume()
     }
     
+    static public func GetStopRouteInformation(_ stop: BusStop, _ route: BusRoute, callback: @escaping (_ err: String?, _ routes: [BusRoute]) -> Void){
+        
+        callback(nil, [
+            BusRoute(routeId: "ABC", routeNumber: route.routeNumber, routeName: route.routeName!),
+            BusRoute(routeId: "ABC", routeNumber: route.routeNumber, routeName: route.routeName!),
+            BusRoute(routeId: "ABC", routeNumber: route.routeNumber, routeName: route.routeName!),
+            BusRoute(routeId: "ABC", routeNumber: route.routeNumber, routeName: route.routeName!)
+        ])
+        
+    }
+    
     static public func GetNextBusTime(_ route: BusRoute) -> Int {
         return Int(arc4random_uniform(42))
     }

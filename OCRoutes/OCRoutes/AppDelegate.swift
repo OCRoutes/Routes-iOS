@@ -53,7 +53,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // map view init
         let mapNavController = UINavigationController()
-        mapNavController.viewControllers = [MapViewController()]
+        let mapVC = MapViewController()
+        mapVC.SetupAllBusStops()
+        mapNavController.viewControllers = [mapVC]
         
         // Inserting root view controllers into tab controller
         rootTabController.viewControllers = [favoriteNavController, routesNavController, stopsNavController, mapNavController]
@@ -72,6 +74,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.rootViewController = rootTabController
         window?.makeKeyAndVisible()
+        
+        // Remove the name of previous view from navigation bar next to back button
+//        let BarButtonItemAppearance = UIBarButtonItem.appearance()
+//        BarButtonItemAppearance.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.clear], for: .normal)
+        
+        UINavigationBar.appearance().tintColor = Style.mainColor
         
         return true
     }
