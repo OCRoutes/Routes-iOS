@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		267B3EE4205848C00065FD7B /* FavouriteRoutesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 267B3EE3205848C00065FD7B /* FavouriteRoutesTableViewCell.swift */; };
+		26EF46C120780BC500D861C7 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26EF46C020780BC500D861C7 /* OnboardingViewController.swift */; };
+		26EF46C220787ECC00D861C7 /* PaperOnboarding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26EF46BC2078085800D861C7 /* PaperOnboarding.framework */; };
 		CA11EC512020E71600FB3541 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA11EC502020E71600FB3541 /* Style.swift */; };
 		CA1F9E312020335800392754 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1F9E302020335800392754 /* AppDelegate.swift */; };
 		CA1F9E332020335800392754 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1F9E322020335800392754 /* MapViewController.swift */; };
@@ -39,6 +41,8 @@
 
 /* Begin PBXFileReference section */
 		267B3EE3205848C00065FD7B /* FavouriteRoutesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteRoutesTableViewCell.swift; sourceTree = "<group>"; };
+		26EF46BC2078085800D861C7 /* PaperOnboarding.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PaperOnboarding.framework; path = Carthage/Build/iOS/PaperOnboarding.framework; sourceTree = "<group>"; };
+		26EF46C020780BC500D861C7 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		CA11EC502020E71600FB3541 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		CA1F9E2D2020335800392754 /* OCRoutes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OCRoutes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA1F9E302020335800392754 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26EF46C220787ECC00D861C7 /* PaperOnboarding.framework in Frameworks */,
 				CAAC479A20506493009B2E0D /* Parchment.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -154,6 +159,7 @@
 				CA1F9E322020335800392754 /* MapViewController.swift */,
 				CA1F9E4B2020E5B700392754 /* RoutesViewController.swift */,
 				CAD558332025022E00C3558F /* StopsViewController.swift */,
+				26EF46C020780BC500D861C7 /* OnboardingViewController.swift */,
 				CAAA1AB82079527F001A4C54 /* StopRouteInformationViewController.swift */,
 				CAAA1ABE207B162A001A4C54 /* LoadingScreenViewController.swift */,
 			);
@@ -163,6 +169,7 @@
 		CAAC479820506493009B2E0D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				26EF46BC2078085800D861C7 /* PaperOnboarding.framework */,
 				CAAC479920506493009B2E0D /* Parchment.framework */,
 			);
 			name = Frameworks;
@@ -244,6 +251,7 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Parchment.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PaperOnboarding.framework",
 			);
 			outputPaths = (
 			);
@@ -267,6 +275,7 @@
 				CA1F9E432020CDEA00392754 /* BusStopAnnotation.swift in Sources */,
 				CAD5583020226DA900C3558F /* BusStopDetailView.swift in Sources */,
 				CAAC479F205095F8009B2E0D /* HomeViewController.swift in Sources */,
+				26EF46C120780BC500D861C7 /* OnboardingViewController.swift in Sources */,
 				CA28492C20570ADB00EDCBF5 /* RedLineView.swift in Sources */,
 				CAD5583120226DA900C3558F /* BusStopAnnotationView.swift in Sources */,
 				CAAA1ABF207B162A001A4C54 /* LoadingScreenViewController.swift in Sources */,
@@ -411,14 +420,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = G3KGQDJHJS;
+				DEVELOPMENT_TEAM = 34U57LC3TA;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = OCRoutes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = OCR.OCRoutes;
+				PRODUCT_BUNDLE_IDENTIFIER = OCR.OCRoutes1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -430,14 +439,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = G3KGQDJHJS;
+				DEVELOPMENT_TEAM = 34U57LC3TA;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = OCRoutes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = OCR.OCRoutes;
+				PRODUCT_BUNDLE_IDENTIFIER = OCR.OCRoutes1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
