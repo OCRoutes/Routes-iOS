@@ -13,17 +13,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var rootView: UIViewController!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        NetworkManager.GetAllRoutes { (err: String?) in
-            if err != nil { print(err!) }
-        }
-        
-        NetworkManager.GetAllStops { (err: String?) in
-            if err != nil { print(err!) }
-        }
         
         window = UIWindow(frame: UIScreen.main.bounds)
         
@@ -72,7 +65,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBarItems[3].image = UIImage(named: "map")
         tabBarItems[3].imageInsets = UIEdgeInsetsMake(6,0,-6,0)
         
-        window?.rootViewController = rootTabController
+        self.rootView = rootTabController
+        
+        window?.rootViewController = LoadingScreenViewController()
         window?.makeKeyAndVisible()
         
         // Remove the name of previous view from navigation bar next to back button
@@ -82,6 +77,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = Style.mainColor
         
         return true
+    }
+    
+    func switchToMainView() {
+        self.window?.rootViewController = self.rootView
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
