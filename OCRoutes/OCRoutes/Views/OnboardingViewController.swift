@@ -111,7 +111,6 @@ class OnboardingViewController : UIViewController, PaperOnboardingDataSource, Pa
                 UIView.animate(withDuration: 0.2, animations: {
                     self.getStartedButton.alpha = 0
                     self.getStartedButton.isUserInteractionEnabled = false
-                    print("GUH BYE")
                 })
             }
         }
@@ -122,7 +121,6 @@ class OnboardingViewController : UIViewController, PaperOnboardingDataSource, Pa
             UIView.animate(withDuration: 0.4, animations: {
                 self.getStartedButton.alpha = 1
                 self.getStartedButton.isUserInteractionEnabled = true
-                print("HEH WOW")
             })
         }
     }
