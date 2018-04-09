@@ -66,6 +66,21 @@ class StopRouteInformationViewController: UIViewController {
     @objc func OpenMap(_ sender: AnyObject) {
         let mapVC = MapViewController()
         mapVC.PlaceBusStop(self.stop!)
+        
+        var bus1 = BusRoute(routeId: "ABC", routeNumber: "98", routeName: "Hawthorne")
+        bus1.firstBusTime = "1"
+        let bus1Annotation = BusAnnotation(route: bus1, lat: 45.421788, lon: -75.679885)
+        
+        var bus2 = BusRoute(routeId: "ABC", routeNumber: "98", routeName: "Hawthorne")
+        bus2.firstBusTime = "7"
+        let bus2Annotation = BusAnnotation(route: bus2, lat: 45.428646, lon: -75.685616)
+        
+        var bus3 = BusRoute(routeId: "ABC", routeNumber: "98", routeName: "Hawthorne")
+        bus3.firstBusTime = "3"
+        let bus3Annotation = BusAnnotation(route: bus3, lat: 45.424494, lon: -75.684850)
+        
+        mapVC.PlaceBuses([bus1Annotation, bus2Annotation, bus3Annotation])
+        
         self.navigationController?.pushViewController(mapVC, animated: true)
     }
     

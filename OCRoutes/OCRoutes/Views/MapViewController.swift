@@ -53,6 +53,13 @@ class MapViewController: UIViewController {
         mapView.fitAll()
     }
     
+    func PlaceBuses(_ annotations: [BusAnnotation]) {
+        for annotation in annotations {
+            mapView.addAnnotation(annotation)
+        }
+        mapView.fitAll()
+    }
+    
     func SetupAllBusStops() {
         let stops = NetworkManager.GetAllStops()
         for stop in stops {
@@ -91,10 +98,17 @@ extension MapViewController : MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation { return nil }
         
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "StationAnnotation")
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "Annotation")
         
         if annotationView == nil {
-            annotationView = BusStopAnnotationView(annotation: annotation, reuseIdentifier: "StationAnnotation")
+            
+            if annotation is BusStopAnnotation {
+                annotationView = BusStopAnnotationView(annotation: annotation, reuseIdentifier: "Annotation")
+            } else {
+                annotationView = BusAnnotationView(annotation: annotation, reuseIdentifier: "Annotation")
+            }
+            
+            
         } else {
             annotationView!.annotation = annotation
         }
