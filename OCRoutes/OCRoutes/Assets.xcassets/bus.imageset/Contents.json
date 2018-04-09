@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "stop-pin.png",
+      "filename" : "bus-pin.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "stop-pin@2x.png",
+      "filename" : "bus-pin@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "stop-pin@3x.png",
+      "filename" : "bus-pin@3x.png",
       "scale" : "3x"
     }
   ],
