@@ -20,12 +20,7 @@ class NetworkManager {
     
     static private var allRoutesDict : Dictionary<String, BusRoute> = [:]
     static private var allRoutesList : Array<BusRoute> = []
-    static private var favouriteRoutes : Array<BusRoute> = [
-        BusRoute(routeId: "98-279", routeNumber: "98", routeName: "Hawthorne"),
-        BusRoute(routeId: "2-279", routeNumber: "2", routeName: "Greenboro"),
-        BusRoute(routeId: "4-279", routeNumber: "4", routeName: "Rideau"),
-        BusRoute(routeId: "104-279", routeNumber: "104", routeName: "Place d'Orléans")
-    ]
+    static private var favouriteRoutes : Array<BusRoute> = []
     
     static private var allStopDict : Dictionary<String, BusStop> = [:]
     static private var allStopsList : Array<BusStop> = []
@@ -75,6 +70,33 @@ class NetworkManager {
     
     static public func GetFavouritedStops() -> [BusStop] {
         return favouriteStops
+    }
+    
+    static public func GetFakeStops() -> [BusStop] {
+        let route = BusRoute(routeId: "abc", routeNumber: "98", routeName: "Hawthorne")
+        
+        var stop1 = BusStop(stop_id: "abc", stop_code: "0000", stop_name: "Stop1", stop_lat: 45.4196944, stop_lon: -75.6792876)
+        stop1.routes = [route]
+        
+        var stop2 = BusStop(stop_id: "abc", stop_code: "1111", stop_name: "Stop2", stop_lat: 45.4196944, stop_lon: -75.6792876)
+        stop2.routes = [route]
+        
+        var stop3 = BusStop(stop_id: "abc", stop_code: "2222", stop_name: "Stop3", stop_lat: 45.4196944, stop_lon: -75.6792876)
+        stop3.routes = [route]
+        
+        var stop4 = BusStop(stop_id: "abc", stop_code: "3333", stop_name: "Stop4", stop_lat: 45.4196944, stop_lon: -75.6792876)
+        stop4.routes = [route]
+        
+        var stop5 = BusStop(stop_id: "abc", stop_code: "4444", stop_name: "Stop5", stop_lat: 45.4196944, stop_lon: -75.6792876)
+        stop5.routes = [route]
+        
+        var stop6 = BusStop(stop_id: "abc", stop_code: "5555", stop_name: "Stop6", stop_lat: 45.4196944, stop_lon: -75.6792876)
+        stop6.routes = [route]
+        
+        var stop7 = BusStop(stop_id: "abc", stop_code: "6666", stop_name: "Stop7", stop_lat: 45.4196944, stop_lon: -75.6792876)
+        stop7.routes = [route]
+        
+        return [stop1, stop2, stop3, stop4, stop5, stop6, stop7]
     }
     
     static public func CheckServerHealth() {

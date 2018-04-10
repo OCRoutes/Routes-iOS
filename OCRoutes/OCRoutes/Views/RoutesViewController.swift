@@ -40,6 +40,11 @@ class RoutesViewController : UIViewController {
         ApplyConstraint()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+//        self.title = "ALL ROUTE"
+        self.navigationController?.navigationBar.topItem?.title = "ALL ROUTES"
+    }
+    
     private func SetupFavsTableView() {
         routesTableView = UITableView(frame: CGRect.zero)
         
@@ -118,6 +123,11 @@ extension RoutesViewController : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70.0
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = StopViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

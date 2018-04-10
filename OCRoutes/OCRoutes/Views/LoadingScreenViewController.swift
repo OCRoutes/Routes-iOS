@@ -52,13 +52,13 @@ class LoadingScreenViewController: UIViewController {
                 DispatchQueue.main.sync {
                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                     
-                    let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+                    let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore2")
                     if launchedBefore  {
                         print("Not first launch.")
                         appDelegate.switchToMainView()
                     } else {
                         print("First launch, setting UserDefault.")
-                        UserDefaults.standard.set(true, forKey: "launchedBefore")
+                        UserDefaults.standard.set(true, forKey: "launchedBefore2")
                         appDelegate.switchToOnboarding()
                     }
                 }
