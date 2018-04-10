@@ -61,6 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let mapNavController = UINavigationController()
         let mapVC = MapViewController()
         mapVC.SetupAllBusStops()
+        mapVC.centerLocationOnSite()
         mapNavController.viewControllers = [mapVC]
         
         // Inserting root view controllers into tab controller

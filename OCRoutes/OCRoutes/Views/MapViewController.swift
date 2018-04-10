@@ -15,6 +15,8 @@ class MapViewController: UIViewController {
     let initialLocation = CLLocation(latitude: 45.42037, longitude: -75.678609)
     let locationManager = CLLocationManager()
     
+    var centerOnUser: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -24,7 +26,13 @@ class MapViewController: UIViewController {
         
         SetupMapView()
         SetupContraint()
-        mapView.fitAll()
+        
+        if !centerOnUser {
+            mapView.fitAll()
+        } else {
+            centerLocationOnSite()
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,6 +74,12 @@ class MapViewController: UIViewController {
             let stopAnnotation = BusStopAnnotation(stop)
             mapView.addAnnotation(stopAnnotation)
         }
+    }
+    
+    public func centerLocationOnSite() {
+        
+        centerOnUser = true
+        centerMapOnLocation(location: initialLocation)
     }
     
     func checkLocationAuthorizationStatus() {

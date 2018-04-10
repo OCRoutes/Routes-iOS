@@ -158,6 +158,13 @@ extension FavouriteRoutesViewController : UITableViewDelegate, UITableViewDataSo
         return 70.0
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let vc = StopViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let route = favRoutes?[indexPath.row] {
             var trackStyle = TrackStyle.Normal

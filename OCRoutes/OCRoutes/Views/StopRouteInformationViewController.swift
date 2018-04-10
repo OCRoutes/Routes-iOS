@@ -38,7 +38,7 @@ class StopRouteInformationViewController: UIViewController {
         
         view.backgroundColor = .white
         
-        self.navigationController?.navigationBar.backItem?.title = " "
+//        self.navigationController?.navigationBar.backItem?.title = " "
         self.title = stop?.stop_name
         
         let mapButton = UIBarButtonItem(title: "Map", style: UIBarButtonItemStyle.plain, target: self, action: #selector(OpenMap(_:)))
